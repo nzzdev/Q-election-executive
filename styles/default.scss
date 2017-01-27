@@ -1,0 +1,98 @@
+.q-election-executive {
+	&-info {
+		margin-bottom: 5px;
+	}
+
+  &-majority {
+    position: absolute;
+    background-color: #d3d3d3;
+    width: 1px;
+
+    &-arrow {
+      position: relative;
+      left:-3px;
+      width: 0; 
+      height: 0; 
+      border-left: 4px solid transparent;
+      border-right: 4px solid transparent;
+      border-bottom: 5px solid #d3d3d3 ;
+    }
+
+    &-label {
+      position: absolute;
+      background-color: #d3d3d3;
+      width: 1px;
+      height: 40px;
+
+      &-text {
+        position: relative;
+        width: 120px;
+        text-align: right;
+        line-height: 14px;
+        font-size: 12px;
+        margin: 14px 0 0 5px;
+      }
+    }
+
+    &-gap {
+      height: 50px;
+    }
+  }
+
+	&-item {
+    &-info {
+      float: left;
+      position: relative;
+      height: 40px;
+      background-color: #ebebeb; 
+      margin: 0 0 8px 8px;
+      top: 5px;
+      width: calc(100% - 48px);
+    }
+
+    &-image {
+      float: left;
+      width: 40px;
+      height: 40px;
+      overflow: hidden;
+      background: #cfcfcf;
+      border-radius: 50%;
+      margin-top: 4px;
+
+      img {
+        display: block;
+        height: 45px;
+        margin: 0 auto;
+      }
+    }
+
+    &-bar {
+      height: 40px;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    &-name {
+      float:left;
+      width: 100%;
+      margin: 4px 0 0 4px;
+      position: relative;
+      z-index: 1;
+    }
+
+    &-votes {
+      float: right;
+      position: absolute;
+      top: 20;
+      z-index: 1;
+      right: 5px;
+      /* overwrite with right sophie font */
+      font-size: 12px;
+    }
+	}
+
+  &-footer {
+    margin-top: 10px
+  }
+}

@@ -5,7 +5,42 @@
     "title": {
       "type": "string"
     },
+    "subtitle": {
+      "type": "string"
+    },
     "annotations": {
+      "type": "string"
+    },
+    "intermediate": {
+      "type": "boolean"
+    },
+    "majority": {
+      "type": "number"
+    },
+    "candidates": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "party": {
+            "type": "string"
+          },
+          "votes": {
+            "type": "number"
+          },
+          "colour": {
+            "type": "string"
+          },
+          "image": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "notes": {
       "type": "string"
     },
     "sources": {
@@ -13,26 +48,20 @@
       "items": {
         "type": "object",
         "properties": {
-          "label": {
+          "text": {
             "type": "string"
           },
-          "url": {
+          "href": {
+            "type": "string"
+          },
+          "validHref": {
             "type": "string"
           }
         }
       }
-    },
-    "data": {
-			"type": "object",
-			"properties": {
-				"sampleProperty": {
-					"type": "string"
-				}
-			}
-		}
+    }
   },
   "required": [
-    "title",
-    "data"
+    "title"
   ]
 }
