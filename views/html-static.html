@@ -1,8 +1,8 @@
 <div class="q-item-container">
   <h3 class="s-q-item__title">{{title}}</h3>
   <div class="q-election-executive-info s-font-note">
-    {{#if subtitle}}{{subtitle}},{{/if}}
-    {{#if intermediate}}Zwischenergebnis, {{/if}}Update {{updateInfo}}
+    {{#if subtitle}}{{subtitle}}{{#if intermediate || updatedDate}}, {{/if}}{{/if}}
+    {{#if intermediate}}Zwischenergebnis{{#if updatedDate}}, {{/if}}{{/if}}{{#if updatedDate}}Update {{updateInfo}}{{/if}}
   </div>
   <div class="q-election-executive" style="height: {{numberCandidates * (40 + 8)}};">
     {{#if majority && candidatesInfo.maxResult > 0}}
@@ -14,7 +14,7 @@
           </svg>
           <div class="q-election-executive-majority-text s-font-note-s" style="left: calc({{majority * 100 / candidatesInfo.maxResult}}% - 135px);">
             <div>Absolutes Mehr</div>
-            <div>{{majority}} Stimmen</div>
+            <div>{{majority.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")}} Stimmen</div>
           </div>
         </div>
         <!-- maybe with switch to left if text is not fitting to right -->
@@ -25,7 +25,11 @@
       <div class="q-election-executive-item">
         <div class="q-election-executive-item-image">
           <!-- replace with right image handling -> for testing purposes atm -->
-          <img src="{{candidate.image}}"/>
+          {{#if candidate.status === "not elected"}}
+            <img class="q-election-executive-item-image-gray" src="{{candidate.image}}"/>
+          {{else}}
+            <img src="{{candidate.image}}"/>
+          {{/if}}
         </div>
         <div class="q-election-executive-item-info s-color-gray-3">
           {{#if candidate.votes}}
@@ -56,7 +60,7 @@
             <span class="s-font-note">{{candidate.party}}</span>
           </div>
           {{#if candidate.votes}}
-            <div class="s-font-note-s s-font-note-s--strong q-election-executive-item-votes">{{candidate.votes}}</div>
+            <div class="s-font-note-s s-font-note-s--strong q-election-executive-item-votes">{{candidate.votes.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")}}</div>
           {{/if}}
         </div>
       </div>
@@ -111,9 +115,6 @@
   export default {
     computed: {
       updateInfo: (updatedDate) => {
-        if (updatedDate === undefined) {
-          return 'vor weniger als einer Minute';
-        }
         let updated = new Date(updatedDate);
         if (updated.getTime()) {
           let now = new Date();

@@ -55,6 +55,12 @@
         height: 45px;
         margin: 0 auto;
       }
+
+      &-gray {
+        filter: gray;
+        -webkit-filter: grayscale(100%);
+        filter: grayscale(100%);
+      }
     }
 
     &-bar {
