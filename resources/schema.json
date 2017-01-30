@@ -28,8 +28,18 @@
           "party": {
             "type": "string"
           },
+          "previous": {
+            "type": "boolean"
+          },
           "votes": {
             "type": "number"
+          },
+          "status": {
+            "enum": [
+              "elected",
+              "not elected",
+              "undefined"
+            ]
           },
           "colour": {
             "type": "string"

@@ -5,37 +5,28 @@
 
   &-majority {
     position: absolute;
-    background-color: #d3d3d3;
+    background-color: currentColor;
     width: 1px;
+
+    &-label {
+      position: relative;
+    }
 
     &-arrow {
       position: relative;
-      left:-3px;
-      width: 0; 
-      height: 0; 
-      border-left: 4px solid transparent;
-      border-right: 4px solid transparent;
-      border-bottom: 5px solid #d3d3d3 ;
-    }
-
-    &-label {
-      position: absolute;
-      background-color: #d3d3d3;
-      width: 1px;
       height: 40px;
-
-      &-text {
-        position: relative;
-        width: 120px;
-        text-align: right;
-        line-height: 14px;
-        font-size: 12px;
-        margin: 14px 0 0 5px;
-      }
+      left: -4px;
     }
+
+    &-text {
+      top: 10px;
+      position: absolute;
+      width: 120px;
+      text-align: right;
+    } 
 
     &-gap {
-      height: 50px;
+      height: 40px;
     }
   }
 
@@ -44,7 +35,7 @@
       float: left;
       position: relative;
       height: 40px;
-      background-color: #ebebeb; 
+      background-color: currentColor; 
       margin: 0 0 8px 8px;
       top: 5px;
       width: calc(100% - 48px);
@@ -73,12 +64,24 @@
       left: 0;
     }
 
-    &-name {
+    &-text {
       float:left;
       width: 100%;
       margin: 4px 0 0 4px;
       position: relative;
       z-index: 1;
+
+      span {
+        vertical-align: middle;
+      }
+
+      &-name {
+        display: inline-block;
+        max-width: 80%;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis; 
+      }
     }
 
     &-votes {
@@ -91,6 +94,11 @@
       font-size: 12px;
     }
 	}
+
+  &-elected,
+  &-dropped {
+    height: 1em;
+  }
 
   &-footer {
     margin-top: 10px
