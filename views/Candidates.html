@@ -1,4 +1,4 @@
-{{#each sortedCandidates as candidate}}
+{{#each enhancedCandidates as candidate}}
   <div class="q-election-executive-item">
     <div class="q-election-executive-item-image s-color-gray-2">
       {{#if candidate.status === "not elected"}}
@@ -8,11 +8,7 @@
       {{/if}}
     </div>
     <div class="q-election-executive-item-info s-color-gray-3">
-      {{#if candidate.votes}}
-        <div class="q-election-executive-item-bar" style="background-color: {{candidate.color.full.colorCode}}; width: {{candidate.votes * 100 / maxResult}}%;"></div>
-      {{else}}
-        <div class="q-election-executive-item-bar" style="background-color: {{candidate.color.full.colorCode}}; width: 1px;"></div>
-      {{/if}}
+      <div class="q-election-executive-item-bar {{candidate.colorClass}}" style="{{candidate.colorStyle}} width: {{candidate.width}};"></div>
       <div class="q-election-executive-item-text">
         <span class="q-election-executive-item-text-name s-font-title-xs">
           {{#if candidate.status === "elected"}}
@@ -44,3 +40,41 @@
     </div>
   </div>
 {{/each}}
+
+<script>
+  export default {
+    computed: {
+      enhancedCandidates: (sortedCandidates, maxResult) => {
+        sortedCandidates.forEach(candidate => {
+          let width = '1px';
+          let colorStyle = '';
+          let colorClass = '';
+          if (candidate.votes && candidate.votes > 0) {
+            let widthPercentage = candidate.votes * 100 / maxResult
+            width = widthPercentage + '%';
+          }
+          candidate.width = width;
+          if (candidate.color) {
+            let colorDef;
+            if (candidate.status === "elected" || candidate.status === "undefined") {
+              colorDef = 'full';
+            } else {
+              colorDef = 'light';
+            }
+            if (candidate.color[colorDef]) {
+              if (candidate.color[colorDef].classAttribute) {
+                colorClass = candidate.color[colorDef].classAttribute;
+              } else {
+                colorStyle = 'background-color: ' + candidate.color[colorDef].colorCode + ';'; 
+              }
+            }
+          }
+          candidate.colorClass = colorClass;
+          candidate.colorStyle = colorStyle;
+        })
+        console.log(JSON.stringify(sortedCandidates));
+        return sortedCandidates;
+      }
+    }
+  }
+</script>
