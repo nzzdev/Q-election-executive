@@ -1,30 +1,28 @@
 <div class="q-item-container">
   <h3 class="s-q-item__title">{{title}}</h3>
   <div class="q-election-executive-info s-font-note">
-    {{#if subtitle}}{{subtitle}}{{#if intermediate || updatedDate}}, {{/if}}{{/if}}
+    {{#if subtitle}}{{subtitle}}{{#if intermediate || updatedDate}},{{/if}}{{/if}}
     {{#if intermediate}}Zwischenergebnis{{#if updatedDate}}, {{/if}}{{/if}}{{#if updatedDate}}Update {{updateInfo}}{{/if}}
   </div>
   <div class="q-election-executive" style="height: {{numberCandidates * (40 + 8)}};">
     {{#if majority && candidatesInfo.maxResult > 0}}
       <div class="q-election-executive-majority s-color-gray-3" style="left: {{majority * 100 / candidatesInfo.maxResult}}%; height: {{(numberCandidates * (40 + 8)) - 4}};">
-        <!-- use svg instead -->
         <div class="q-election-executive-majority-label" style="top: {{(numberCandidates * (40 + 8)) - 4}};">
+          <!-- majority arrow -->
           <svg class="q-election-executive-majority-arrow" viewBox="0 0 7 35" xmlns="http://www.w3.org/2000/svg">
             <path d="M4 5v30H3V5H0l3.5-5L7 5H4z" fill="currentColor" fill-rule="evenodd"/>
           </svg>
           <div class="q-election-executive-majority-text s-font-note-s" style="left: calc({{majority * 100 / candidatesInfo.maxResult}}% - 135px);">
             <div>Absolutes Mehr</div>
+            <!-- insert a space after each three digits -->
             <div>{{majority.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")}} Stimmen</div>
           </div>
-        </div>
-        <!-- maybe with switch to left if text is not fitting to right -->
-        
+        </div>        
       </div>
     {{/if}}
     {{#each sortedCandidates as candidate}}
       <div class="q-election-executive-item">
         <div class="q-election-executive-item-image">
-          <!-- replace with right image handling -> for testing purposes atm -->
           {{#if candidate.status === "not elected"}}
             <img class="q-election-executive-item-image-gray" src="{{candidate.image}}"/>
           {{else}}
@@ -60,7 +58,10 @@
             <span class="s-font-note">{{candidate.party}}</span>
           </div>
           {{#if candidate.votes}}
-            <div class="s-font-note-s s-font-note-s--strong q-election-executive-item-votes">{{candidate.votes.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")}}</div>
+            <div class="s-font-note-s s-font-note-s--strong q-election-executive-item-votes">
+              <!-- insert a space after each three digits -->
+              {{candidate.votes.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")}}
+            </div>
           {{/if}}
         </div>
       </div>
