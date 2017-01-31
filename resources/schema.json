@@ -11,7 +11,7 @@
     "annotations": {
       "type": "string"
     },
-    "intermediate": {
+    "isIntermediate": {
       "type": "boolean"
     },
     "majority": {
@@ -28,7 +28,7 @@
           "party": {
             "type": "string"
           },
-          "previous": {
+          "isPrevious": {
             "type": "boolean"
           },
           "votes": {
@@ -41,8 +41,32 @@
               "undefined"
             ]
           },
-          "colour": {
-            "type": "string"
+          "color": {
+            "type": "object",
+            "properties": {
+              "full": {
+                "type": "object",
+                "properties": {
+                  "colorCode": {
+                    "type": "string"
+                  },
+                  "classAttribute": {
+                    "type": "string"
+                  }
+                }
+              },
+              "light": {
+                "type": "object",
+                "properties": {
+                  "colorCode": {
+                    "type": "string"
+                  },
+                  "classAttribute": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
           },
           "image": {
             "type": "string"
