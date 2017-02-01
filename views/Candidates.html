@@ -1,4 +1,4 @@
-{{#each enhancedCandidates as candidate}}
+{{#each candidates as candidate}}
   <div class="q-election-executive-item">
     <div class="q-election-executive-item-image s-color-gray-2">
       {{#if candidate.status === "not elected"}}
@@ -40,41 +40,3 @@
     </div>
   </div>
 {{/each}}
-
-<script>
-  export default {
-    computed: {
-      enhancedCandidates: (sortedCandidates, maxResult) => {
-        sortedCandidates.forEach(candidate => {
-          let width = '1px';
-          let colorStyle = '';
-          let colorClass = '';
-          if (candidate.votes && candidate.votes > 0) {
-            let widthPercentage = candidate.votes * 100 / maxResult
-            width = widthPercentage + '%';
-          }
-          candidate.width = width;
-          if (candidate.color) {
-            let colorDef;
-            if (candidate.status === "elected" || candidate.status === "undefined") {
-              colorDef = 'full';
-            } else {
-              colorDef = 'light';
-            }
-            if (candidate.color[colorDef]) {
-              if (candidate.color[colorDef].classAttribute) {
-                colorClass = candidate.color[colorDef].classAttribute;
-              } else {
-                colorStyle = 'background-color: ' + candidate.color[colorDef].colorCode + ';'; 
-              }
-            }
-          }
-          candidate.colorClass = colorClass;
-          candidate.colorStyle = colorStyle;
-        })
-        console.log(JSON.stringify(sortedCandidates));
-        return sortedCandidates;
-      }
-    }
-  }
-</script>

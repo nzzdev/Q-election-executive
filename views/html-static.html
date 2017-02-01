@@ -2,10 +2,10 @@
   <h3 class="s-q-item__title">{{title}}</h3>
   <Header subtitle='{{subtitle}}' isIntermediate='{{isIntermediate}}' updatedDate='{{updatedDate}}'/>
   <div class="q-election-executive">
-    <MajorityInfo majority='{{majority}}' maxResult='{{candidatesInfo.maxResult}}' sortedCandidates='{{sortedCandidates}}' />
-    <Candidates sortedCandidates='{{sortedCandidates}}' maxResult='{{candidatesInfo.maxResult}}' />
+    <MajorityInfo majority='{{majority}}' maxResult='{{enhancedCandidates.candidatesInfo.maxResult}}' />
+    <Candidates candidates ='{{enhancedCandidates}}' />
   </div>
-  <Footer majority='{{majority}}' candidatesInfo='{{candidatesInfo}}' sources='{{sources}}' notes='{{notes}}' />
+  <Footer majority='{{majority}}' candidatesInfo='{{enhancedCandidates.candidatesInfo}}' sources='{{sources}}' notes='{{notes}}' />
 </div>
 
 <script>
@@ -27,32 +27,69 @@
           return -1;
         })
       },
-      candidatesInfo: (candidates, majority) => {
+      enhancedCandidates: (sortedCandidates, majority) => {
+        // enhance candidates object with additional information
+        let isPrevious = false;
+        let isElected = false;
+        let isDropped = false;
+
         let maxResult = 0;
-        let countIsPrevious = 0;
-        let countIsElected = 0;
-        let countIsDropped = 0;
-        candidates.forEach(candidate => {
+        if (sortedCandidates[0] && sortedCandidates[0].votes) {
+          maxResult = sortedCandidates[0].votes;
+        }
+
+        sortedCandidates.forEach(candidate => {
+          // define width and color of each candidate's bar
+          let width = '1px';
+          let colorStyle = '';
+          let colorClass = '';
+          if (maxResult > 0 && candidate.votes && candidate.votes > 0) {
+            let widthPercentage = candidate.votes * 100 / maxResult;
+            width = widthPercentage + '%';
+          }
+          candidate.width = width;
+          if (candidate.color) {
+            let colorDef;
+            if (candidate.status === "elected" || candidate.status === "undefined") {
+              colorDef = 'full';
+            } else {
+              colorDef = 'light';
+            }
+            if (candidate.color[colorDef]) {
+              if (candidate.color[colorDef].classAttribute) {
+                colorClass = candidate.color[colorDef].classAttribute;
+              } else {
+                colorStyle = 'background-color: ' + candidate.color[colorDef].colorCode + ';'; 
+              }
+            }
+          }
+          candidate.colorClass = colorClass;
+          candidate.colorStyle = colorStyle;
+          
+          // check if we have previous, elected or dropped candidates for footer info
           if(candidate.isPrevious) {
-            countIsPrevious++;
+            isPrevious = true;
             if (candidate.status === "not elected") {
-              countIsDropped++ 
+              isDropped = true; 
             }
           }
           if (candidate.status === "elected") {
-            countIsElected++;
-          }
-          if (candidate.votes > maxResult) {
-            maxResult = candidate.votes;
+            isElected = true;
           }
         })
-        let candidatesInfo = {
+
+        // if there are already any votes the first candidate 
+        // of sorted list of candidates has max votes
+
+        sortedCandidates.candidatesInfo = {
           maxResult: maxResult,
-          isPrevious: countIsPrevious > 0,
-          isElected: countIsElected > 0,
-          isDropped: countIsDropped > 0
+          isPrevious: isPrevious,
+          isElected: isElected,
+          isDropped: isDropped
         };
-        return candidatesInfo;
+
+        console.log(JSON.stringify(sortedCandidates));
+        return sortedCandidates;
       }
     },
 

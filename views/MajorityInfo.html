@@ -15,9 +15,8 @@
 <script>
   export default {
     computed: {
-      majorityTextAlignClass : (sortedCandidates, majority) => {
-        let maxResult = sortedCandidates[0].votes;
-        if (maxResult === undefined || maxResult === 0 || ((majority * 100 / maxResult) > 50)) {
+      majorityTextAlignClass : (maxResult, majority) => {
+        if (maxResult === 0 || ((majority * 100 / maxResult) > 50)) {
           return "right";
         } else {
           return "left";
