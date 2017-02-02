@@ -8,11 +8,11 @@ node_js:
 branches:
   only:
   - staging
-  - /^v[0-9]+(\.[0-9]){0,2}$/
+  - "/^v[0-9]+(\\.[0-9]){0,2}$/"
 install:
 - npm install
 before_script:
-- DOCKER_IMAGE_NAME="q-renderer-skeleton"
+- DOCKER_IMAGE_NAME="q-election-executive"
 - DOCKER_TAG=$TRAVIS_BRANCH
 script:
 - npm test
@@ -20,13 +20,13 @@ script:
 after_success:
 - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"; docker tag $DOCKER_IMAGE_NAME:$DOCKER_TAG
   nzzonline/$DOCKER_IMAGE_NAME:$DOCKER_TAG; docker push nzzonline/$DOCKER_IMAGE_NAME:$DOCKER_TAG;
-- if [ "$TRAVIS_BRANCH" == "staging" ]; then docker run --rm -it -e RANCHER_URL -e CATTLE_ACCESS_KEY
-  -e CATTLE_SECRET_KEY etlweather/gaucho upgrade $RANCHER_SERVICE_ID_STAGING --auto_complete
-  --start_first --imageUuid="docker:nzzonline/$DOCKER_IMAGE_NAME:$DOCKER_TAG" || true;
+- if [ "$TRAVIS_BRANCH" == "staging" ]; then docker run --rm -it -e RANCHER_URL -e
+  CATTLE_ACCESS_KEY -e CATTLE_SECRET_KEY etlweather/gaucho upgrade $RANCHER_SERVICE_ID_STAGING
+  --auto_complete --start_first --imageUuid="docker:nzzonline/$DOCKER_IMAGE_NAME:$DOCKER_TAG" || true; 
   fi
 cache:
   directories:
   - node_modules
 notifications:
   slack:
-    secure: securekey
+    secure: X0NNhjQanO7I0kNCFPDceyLaOlXhH35bP8aMJl90UmOQU+V0yiosX0DvK8i9ZyB44MpOPiM1OEqU0cTaHzlaEZAJZLgS8v+qM0Lzk8JYYCMeyhg1ayHnk9qyINSTUJlLx2wSFi2RkhvS1UdEpfdq9iDNefQiso1LaGTlcl4mulaNLOkNvqwkkm5QKsQsmgWNN6ip1oCmesAiaZyld2NoiLuhZ5J8Z5Rmv4miNZFIiR+U/iyzX8FqgtHCbSVfrJY7563ui6tIRZTe5XNqqT47ISW9KHDSc9IcrXEuX3tCcH/zM65mkJDRv0mmYtJAnMF0RxlDlIOyIW+JZnmA4bOB001muPLs9SbfITHKeirCRx4XkR1vohpuR/8Ox2Yn2mTOQUe0sYowPGETDJwgSFsIYIFyeuVp2c0WqF0e+14/3PcX8CVXES5uQCKRKm8UEevWEqaywKJOogp9F7dYeMJ612wL+fuNJHz3iS3bS3i8Vxr3bgvc8kzCkxvkqxcg9WuruA2O+hwvUFkzAR/NCskA5xbSs/ljQ0DS1uwXjG30Sd7oMrv6hnQPWgMxeXq5XZdPnMHDXlwsC7E/kkSJjIHDIuF+x88o7lRc6wz4GH9euxLgF5zFbt6xs1/FluCOuP+s/76Ezsjtg9mgUW8qd4IqTk1S1AUpnEi0uXFAaMMnMso=

@@ -3,69 +3,134 @@
   "type": "object",
   "properties": {
     "title": {
+      "title": "Titel",
       "type": "string"
     },
     "subtitle": {
+      "title": "Untertitel",
       "type": "string"
     },
     "annotations": {
+      "title": "Annotationen",
+      "description": "werden nicht angezeigt, aber bei einer Suche in Q miteinbezogen",
       "type": "string"
     },
-    "intermediate": {
+    "isIntermediate": {
+      "title": "Zwischenergebnis",
       "type": "boolean"
     },
     "majority": {
+      "title": "Absolutes Mehr",
       "type": "number"
     },
     "candidates": {
+      "title": "Kandidaten",
       "type": "array",
       "items": {
         "type": "object",
         "properties": {
           "name": {
+            "title": "Name",
             "type": "string"
           },
           "party": {
+            "title": "Partei",
             "type": "string"
           },
-          "previous": {
+          "isPrevious": {
+            "title": "aktuell in der Regierung",
             "type": "boolean"
           },
           "votes": {
+            "title": "Anzahl Stimmen",
             "type": "number"
           },
           "status": {
-            "enum": [
-              "elected",
-              "not elected",
-              "undefined"
+            "oneOf": [
+              {
+                "title": "gewählt", 
+                "enum": ["elected"] 
+              },
+              {
+                "title": "nicht gewählt", 
+                "enum": ["not elected"] 
+              },
+              {
+                "title": "offen", 
+                "enum": ["undefined"] 
+              }
             ]
           },
-          "colour": {
-            "type": "string"
+          "color": {
+            "title": "Farbe",
+            "type": "object",
+            "properties": {
+              "full": {
+                "title": "gewählt",
+                "type": "object",
+                "properties": {
+                  "colorCode": {
+                    "title": "Farbcode",
+                    "type": "string"
+                  },
+                  "classAttribute": {
+                    "title": "CSS Klasse",
+                    "type": "string"
+                  }
+                }
+              },
+              "light": {
+                "title": "nicht gewählt",
+                "type": "object",
+                "properties": {
+                  "colorCode": {
+                    "title": "Farbcode",
+                    "type": "string"
+                  },
+                  "classAttribute": {
+                    "title": "CSS Klasse",
+                    "type": "string"
+                  }
+                }
+              }
+            }
           },
           "image": {
-            "type": "string"
+            "title": "Bild",
+            "type": "object",
+            "properties": {
+              "base64": {
+                "type": "string"
+              },
+              "altText": {
+                "title": "Alternativer Text",
+                "type": "string"
+              }
+            }
           }
         }
       }
     },
     "notes": {
+      "title": "Bemerkungen",
       "type": "string"
     },
     "sources": {
+      "title": "Quellen",
       "type": "array",
       "items": {
         "type": "object",
         "properties": {
           "text": {
+            "title": "Text",
             "type": "string"
           },
           "href": {
+            "title": "URL",
             "type": "string"
           },
           "validHref": {
-            "type": "string"
+            "type": "boolean"
           }
         }
       }
