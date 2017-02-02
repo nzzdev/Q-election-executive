@@ -130,7 +130,7 @@
             "type": "string"
           },
           "validHref": {
-            "type": "string"
+            "type": "boolean"
           }
         }
       }
