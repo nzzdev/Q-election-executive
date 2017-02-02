@@ -41,19 +41,16 @@
             "type": "number"
           },
           "status": {
-            "oneOf": [
-              {
-                "title": "gewählt", 
-                "enum": ["elected"] 
-              },
-              {
-                "title": "nicht gewählt", 
-                "enum": ["not elected"] 
-              },
-              {
-                "title": "offen", 
-                "enum": ["undefined"] 
-              }
+            "type": "string",
+            "enum": [
+              "undefined",
+              "elected",
+              "not elected"
+            ],
+            "enum_titles": [
+              "offen",
+              "gewählt",
+              "nicht gewählt"
             ]
           },
           "color": {
