@@ -47,11 +47,13 @@
               "elected",
               "not elected"
             ],
-            "enum_titles": [
-              "offen",
-              "gewählt",
-              "nicht gewählt"
-            ]
+            "Q:options": {
+              "enum_titles": [
+                "offen",
+                "gewählt",
+                "nicht gewählt"
+              ]
+            }
           },
           "color": {
             "title": "Farbe",
