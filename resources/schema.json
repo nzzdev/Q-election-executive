@@ -10,11 +10,6 @@
       "title": "Untertitel",
       "type": "string"
     },
-    "annotations": {
-      "title": "Annotationen",
-      "description": "werden nicht angezeigt, aber bei einer Suche in Q miteinbezogen",
-      "type": "string"
-    },
     "isIntermediate": {
       "title": "Zwischenergebnis",
       "type": "boolean"
