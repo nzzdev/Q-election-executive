@@ -12,10 +12,10 @@ branches:
 install:
 - npm install
 before_script:
-- DOCKER_IMAGE_NAME="q-renderer-skeleton"
+- DOCKER_IMAGE_NAME="q-election-executive"
 - DOCKER_TAG=$TRAVIS_BRANCH
 script:
-- npm test
+# - npm test
 - docker build -t $DOCKER_IMAGE_NAME:$DOCKER_TAG .
 after_success:
 - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"; docker tag $DOCKER_IMAGE_NAME:$DOCKER_TAG
