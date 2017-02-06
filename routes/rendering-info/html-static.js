@@ -1,5 +1,6 @@
 const fs = require('fs');
 const Enjoi = require('enjoi');
+const Joi = require('joi');
 const resourcesDir = __dirname + '/../../resources/';
 const viewsDir = __dirname + '/../../views/';
 
