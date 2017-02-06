@@ -11,7 +11,7 @@
       "title": "Untertitel",
       "type": "string"
     },
-    "electionStatus": {
+    "resultStatus": {
       "type": "string",
       "title": "Status Ergebnisse",
       "default": "result",
