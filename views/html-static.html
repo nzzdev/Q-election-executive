@@ -33,6 +33,8 @@
         let isElected = false;
         let isDropped = false;
 
+        // if there are already any votes the first candidate 
+        // of sorted list of candidates has max votes
         let maxResult = 0;
         if (sortedCandidates[0] && sortedCandidates[0].votes) {
           maxResult = sortedCandidates[0].votes;
@@ -77,9 +79,6 @@
             isElected = true;
           }
         })
-
-        // if there are already any votes the first candidate 
-        // of sorted list of candidates has max votes
 
         sortedCandidates.candidatesInfo = {
           maxResult: maxResult,
