@@ -32,6 +32,7 @@
   "dependencies": {
     "chai": "^3.5.0",
     "enjoi": "^2.1.0",
+    "forever": "^0.15.3",
     "hapi": "^16.1.0",
     "hoek": "^4.1.0",
     "inert": "^4.1.0",

@@ -1,6 +1,6 @@
 <div class="q-election-executive-info s-font-note">
-  {{#if subtitle}}{{subtitle}}{{#if isIntermediate || updatedDate}},{{/if}}{{/if}}
-  {{#if isIntermediate}}Zwischenergebnis{{#if updatedDate}}, {{/if}}{{/if}}{{#if updatedDate}}Update {{updateInfo}}{{/if}}
+  {{#if subtitle}}{{subtitle}},{{/if}}
+  {{status}}{{#if updatedDate}}, Update {{updateInfo}}{{/if}}
 </div>
 
 <script>
@@ -24,6 +24,26 @@
             return `vor ${days} Tag${days > 1 || days === 0 ? 'en' : ''}`;
           }
         }
+      },
+      status: (electionStatus) => {
+        let status;
+        switch(electionStatus) {
+          case "result":
+            status = "Ergebnis";
+            break;
+          case "intermediate":
+            status = "Zwischenergebnis";
+            break;
+          case "projection":
+            status = "Hochrechnung";
+            break;
+          case "poll":
+            status = "Umfrage";
+            break;
+          default:
+            status = "";
+        }
+        return status;
       }
     }
   }

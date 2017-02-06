@@ -11,9 +11,24 @@
       "title": "Untertitel",
       "type": "string"
     },
-    "isIntermediate": {
-      "title": "Zwischenergebnis",
-      "type": "boolean"
+    "electionStatus": {
+      "type": "string",
+      "title": "Status Ergebnisse",
+      "default": "result",
+      "enum": [
+        "result",
+        "intermediate",
+        "projection",
+        "poll"
+      ],
+      "Q:options": {
+        "enum_titles": [
+          "Ergebnis",
+          "Zwischenergebnis",
+          "Hochrechnung",
+          "Umfrage"
+        ]
+      }
     },
     "majority": {
       "title": "Absolutes Mehr",
