@@ -9,7 +9,7 @@
       <div class="q-election-executive-item-text-name s-font-title-xs">
         {{#if candidate.status === "elected"}}
           <!-- checkmark -->
-          <svg class="q-election-executive-elected" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+          <svg viewBox="0 0 16 16" width="14" height="14" xmlns="http://www.w3.org/2000/svg">
             <g fill="none" fill-rule="evenodd">
               <path fill="currentColor" d="M0 9l5 5L16 3l-2-2-9 9-3-3z"/>
             </g>
@@ -17,7 +17,7 @@
         {{/if}}
         {{#if candidate.status === "not elected" && candidate.isPrevious}}
           <!-- crossmark -->
-          <svg class="q-election-executive-dropped" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+          <svg viewBox="0 0 16 16" width="14" height="14"  xmlns="http://www.w3.org/2000/svg">
             <g fill="none" fill-rule="evenodd">
               <path fill="currentColor" d="M6 8l-5 5 2 2 5-5 5 5 2-2-5-5 5-5-2-2-5 5-5-5-2 2 5 5z"/>
             </g>
