@@ -1,3 +1,6 @@
+$image-size: 44px;
+$image-margin: 7px;
+
 .q-election-executive {
   position: relative;
 
@@ -48,8 +51,7 @@
       height: 26px;
       position: relative;
       background-color: currentColor; 
-      // substract 51px because image width = 44px and right image margin = 7px
-      width: calc(100% - 51px);
+      width: calc(100% - (#{$image-size} + #{$image-margin}));
 
       &-color {
         height: 100%;
@@ -61,15 +63,15 @@
 
     &-image {
       float: left;
-      width: 44px;
-      height: 44px;
+      width: $image-size;
+      height: $image-size;
       overflow: hidden;
       border-radius: 50%;
-      margin-right: 7px;
+      margin-right: $image-margin;
 
       img {
         display: block;
-        height: 45px;
+        height: $image-size;
         margin: 0 auto;
       }
 
@@ -84,8 +86,7 @@
       // background-color of articles
       background-color: currentColor;
       display: flex;
-      // substract 51px because image width = 44px and right image margin = 7px
-      width: calc(100% - 51px);
+      width: calc(100% - (#{$image-size} + #{$image-margin}));
       position: relative;
       z-index: 1;
 

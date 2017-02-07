@@ -1,12 +1,8 @@
 {{#each candidates as candidate}}
   <div class="q-election-executive-item">
     <div class="q-election-executive-item-image">
-      {{#if candidate.image}}
-        {{#if candidate.status === "not elected"}}
-          <img class="q-election-executive-item-image-gray" src="{{candidate.image.base64}}" alt="{{candidate.image.altText}}"/>
-        {{else}}
-          <img src="{{candidate.image.base64}}" alt="{{candidate.image.altText}}"/>
-        {{/if}}
+      {{#if candidate.image && candidate.image.base64}}
+        <img class="{{candidate.imageClassAttribute}}" src="{{candidate.image.base64}}" alt="{{candidate.image.altText}}"/>
       {{/if}}
     </div>
     <div class="q-election-executive-item-text">
