@@ -48,6 +48,7 @@
       height: 26px;
       position: relative;
       background-color: currentColor; 
+      // substract 51px because image width = 44px and right image margin = 7px
       width: calc(100% - 51px);
 
       &-color {
@@ -84,6 +85,7 @@
       // background-color of articles
       background-color: currentColor;
       display: flex;
+      // substract 51px because image width = 44px and right image margin = 7px
       width: calc(100% - 51px);
       position: relative;
       z-index: 1;
