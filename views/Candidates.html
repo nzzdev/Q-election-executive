@@ -10,7 +10,7 @@
       {{/if}}
     </div>
     <div class="q-election-executive-item-text">
-      <span class="q-election-executive-item-text-name s-font-title-xs">
+      <div class="q-election-executive-item-text-name s-font-title-xs">
         {{#if candidate.status === "elected"}}
           <!-- checkmark -->
           <svg class="q-election-executive-elected" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
@@ -28,17 +28,17 @@
           </svg>
         {{/if}}
         {{candidate.name}}
-      </span>{{#if candidate.isPrevious}}<span class="s-font-title-xs">*</span>{{/if}}
-      <span class="s-font-note">{{candidate.party}}</span>
+      </div>{{#if candidate.isPrevious}}<div class="s-font-title-xs">*</div>{{/if}}
+      <div class="s-font-note q-election-executive-item-text-party">{{candidate.party}}</div>
       {{#if candidate.votes}}
-        <div class="s-font-note q-election-executive-item-votes">
+        <div class="s-font-note q-election-executive-item-text-votes">
           <!-- insert a space after each three digits -->
           {{candidate.votes.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")}}
         </div>
       {{/if}}
     </div>
-    <div class="q-election-executive-item-info s-color-gray-3">
-      <div class="q-election-executive-item-bar {{candidate.colorClass}}" style="{{candidate.colorStyle}} width: {{candidate.width}};"></div>
+    <div class="q-election-executive-item-bar s-color-gray-3">
+      <div class="q-election-executive-item-bar-color {{candidate.colorClass}}" style="{{candidate.colorStyle}} width: {{candidate.width}};"></div>
     </div>
   </div>
 {{/each}}

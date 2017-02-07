@@ -43,12 +43,19 @@
     height: 44px;
     margin: 0 0 7px 0;
 
-    &-info {
+    &-bar {
       float: left;
       height: 26px;
       position: relative;
       background-color: currentColor; 
       width: calc(100% - 51px);
+
+      &-color {
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
     }
 
     &-image {
@@ -73,38 +80,31 @@
       }
     }
 
-    &-bar {
-      height: 100%;
-      position: absolute;
-      top: 0;
-      left: 0;
-    }
-
     &-text {
       // background-color of articles
       background-color: #f5f5f5;
-      float:left;
+      display: flex;
       width: calc(100% - 51px);
       position: relative;
       z-index: 1;
 
-      span {
-        vertical-align: middle;
-      }
-
       &-name {
-        display: inline-block;
-        max-width: 80%;
         overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis; 
       }
-    }
 
-    &-votes {
-      float: right;
-      z-index: 1;
-      padding-right: 3px;
+      &-party {
+        padding-left: 5px;
+      }
+
+      &-votes {
+        margin-left: auto;
+        z-index: 1;
+        white-space: nowrap;
+        padding-right: 3px;
+        padding-left: 5px;
+      }
     }
 	}
 

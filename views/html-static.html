@@ -46,7 +46,7 @@
           let colorStyle = '';
           let colorClass = '';
           if (maxResult > 0 && candidate.votes && candidate.votes > 0) {
-            let widthPercentage = candidate.votes * 100 / maxResult;
+            let widthPercentage = (candidate.votes * 100 / maxResult).toFixed(2);
             width = widthPercentage + '%';
           }
           candidate.width = width;
