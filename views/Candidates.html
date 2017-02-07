@@ -1,42 +1,40 @@
 {{#each candidates as candidate}}
   <div class="q-election-executive-item">
-    <div class="q-election-executive-item-image s-color-gray-2">
-      {{#if candidate.status === "not elected"}}
-        <img class="q-election-executive-item-image-gray" src="{{candidate.image}}"/>
-      {{else}}
-        <img src="{{candidate.image}}"/>
+    <div class="q-election-executive-item-image">
+      {{#if candidate.image && candidate.image.base64}}
+        <img class="{{candidate.imageClassAttribute}}" src="{{candidate.image.base64}}" alt="{{candidate.image.altText}}"/>
       {{/if}}
     </div>
-    <div class="q-election-executive-item-info s-color-gray-3">
-      <div class="q-election-executive-item-bar {{candidate.colorClass}}" style="{{candidate.colorStyle}} width: {{candidate.width}};"></div>
-      <div class="q-election-executive-item-text">
-        <span class="q-election-executive-item-text-name s-font-title-xs">
-          {{#if candidate.status === "elected"}}
-            <!-- checkmark -->
-            <svg class="q-election-executive-elected" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
-              <g fill="none" fill-rule="evenodd">
-                <path fill="currentColor" d="M0 9l5 5L16 3l-2-2-9 9-3-3z"/>
-              </g>
-            </svg>
-          {{/if}}
-          {{#if candidate.status === "not elected" && candidate.isPrevious}}
-            <!-- crossmark -->
-            <svg class="q-election-executive-dropped" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
-              <g fill="none" fill-rule="evenodd">
-                <path fill="currentColor" d="M6 8l-5 5 2 2 5-5 5 5 2-2-5-5 5-5-2-2-5 5-5-5-2 2 5 5z"/>
-              </g>
-            </svg>
-          {{/if}}
-          {{candidate.name}}
-        </span>{{#if candidate.isPrevious}}<span class="s-font-title-xs">*</span>{{/if}}
-        <span class="s-font-note">{{candidate.party}}</span>
-      </div>
+    <div class="q-election-executive-item-text">
+      <div class="q-election-executive-item-text-name s-font-title-xs">
+        {{#if candidate.status === "elected"}}
+          <!-- checkmark -->
+          <svg class="q-election-executive-elected" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+            <g fill="none" fill-rule="evenodd">
+              <path fill="currentColor" d="M0 9l5 5L16 3l-2-2-9 9-3-3z"/>
+            </g>
+          </svg>
+        {{/if}}
+        {{#if candidate.status === "not elected" && candidate.isPrevious}}
+          <!-- crossmark -->
+          <svg class="q-election-executive-dropped" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+            <g fill="none" fill-rule="evenodd">
+              <path fill="currentColor" d="M6 8l-5 5 2 2 5-5 5 5 2-2-5-5 5-5-2-2-5 5-5-5-2 2 5 5z"/>
+            </g>
+          </svg>
+        {{/if}}
+        {{candidate.name || ""}}
+      </div>{{#if candidate.isPrevious}}<div class="s-font-title-xs">*</div>{{/if}}
+      <div class="s-font-note q-election-executive-item-text-party">{{candidate.party || ""}}</div>
       {{#if candidate.votes}}
-        <div class="s-font-note-s s-font-note-s--strong q-election-executive-item-votes">
+        <div class="s-font-note q-election-executive-item-text-votes">
           <!-- insert a space after each three digits -->
           {{candidate.votes.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")}}
         </div>
       {{/if}}
+    </div>
+    <div class="q-election-executive-item-bar s-color-gray-3">
+      <div class="q-election-executive-item-bar-color {{candidate.colorClass}}" style="{{candidate.colorStyle}} width: {{candidate.width}};"></div>
     </div>
   </div>
 {{/each}}
