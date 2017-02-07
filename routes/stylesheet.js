@@ -4,7 +4,7 @@ const Boom = require('boom');
 const path = require('path');
 const autoprefixer = require('autoprefixer');
 const postcss = require('postcss');
-const iePrefixer = autoprefixer({ 
+const autoprefixerPlugin = autoprefixer({ 
    browsers: ['ie > 9', 'last 3 versions']
 });
 
@@ -28,7 +28,7 @@ module.exports = {
           if (err) {
             return reply(Boom.badImplementation(err));
           } else {
-             postcss([ iePrefixer ]).process(result.css)
+             postcss([ autoprefixerPlugin ]).process(result.css)
                 .then(result => {
                   if (result.warnings().length > 0) {
                     return reply(result).type('text/css');
