@@ -27,9 +27,9 @@
             </g>
           </svg>
         {{/if}}
-        {{candidate.name}}
+        {{candidate.name || ""}}
       </div>{{#if candidate.isPrevious}}<div class="s-font-title-xs">*</div>{{/if}}
-      <div class="s-font-note q-election-executive-item-text-party">{{candidate.party}}</div>
+      <div class="s-font-note q-election-executive-item-text-party">{{candidate.party || ""}}</div>
       {{#if candidate.votes}}
         <div class="s-font-note q-election-executive-item-text-votes">
           <!-- insert a space after each three digits -->
