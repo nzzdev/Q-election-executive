@@ -14,11 +14,11 @@
             See also: https://github.com/sveltejs/svelte/issues/189  -->
       {{#if source.text !== ''}}{{#if source.validHref}}<a href="{{source.href}}" target="blank" rel="noopener noreferrer">{{source.text}}</a>{{else}}{{source.text}}{{/if}}{{#if index !== sources.length - 1 && sources[index + 1] !== ''}}, {{/if}}{{/if}} 
     {{/each}}
-    {{#if candidatesInfo.isPrevious || isResultLegend || notes || isUpdateInfo}}&ndash;{{/if}}
+    {{#if candidatesInfo.isPrevious || shouldHaveResultLegend || notes || shouldHaveUpdateInfo}}&ndash;{{/if}}
   {{/if}}
   {{#if candidatesInfo.isPrevious}}
     *bisher
-    {{#if isResultLegend || notes || isUpdateInfo}}&ndash;{{/if}}
+    {{#if shouldHaveResultLegend || notes || shouldHaveUpdateInfo}}&ndash;{{/if}}
   {{/if}}
   {{#if candidatesInfo.isElected}}
     <!-- checkmark -->
@@ -38,13 +38,13 @@
       </g>
     </svg>
     = abgewählt
-    {{#if notes || isUpdateInfo}}&ndash;{{/if}}
+    {{#if notes || shouldHaveUpdateInfo}}&ndash;{{/if}}
   {{/if}}
   {{#if notes}}
     {{notes}}
-    {{#if isUpdateInfo}}&ndash;{{/if}}
+    {{#if shouldHaveUpdateInfo}}&ndash;{{/if}}
   {{/if}}
-  {{#if isUpdateInfo}}{{updateInfo}}{{/if}}
+  {{#if shouldHaveUpdateInfo}}{{updateInfo}}{{/if}}
 </div>
 
 <script>
@@ -69,10 +69,10 @@
           }
         }
       },
-      isUpdateInfo: (updatedDate, maxResult) => {
+      shouldHaveUpdateInfo: (updatedDate, maxResult) => {
         return updatedDate !== undefined && maxResult > 0;
       },
-      isResultLegend: (candidatesInfo) => {
+      shouldHaveResultLegend: (candidatesInfo) => {
         return candidatesInfo.isElected || candidatesInfo.isDropped;
       }
     }
