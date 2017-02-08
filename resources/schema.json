@@ -93,7 +93,9 @@
             "type": "object",
             "properties": {
               "base64": {
-                "type": "string"
+                "title": "Bild auswählen",
+                "type": "string",
+                "Q:type": "base64image"
               },
               "altText": {
                 "title": "Alternativer Text",
