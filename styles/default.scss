@@ -110,6 +110,11 @@ $image-margin: 7px;
     }
 	}
 
+  &-elected,
+  &-dropped {
+    height: 1em;
+  }
+
   &-footer {
     margin-top: 16px
   }
