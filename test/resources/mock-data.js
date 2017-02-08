@@ -3,13 +3,17 @@ module.exports = {
   sources: [
     {
       text: "some source",
-      href: "https://www.nzz.ch",
-      validHref: true
+      link: {
+        url: "https://www.nzz.ch",
+        isValid: true
+      }
     },
     {
       text: "another important source",
-      href: "https://www.nzz.ch",
-      validHref: true
+      link: {
+        url: "https://www.nzz.ch",
+        isValid: true
+      }
     }],
   subtitle: "Möglichkeit zusätzliche Informationen als Untertitel zu erfassen",
   notes: "Jemand musste Josef K. verleumdet haben, denn ohne dass er etwas Böses getan hätte, wurde er eines Morgens verhaftet.",
