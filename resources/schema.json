@@ -67,7 +67,7 @@
                     "type": "string"
                   },
                   "classAttribute": {
-                    "title": "CSS Klasse",
+                    "title": "CSS Klassenname",
                     "type": "string"
                   }
                 }
@@ -81,7 +81,7 @@
                     "type": "string"
                   },
                   "classAttribute": {
-                    "title": "CSS Klasse",
+                    "title": "CSS Klassenname",
                     "type": "string"
                   }
                 }
@@ -120,12 +120,18 @@
             "title": "Text",
             "type": "string"
           },
-          "href": {
-            "title": "URL",
-            "type": "string"
-          },
-          "validHref": {
-            "type": "boolean"
+          "link": {
+            "Q:type": "link",
+            "type": "object",
+            "properties": {
+              "url": {
+                "title": "Url",
+                "type": "string"
+              },
+              "isValid": {
+                "type": "boolean"
+              }    
+            }
           }
         }
       }
