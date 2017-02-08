@@ -122,6 +122,7 @@
           },
           "link": {
             "Q:type": "link",
+            "title": "Link",
             "type": "object",
             "properties": {
               "url": {
