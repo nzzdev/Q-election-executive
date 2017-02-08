@@ -96,10 +96,6 @@
                 "title": "Bild auswählen",
                 "type": "string",
                 "Q:type": "base64image"
-              },
-              "altText": {
-                "title": "Alternativer Text",
-                "type": "string"
               }
             }
           }
