@@ -77,11 +77,14 @@
             isElected = true;
           }
 
-          // add grayscale class for image if candidate is not elected
+          // add grayscale class for image and color class for text
+          // if candidate is not elected
           if (candidate.status === "not elected") {
-            candidate.imageClassAttribute = "q-election-executive-item-image-gray"
+            candidate.imageClassAttribute = "q-election-executive-item-image-gray";
+            candidate.textClassAttribute = "s-color-gray-7";
           } else {
             candidate.imageClassAttribute = "";
+            candidate.textClassAttribute = "";
           }
         })
 
