@@ -1,6 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
   "type": "object",
+  "title": "Exekutivwahlen",
   "properties": {
     "title": {
       "title": "Titel",
@@ -9,15 +10,6 @@
     "subtitle": {
       "title": "Untertitel",
       "type": "string"
-    },
-    "annotations": {
-      "title": "Annotationen",
-      "description": "werden nicht angezeigt, aber bei einer Suche in Q miteinbezogen",
-      "type": "string"
-    },
-    "isIntermediate": {
-      "title": "Zwischenergebnis",
-      "type": "boolean"
     },
     "majority": {
       "title": "Absolutes Mehr",
@@ -46,20 +38,21 @@
             "type": "number"
           },
           "status": {
-            "oneOf": [
-              {
-                "title": "gewählt", 
-                "enum": ["elected"] 
-              },
-              {
-                "title": "nicht gewählt", 
-                "enum": ["not elected"] 
-              },
-              {
-                "title": "offen", 
-                "enum": ["undefined"] 
-              }
-            ]
+            "type": "string",
+            "title": "Status",
+            "default": "undefined",
+            "enum": [
+              "undefined",
+              "elected",
+              "not elected"
+            ],
+            "Q:options": {
+              "enum_titles": [
+                "offen",
+                "gewählt",
+                "nicht gewählt"
+              ]
+            }
           },
           "color": {
             "title": "Farbe",
@@ -74,7 +67,7 @@
                     "type": "string"
                   },
                   "classAttribute": {
-                    "title": "CSS Klasse",
+                    "title": "CSS Klassenname",
                     "type": "string"
                   }
                 }
@@ -88,7 +81,7 @@
                     "type": "string"
                   },
                   "classAttribute": {
-                    "title": "CSS Klasse",
+                    "title": "CSS Klassenname",
                     "type": "string"
                   }
                 }
@@ -100,11 +93,9 @@
             "type": "object",
             "properties": {
               "base64": {
-                "type": "string"
-              },
-              "altText": {
-                "title": "Alternativer Text",
-                "type": "string"
+                "title": "Bild auswählen",
+                "type": "string",
+                "Q:type": "base64image"
               }
             }
           }
@@ -125,12 +116,19 @@
             "title": "Text",
             "type": "string"
           },
-          "href": {
-            "title": "URL",
-            "type": "string"
-          },
-          "validHref": {
-            "type": "boolean"
+          "link": {
+            "Q:type": "link",
+            "title": "Link",
+            "type": "object",
+            "properties": {
+              "url": {
+                "title": "Url",
+                "type": "string"
+              },
+              "isValid": {
+                "type": "boolean"
+              }    
+            }
           }
         }
       }

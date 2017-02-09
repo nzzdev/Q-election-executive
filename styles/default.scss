@@ -1,3 +1,6 @@
+$image-size: 44px;
+$image-margin: 7px;
+
 .q-election-executive {
   position: relative;
 
@@ -9,14 +12,14 @@
     position: absolute;
     background-color: currentColor;
     width: 1px;
-    top: -10px;
+    top: 0;
     bottom: 0;
 
     &-arrow {
       position: absolute;
-      bottom: -40px;
-      height: 40px;
-      left: -4px;
+      bottom: -35px;
+      height: 35px;
+      left: -3px;
     }
 
     &-text {
@@ -40,29 +43,35 @@
   }
 
 	&-item {
-    height: 40px;
-    margin: 0 0 8px 0;
+    height: 44px;
+    margin: 0 0 7px 0;
 
-    &-info {
+    &-bar {
       float: left;
-      height: 100%;
+      height: 26px;
       position: relative;
       background-color: currentColor; 
-      width: calc(100% - 48px);
+      width: calc(100% - (#{$image-size} + #{$image-margin}));
+
+      &-color {
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
     }
 
     &-image {
       float: left;
-      width: 40px;
-      height: 40px;
+      width: $image-size;
+      height: $image-size;
       overflow: hidden;
-      background-color: currentColor;
       border-radius: 50%;
-      margin-right: 8px;
+      margin-right: $image-margin;
 
       img {
         display: block;
-        height: 45px;
+        height: $image-size;
         margin: 0 auto;
       }
 
@@ -73,39 +82,31 @@
       }
     }
 
-    &-bar {
-      height: 100%;
-      position: absolute;
-      top: 0;
-      left: 0;
-    }
-
     &-text {
-      float:left;
-      width: 100%;
-      margin: 4px 0 0 4px;
+      // background-color of articles
+      background-color: currentColor;
+      display: flex;
+      width: calc(100% - (#{$image-size} + #{$image-margin}));
       position: relative;
       z-index: 1;
 
-      span {
-        vertical-align: middle;
-      }
-
       &-name {
-        display: inline-block;
-        max-width: 80%;
         overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis; 
       }
-    }
 
-    &-votes {
-      float: right;
-      position: absolute;
-      top: 20;
-      z-index: 1;
-      right: 5px;
+      &-party {
+        padding-left: 5px;
+      }
+
+      &-votes {
+        margin-left: auto;
+        z-index: 1;
+        white-space: nowrap;
+        padding-right: 3px;
+        padding-left: 5px;
+      }
     }
 	}
 

@@ -1,11 +1,10 @@
-<div class="q-item-container">
-  <h3 class="s-q-item__title">{{title}}</h3>
-  <Header subtitle='{{subtitle}}' isIntermediate='{{isIntermediate}}' updatedDate='{{updatedDate}}'/>
+<div class="q-item-container s-q-item">
+  <Header title='{{title}}' subtitle='{{subtitle}}'/>
   <div class="q-election-executive">
     <MajorityInfo majority='{{majority}}' maxResult='{{enhancedCandidates.candidatesInfo.maxResult}}' />
     <Candidates candidates ='{{enhancedCandidates}}' />
   </div>
-  <Footer majority='{{majority}}' candidatesInfo='{{enhancedCandidates.candidatesInfo}}' sources='{{sources}}' notes='{{notes}}' />
+  <Footer majority='{{majority}}' candidatesInfo='{{enhancedCandidates.candidatesInfo}}' sources='{{sources}}' notes='{{notes}}' updatedDate='{{updatedDate}}'/>
 </div>
 
 <script>
@@ -17,15 +16,18 @@
   export default {
     computed: {
       sortedCandidates: (candidates) => {
-        return candidates.sort(function(candidateA, candidateB) {
-          if ((candidateA.votes === undefined && candidateB.votes === undefined) || candidateA.votes === candidateB.votes) {
-            return 0;
-          }
-          if ((candidateA.votes === undefined && candidateB.votes !== undefined) || (candidateA.votes < candidateB.votes)) {
-            return 1;
-          }
-          return -1;
-        })
+        if (candidates) {
+          return candidates.sort(function(candidateA, candidateB) {
+            if ((candidateA.votes === undefined && candidateB.votes === undefined) || candidateA.votes === candidateB.votes) {
+              return 0;
+            }
+            if ((candidateA.votes === undefined && candidateB.votes !== undefined) || (candidateA.votes < candidateB.votes)) {
+              return 1;
+            }
+            return -1;
+          })
+        }
+        return [];
       },
       enhancedCandidates: (sortedCandidates, majority) => {
         // enhance candidates object with additional information
@@ -33,6 +35,8 @@
         let isElected = false;
         let isDropped = false;
 
+        // if there are already any votes the first candidate 
+        // of sorted list of candidates has max votes
         let maxResult = 0;
         if (sortedCandidates[0] && sortedCandidates[0].votes) {
           maxResult = sortedCandidates[0].votes;
@@ -44,7 +48,7 @@
           let colorStyle = '';
           let colorClass = '';
           if (maxResult > 0 && candidate.votes && candidate.votes > 0) {
-            let widthPercentage = candidate.votes * 100 / maxResult;
+            let widthPercentage = (candidate.votes * 100 / maxResult).toFixed(2);
             width = widthPercentage + '%';
           }
           candidate.width = width;
@@ -65,7 +69,6 @@
           }
           candidate.colorClass = colorClass;
           candidate.colorStyle = colorStyle;
-          
           // check if we have previous, elected or dropped candidates for footer info
           if(candidate.isPrevious) {
             isPrevious = true;
@@ -76,10 +79,17 @@
           if (candidate.status === "elected") {
             isElected = true;
           }
-        })
 
-        // if there are already any votes the first candidate 
-        // of sorted list of candidates has max votes
+          // add grayscale class for image and color class for text
+          // if candidate is not elected
+          if (candidate.status === "not elected") {
+            candidate.imageClassAttribute = "q-election-executive-item-image-gray";
+            candidate.textClassAttribute = "s-color-gray-7";
+          } else {
+            candidate.imageClassAttribute = "";
+            candidate.textClassAttribute = "";
+          }
+        })
 
         sortedCandidates.candidatesInfo = {
           maxResult: maxResult,
@@ -88,7 +98,6 @@
           isDropped: isDropped
         };
 
-        console.log(JSON.stringify(sortedCandidates));
         return sortedCandidates;
       }
     },

@@ -2,7 +2,35 @@
   {{#if majority && candidatesInfo.maxResult > 0}}
     <div class="q-election-executive-majority-gap"></div>
   {{/if}}
-  {{#if sources.length > 0}}
+  {{#if candidatesInfo.isPrevious}}
+    *bisher
+    {{#if shouldHaveResultLegend || notes || sources || shouldHaveUpdateInfo}}&ndash;{{/if}}
+  {{/if}}
+  {{#if candidatesInfo.isElected}}
+    <!-- checkmark -->
+    <svg viewBox="0 0 16 16" width="10" height="10" xmlns="http://www.w3.org/2000/svg">
+      <g fill="none" fill-rule="evenodd">
+        <path fill="currentColor" d="M0 9l5 5L16 3l-2-2-9 9-3-3z"/>
+      </g>
+    </svg> 
+    = gewählt
+    {{#if candidatesInfo.isDropped}},{{elseif notes || sources || showUpdateInfo}}&ndash;{{/if}}
+  {{/if}}
+  {{#if candidatesInfo.isDropped}}
+    <!-- crossmark -->
+    <svg viewBox="0 0 16 16" width="10" height="10" xmlns="http://www.w3.org/2000/svg">
+      <g fill="none" fill-rule="evenodd">
+        <path fill="currentColor" d="M6 8l-5 5 2 2 5-5 5 5 2-2-5-5 5-5-2-2-5 5-5-5-2 2 5 5z"/>
+      </g>
+    </svg>
+    = abgewählt
+    {{#if notes || sources || shouldHaveUpdateInfo}}&ndash;{{/if}}
+  {{/if}}
+  {{#if notes}}
+    {{notes}}
+    {{#if sources || shouldHaveUpdateInfo}}&ndash;{{/if}}
+  {{/if}}
+  {{#if sources && sources.length > 0}}
     {{#if sources.length > 1}} 
       Quellen: 
     {{else}} 
@@ -12,29 +40,40 @@
       <!-- 	If you separate DOM siblings with newlines whitespaces cannot be removed by svelte renderer
             To avoid unwanted whitespaces around commas separating each source, we keep render infos for sources at one line here.
             See also: https://github.com/sveltejs/svelte/issues/189  -->
-      {{#if source.text !== ''}}{{#if source.validHref}}<a href="{{source.href}}" target="blank" rel="noopener noreferrer">{{source.text}}</a>{{else}}{{source.text}}{{/if}}{{#if index !== sources.length - 1 && sources[index + 1] !== ''}}, {{/if}}{{/if}} 
+      {{#if source.text !== ''}}{{#if source.link && source.link.isValid}}<a href="{{source.link.url}}" target="blank" rel="noopener noreferrer">{{source.text}}</a>{{else}}{{source.text}}{{/if}}{{#if index !== sources.length - 1 && sources[index + 1] !== ''}}, {{/if}}{{/if}} 
     {{/each}}
+    {{#if shouldHaveUpdateInfo}}&ndash;{{/if}}
   {{/if}}
-  {{#if candidatesInfo.isPrevious}}&ndash; *bisher{{/if}}
-  {{#if candidatesInfo.isElected}}
-    &ndash; 
-    <!-- checkmark -->
-    <svg class="q-election-executive-elected" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
-      <g fill="none" fill-rule="evenodd">
-        <path fill="currentColor" d="M0 9l5 5L16 3l-2-2-9 9-3-3z"/>
-      </g>
-    </svg> 
-    = gewählt
-  {{/if}}
-  {{#if candidatesInfo.isDropped}}
-    &ndash; 
-    <!-- crossmark -->
-    <svg class="q-election-executive-dropped" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
-      <g fill="none" fill-rule="evenodd">
-        <path fill="currentColor" d="M6 8l-5 5 2 2 5-5 5 5 2-2-5-5 5-5-2-2-5 5-5-5-2 2 5 5z"/>
-      </g>
-    </svg>
-    = abgewählt
-  {{/if}}
-  {{#if notes}}&ndash; {{notes}}{{/if}}
+  {{#if shouldHaveUpdateInfo}}Update {{updateInfo}}{{/if}}
 </div>
+<script>
+  export default {
+    computed: {
+      updateInfo: (updatedDate) => {
+        let updated = new Date(updatedDate);
+        if (updated.getTime()) {
+          let now = new Date();
+          let diff = now.getTime() + now.getTimezoneOffset() - updated.getTime(); // "updated" of q item already in UTC => "now" has to be normalized with timezone offset
+          let diffMinutes = Math.floor(diff / (1000 * 60));
+          if (diffMinutes < 60) { // update less than an hour ago
+            return `vor ${diffMinutes} Minute${diffMinutes > 1 || diffMinutes === 0 ? 'n' : ''}`;
+          } else if (diffMinutes < 60 * 24) { // update less than a day ago
+            let hours = Math.floor(diffMinutes / 60);
+            return `vor ${hours} Stunde${hours > 1 || hours === 0 ? 'n' : ''}`;
+          } else if (diffMinutes > 7 * 60 * 24) { // update more than 7 days ago -> show date
+            return `am ${date.getDate()}.${date.getMonth() + 1}.${date.getFullYear()}`;
+          } else {
+            let days = Math.floor(diffMinutes / (60 * 24));
+            return `vor ${days} Tag${days > 1 || days === 0 ? 'en' : ''}`;
+          }
+        }
+      },
+      shouldHaveUpdateInfo: (updatedDate, candidatesInfo) => {
+        return updatedDate !== undefined && candidatesInfo.maxResult > 0;
+      },
+      shouldHaveResultLegend: (candidatesInfo) => {
+        return candidatesInfo.isElected || candidatesInfo.isDropped;
+      }
+    }
+  };
+</script>
