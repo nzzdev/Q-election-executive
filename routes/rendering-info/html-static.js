@@ -17,6 +17,9 @@ module.exports = {
 	path: '/rendering-info/html-static',
 	config: {
 		validate: {
+      options: {
+        allowUnknown: true
+      },
 			payload: {
 				item: schema,
         toolRuntimeConfig: Joi.object()
@@ -24,6 +27,9 @@ module.exports = {
 		}
 	},
 	handler: function(request, reply) {
+    if (request.query.updatedDate) {
+      request.payload.item.updatedDate = request.query.updatedDate;
+    }
 		let data = {
 			stylesheets: [
 				{

@@ -69,8 +69,8 @@
           }
         }
       },
-      shouldHaveUpdateInfo: (updatedDate, maxResult) => {
-        return updatedDate !== undefined && maxResult > 0;
+      shouldHaveUpdateInfo: (updatedDate, candidatesInfo) => {
+        return updatedDate !== undefined && candidatesInfo.maxResult > 0;
       },
       shouldHaveResultLegend: (candidatesInfo) => {
         return candidatesInfo.isElected || candidatesInfo.isDropped;
