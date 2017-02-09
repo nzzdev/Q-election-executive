@@ -4,7 +4,7 @@
   {{/if}}
   {{#if candidatesInfo.isPrevious}}
     *bisher
-    {{#if shouldHaveResultLegend || notes || sources || shouldHaveUpdateInfo}}&ndash;{{/if}}
+    {{#if shouldHaveResultLegend || notes || shouldHaveSources || shouldHaveUpdateInfo}}&ndash;{{/if}}
   {{/if}}
   {{#if candidatesInfo.isElected}}
     <!-- checkmark -->
@@ -14,7 +14,7 @@
       </g>
     </svg> 
     = gewählt
-    {{#if candidatesInfo.isDropped}},{{elseif notes || sources || showUpdateInfo}}&ndash;{{/if}}
+    {{#if candidatesInfo.isDropped}},{{elseif notes || shouldHaveSources || showUpdateInfo}}&ndash;{{/if}}
   {{/if}}
   {{#if candidatesInfo.isDropped}}
     <!-- crossmark -->
@@ -24,13 +24,13 @@
       </g>
     </svg>
     = abgewählt
-    {{#if notes || sources || shouldHaveUpdateInfo}}&ndash;{{/if}}
+    {{#if notes || shouldHaveSources || shouldHaveUpdateInfo}}&ndash;{{/if}}
   {{/if}}
   {{#if notes}}
     {{notes}}
-    {{#if sources || shouldHaveUpdateInfo}}&ndash;{{/if}}
+    {{#if shouldHaveSources || shouldHaveUpdateInfo}}&ndash;{{/if}}
   {{/if}}
-  {{#if sources && sources.length > 0}}
+  {{#if shouldHaveSources}}
     {{#if sources.length > 1}} 
       Quellen: 
     {{else}} 
@@ -73,6 +73,9 @@
       },
       shouldHaveResultLegend: (candidatesInfo) => {
         return candidatesInfo.isElected || candidatesInfo.isDropped;
+      },
+      shouldHaveSources: (sources) => {
+        return sources !== undefined && sources.length > 0; 
       }
     }
   };
