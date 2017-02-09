@@ -24,7 +24,8 @@ module.exports = {
 				item: schema,
         toolRuntimeConfig: Joi.object()
 			}
-		}
+		},
+    cors: true
 	},
 	handler: function(request, reply) {
     if (request.query.updatedDate) {
