@@ -1,0 +1,110 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Q Election Executive</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://service.sophie.nzz.ch/bundle/sophie-q@~0.1.1,sophie-font@^0.1.0,sophie-color@~1.0.0,sophie-viz-color@^1.0.0[diverging-6].css">
+    <script src="https://rawgit.com/filamentgroup/loadCSS/master/src/loadCSS.js"></script>
+  </head>
+  <body>
+    <div id="executive" style="background-color: #f5f5f5; color:#f5f5f5;"></div>
+    <script>
+      let data = {
+        "item": {
+          "title": "Exekutivwahlen Frankreich",
+          "sources": [
+            {
+              "text": "asdjfh",
+              "href": "www.nzz.ch",
+              "validHref":"true"
+            }
+          ],
+          "subtitle": "Möglichkeit zusätzliche Informationen als Untertitel zu erfassen",
+          "notes": "Jemand musste Josef K. verleumdet haben, denn ohne dass er etwas Böses getan hätte, wurde er eines Morgens verhaftet.",
+          "majority": "100000",
+          "candidates": [
+            {
+              "name": "Hans Wurst",
+              "color": 
+                {
+                  "full": {
+                    "colorCode": "#0084c7"
+                  }
+                },
+              "votes": "120000",
+              "isPrevious": false,
+              "status": "elected",
+  
+            },
+            {
+              "name": "Maria Müller",
+              "party": "SPD",
+              "color": 
+                {
+                  "full": {
+                    "colorCode": "#c31906",
+                    "classAttribute":"s-viz-color-diverging-10-2"
+                  }
+                },
+              "votes": "80000",
+              "isPrevious": true,
+              "status": "not elected"
+            },
+            {
+              "name": "Susann Salami",
+              "party": "B90/Die Grünen",
+              "color": 
+                {
+                  "full": {
+                    "colorCode": "#66a622"
+                  }
+                },
+              "isPrevious":"false",
+              "votes": 150000,
+              "status": "undefined"
+            },
+            {
+              "name": "Susann Salami",
+              "party": "Die Linke",
+              "color": 
+              {
+                "full": {
+                  "colorCode": "#a35fd1"
+                }
+              },
+              "isPrevious":"false",
+              "votes": 90000,
+              "status": "not elected"
+            }
+          ]
+        },
+        "toolRuntimeConfig": {
+          "toolBaseUrl": "http://localhost:3000"
+        }
+      };
+      fetch("http://localhost:3000/rendering-info/html-static", {
+          method: 'POST',
+          body: JSON.stringify(data),
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        })
+        .then(response => {
+          console.log(response.json);
+          return response.json()
+        })
+        .then(data => {
+          data.stylesheets.forEach(stylesheet => {
+            console.log(stylesheet);
+            if (stylesheet.name) {
+              stylesheet.url = `http://localhost:3000/stylesheet/${stylesheet.name}`
+            }
+            loadCSS(stylesheet.url)
+          })
+          document.getElementById('executive').innerHTML = data.markup;
+        })
+    </script>
+  </body>
+</html>
