@@ -1,11 +1,14 @@
 {{#each candidates as candidate}}
   <div class="q-election-executive-item">
+    {{#if candidates.candidatesInfo.isImagePresent}}
     <div class="q-election-executive-item-image">
       {{#if candidate.image && candidate.image.base64}}
         <img class="{{candidate.imageClassAttribute}}" src="{{candidate.image.base64}}" alt="{{candidate.name}}"/>
       {{/if}}
     </div>
-    <div class="q-election-executive-item-text">
+    {{/if}}
+    <!-- if no candidate has an image, width of candidate info text is overwritten with 100% -->
+    <div class="q-election-executive-item-text" style="{{fullWidth}}">
       <div class="q-election-executive-item-text-name s-font-title-xs {{candidate.textClassAttribute}}">
         {{#if candidate.status === "elected"}}
           <!-- checkmark -->
@@ -33,8 +36,24 @@
         </div>
       {{/if}}
     </div>
-    <div class="q-election-executive-item-bar s-color-gray-3">
+    <!-- if no candidate has an image, width of bar is overwritten with 100% -->
+    <div class="q-election-executive-item-bar s-color-gray-3" style="{{fullWidth}}">
       <div class="q-election-executive-item-bar-color {{candidate.colorClass}}" style="{{candidate.colorStyle}} width: {{candidate.width}};"></div>
     </div>
   </div>
 {{/each}}
+
+<script>
+  export default {
+    computed: {
+      fullWidth: (candidates) => {
+        if (candidates.candidatesInfo.isImagePresent) {
+          return ""
+        }
+        else {
+          return "width: 100%";
+        }
+      }
+    }
+  }
+</script>

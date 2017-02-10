@@ -34,6 +34,7 @@
         let isPrevious = false;
         let isElected = false;
         let isDropped = false;
+        let isImagePresent = false;
 
         // if there are already any votes the first candidate 
         // of sorted list of candidates has max votes
@@ -43,6 +44,9 @@
         }
 
         sortedCandidates.forEach(candidate => {
+          if (candidate.image !== undefined && candidate.image.base64 !== undefined) {
+            isImagePresent = true;
+          }
           // define width and color of each candidate's bar
           let width = '1px';
           let colorStyle = '';
@@ -95,7 +99,8 @@
           maxResult: maxResult,
           isPrevious: isPrevious,
           isElected: isElected,
-          isDropped: isDropped
+          isDropped: isDropped,
+          isImagePresent: isImagePresent
         };
 
         return sortedCandidates;
