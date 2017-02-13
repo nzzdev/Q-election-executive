@@ -36,7 +36,7 @@ module.exports = {
     let candidates = request.payload.item.candidates;
     if (candidates !== undefined) {
       candidates.forEach(candidate => {
-        let vizPattern = /^s-viz.*/;
+        let vizPattern = /^s-viz-color-party.*/;
         if (_.has(candidate, 'color.full.classAttribute') && vizPattern.test(candidate.color.full.classAttribute)) {
           isSophieVizColorDefined = true;
         } else if (_.has(candidate, 'color.light.classAttribute') && vizPattern.test(candidate.color.light.classAttribute)) {
@@ -56,7 +56,7 @@ module.exports = {
 		}
     if (isSophieVizColorDefined) {
       data.stylesheets.push({
-        url: 'https://service.sophie.nzz.ch/bundle/sophie-viz-color@^1.0.0.css',
+        url: 'https://service.sophie.nzz.ch/bundle/sophie-viz-color@^1.0.0[parties].css',
         type: 'critical'
       });
     }
