@@ -54,6 +54,7 @@ $image-margin: 7px;
       width: calc(100% - (#{$image-size} + #{$image-margin}));
 
       &-color {
+        background-color: currentColor;
         height: 100%;
         position: absolute;
         top: 0;

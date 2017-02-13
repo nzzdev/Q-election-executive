@@ -74,6 +74,9 @@
               {
                 "full": {
                   "colorCode": "#a35fd1"
+                },
+                "light": {
+                  "classAttribute": "s-viz-color-party-sp-3"
                 }
               },
               "isPrevious": true,
@@ -86,7 +89,7 @@
           "toolBaseUrl": "http://localhost:3000"
         }
       };
-      fetch("http://localhost:3000/rendering-info/html-static", {
+      fetch("http://localhost:3000/rendering-info/html-static?updatedDate=2017-02-12T15:26:31.238Z", {
           method: 'POST',
           body: JSON.stringify(data),
           headers: {
