@@ -29,11 +29,9 @@ module.exports = {
     cors: true
 	},
 	handler: function(request, reply) {
-<<<<<<< HEAD
     if (request.query.updatedDate) {
       request.payload.item.updatedDate = request.query.updatedDate;
     }
-=======
     let isSophieVizColorDefined = false;
     let candidates = request.payload.item.candidates;
     if (candidates !== undefined) {
@@ -47,7 +45,6 @@ module.exports = {
       })
     }
 
->>>>>>> feat-sophie-dependant-on-colorclass
 		let data = {
 			stylesheets: [
 				{
