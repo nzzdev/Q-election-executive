@@ -1,7 +1,7 @@
 <div class="q-item-container s-q-item">
   <Header title='{{title}}' subtitle='{{subtitle}}'/>
   <div class="q-election-executive">
-    <MajorityInfo majority='{{majority}}' maxResult='{{enhancedCandidates.candidatesInfo.maxResult}}' />
+    <MajorityInfo majority='{{majority}}' maxNumber='{{enhancedCandidates.candidatesInfo.maxNumber}}' hasVotes='{{enhancedCandidates.candidatesInfo.hasVotes}}'/>
     <Candidates candidates ='{{enhancedCandidates}}' />
   </div>
   <Footer majority='{{majority}}' candidatesInfo='{{enhancedCandidates.candidatesInfo}}' sources='{{sources}}' notes='{{notes}}' updatedDate='{{updatedDate}}'/>
@@ -38,10 +38,13 @@
 
         // if there are already any votes the first candidate 
         // of sorted list of candidates has max votes
-        let maxResult = 0;
+        let maxVotes = 0;
         if (sortedCandidates[0] && sortedCandidates[0].votes) {
-          maxResult = sortedCandidates[0].votes;
+          maxVotes = sortedCandidates[0].votes;
         }
+
+        let hasVotes = maxVotes > 0;
+        let maxNumber = Math.max(maxVotes, majority);
 
         sortedCandidates.forEach(candidate => {
           if (candidate.image !== undefined && candidate.image.base64 !== undefined) {
@@ -51,8 +54,8 @@
           let width = '1px';
           let colorStyle = '';
           let colorClass = '';
-          if (maxResult > 0 && candidate.votes && candidate.votes > 0) {
-            let widthPercentage = (candidate.votes * 100 / maxResult).toFixed(2);
+          if (hasVotes && candidate.votes && candidate.votes > 0) {
+            let widthPercentage = (candidate.votes * 100 / maxNumber).toFixed(2);
             width = widthPercentage + '%';
           }
           candidate.width = width;
@@ -96,7 +99,8 @@
         })
 
         sortedCandidates.candidatesInfo = {
-          maxResult: maxResult,
+          hasVotes: hasVotes,
+          maxNumber: maxNumber,
           isPrevious: isPrevious,
           isElected: isElected,
           isDropped: isDropped,
