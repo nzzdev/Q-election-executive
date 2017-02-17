@@ -15,11 +15,14 @@ const staticTemplate = require(viewsDir + 'html-static.html');
 
 module.exports = {
 	method: 'POST',
-	path: '/rendering-info/html-static',
+	path: '/rendering-info/html-static/{width?}',
 	config: {
 		validate: {
       options: {
         allowUnknown: true
+      },
+      params: {
+        width: Joi.number().optional()
       },
 			payload: {
 				item: schema,
