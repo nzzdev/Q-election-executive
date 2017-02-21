@@ -15,6 +15,10 @@
       "title": "Absolutes Mehr",
       "type": "number"
     },
+    "isPercentage": {
+      "title": "Anzahl Stimmen in % anzeigen",
+      "type": "boolean"
+    },
     "candidates": {
       "title": "Kandidaten",
       "type": "array",
@@ -35,7 +39,10 @@
           },
           "votes": {
             "title": "Anzahl Stimmen",
-            "type": "number"
+            "type": "number",
+            "Q:options": {
+              "steps": "0.01"
+            }
           },
           "status": {
             "type": "string",
