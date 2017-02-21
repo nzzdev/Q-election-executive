@@ -32,7 +32,7 @@
       {{#if candidate.votes}}
         <div class="s-font-note q-election-executive-item-text-votes {{candidate.textClassAttribute}}">
           <!-- insert a space after each three digits -->
-          {{candidate.votes.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")}}
+          {{candidate.votes.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")}}{{#if isPercentage}}%{{/if}}
         </div>
       {{/if}}
     </div>
