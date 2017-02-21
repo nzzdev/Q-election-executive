@@ -1,5 +1,5 @@
 <div class="q-election-executive-footer s-font-note-s s-font-note-s--light">
-  {{#if majority && candidatesInfo.maxResult > 0}}
+  {{#if majority && candidatesInfo.hasVotes}}
     <div class="q-election-executive-majority-gap"></div>
   {{/if}}
   {{#if candidatesInfo.isPrevious}}
@@ -72,7 +72,7 @@
         }
       },
       shouldHaveUpdateInfo: (updatedDate, candidatesInfo) => {
-        return updatedDate !== undefined && candidatesInfo.maxResult > 0;
+        return updatedDate !== undefined && candidatesInfo.hasVotes;
       },
       shouldHaveResultLegend: (candidatesInfo) => {
         return candidatesInfo.isElected || candidatesInfo.isDropped;
