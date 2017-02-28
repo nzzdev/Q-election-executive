@@ -29,6 +29,7 @@
       },
       "items": {
         "type": "object",
+        "title": "Kandidat",
         "properties": {
           "name": {
             "title": "Name",
@@ -69,10 +70,16 @@
           "color": {
             "title": "Farbe",
             "type": "object",
+            "Q:options": {
+              "compact": true
+            },
             "properties": {
               "full": {
                 "title": "gewählt",
                 "type": "object",
+                "Q:options": {
+                  "compact": true
+                },
                 "properties": {
                   "colorCode": {
                     "title": "Farbcode",
@@ -87,6 +94,9 @@
               "light": {
                 "title": "nicht gewählt",
                 "type": "object",
+                "Q:options": {
+                  "compact": true
+                },
                 "properties": {
                   "colorCode": {
                     "title": "Farbcode",
@@ -103,6 +113,9 @@
           "image": {
             "title": "Bild",
             "type": "object",
+            "Q:options": {
+              "compact": true
+            },
             "properties": {
               "base64": {
                 "title": "Bild auswählen",
@@ -123,6 +136,7 @@
       "type": "array",
       "items": {
         "type": "object",
+        "title": "Quelle",
         "properties": {
           "text": {
             "title": "Text",
