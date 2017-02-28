@@ -30,7 +30,7 @@
             "type": "string"
           },
           "party": {
-            "title": "Partei",
+            "title": "Parteiname (Kürzel)",
             "type": "string"
           },
           "isPrevious": {
