@@ -82,7 +82,7 @@
                 },
                 "properties": {
                   "colorCode": {
-                    "title": "Farbcode",
+                    "title": "Farbcode (Hex-Wert oder vordefinierter CSS Farbname, z.B. green)",
                     "type": "string"
                   },
                   "classAttribute": {
@@ -99,7 +99,7 @@
                 },
                 "properties": {
                   "colorCode": {
-                    "title": "Farbcode",
+                    "title": "Farbcode (Hex-Wert oder vordefinierter CSS Farbname, z.B. green)",
                     "type": "string"
                   },
                   "classAttribute": {
@@ -124,7 +124,10 @@
               }
             }
           }
-        }
+        },
+        "required": [
+          "name"
+        ]
       }
     },
     "notes": {
