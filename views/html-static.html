@@ -1,6 +1,6 @@
-<div class="q-item-container s-q-item">
-  <Header title='{{item.title}}' titleClassAttribute='{{titleClassAttribute}}' subtitle='{{item.subtitle}}'/>
-  <div class="q-election-executive">
+<div class="q-election-executive" style="opacity: 0;">
+  <Header title='{{item.title}}' hideTitle='{{hideTitle}}' subtitle='{{item.subtitle}}'/>
+  <div class="q-election-executive-container">
     <MajorityInfo majority='{{majority}}' maxNumber='{{enhancedCandidates.candidatesInfo.maxNumber}}' hasVotes='{{enhancedCandidates.candidatesInfo.hasVotes}}'/>
     <Candidates candidates ='{{enhancedCandidates}}' isPercentage='{{item.isPercentage}}'/>
   </div>
@@ -15,6 +15,9 @@
 
   export default {
     computed: {
+      hideTitle: (toolRuntimeConfig) => {
+        return toolRuntimeConfig.displayOptions && toolRuntimeConfig.displayOptions.hideTitle;
+      },
       candidates: (item) => {
         return item.candidates;
       },

@@ -2,10 +2,10 @@ $image-size: 44px;
 $image-margin: 7px;
 
 .q-election-executive {
-  position: relative;
+  opacity: 1 !important;
 
-  &-title--hidden {
-    display: none;
+  &-container {
+    position: relative;
   }
 
 	&-info {
