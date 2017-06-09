@@ -4,6 +4,10 @@ $image-margin: 7px;
 .q-election-executive {
   position: relative;
 
+  &-title--hidden {
+    display: none;
+  }
+
 	&-info {
 		margin-bottom: 16px;
 	}

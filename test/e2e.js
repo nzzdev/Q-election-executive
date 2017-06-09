@@ -61,7 +61,14 @@ describe('rendering-info endpoints', () => {
     const request = {
       method: 'POST',
       url: '/rendering-info/html-static',
-      payload: JSON.stringify({ item: mockDataV2 })
+      payload: JSON.stringify({ 
+        item: mockDataV2,
+        toolRuntimeConfig: {
+          displayOptions: {
+
+          }
+        }
+      })
     };
     server.inject(request, (res) => {
       expect(res.statusCode).to.be.equal(200);
@@ -72,23 +79,29 @@ describe('rendering-info endpoints', () => {
 
 describe('migration endpoint', () => {
   
-  it('should pass validation against schema after migration via endpoint /migration', function(done) {
+  it('should return status code 200 and pass validation against new schema after migration', function(done) {
     const request = {
       method: 'POST',
       url: '/migration',
-      payload: JSON.stringify({ item: mockDataV1 })
+      payload: JSON.stringify({ 
+        item: mockDataV1
+      })
     } ;
     server.inject(request, (res) => {
+      expect(res.statusCode).to.be.equal(200);
       expect(Joi.validate(res.result.item, schema).error).to.be.null;
       done();
     })
   })
 
+  // has to be fixed!
   it('should return 304 for /migration', function(done) {
     const request = {
       method: 'POST',
       url: '/migration',
-      payload: JSON.stringify({ item: mockDataV2 })
+      payload: JSON.stringify({ 
+        item: mockDataV2
+      })
     } ;
     server.inject(request, (res) => {
       expect(res.statusCode).to.be.equal(304);

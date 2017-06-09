@@ -1,10 +1,10 @@
 <div class="q-item-container s-q-item">
-  <Header title='{{title}}' subtitle='{{subtitle}}'/>
+  <Header title='{{item.title}}' titleClassAttribute='{{titleClassAttribute}}' subtitle='{{item.subtitle}}'/>
   <div class="q-election-executive">
     <MajorityInfo majority='{{majority}}' maxNumber='{{enhancedCandidates.candidatesInfo.maxNumber}}' hasVotes='{{enhancedCandidates.candidatesInfo.hasVotes}}'/>
-    <Candidates candidates ='{{enhancedCandidates}}' isPercentage='{{isPercentage}}'/>
+    <Candidates candidates ='{{enhancedCandidates}}' isPercentage='{{item.isPercentage}}'/>
   </div>
-  <Footer majority='{{majority}}' candidatesInfo='{{enhancedCandidates.candidatesInfo}}' sources='{{sources}}' notes='{{notes}}' updatedDate='{{updatedDate}}'/>
+  <Footer majority='{{majority}}' candidatesInfo='{{enhancedCandidates.candidatesInfo}}' sources='{{item.sources}}' notes='{{item.notes}}' updatedDate='{{item.updatedDate}}'/>
 </div>
 
 <script>
@@ -15,6 +15,18 @@
 
   export default {
     computed: {
+      candidates: (item) => {
+        return item.candidates;
+      },
+      majority: (item) => {
+        return item.majority;
+      },
+      titleClassAttribute: (toolRuntimeConfig) => {
+        if (toolRuntimeConfig.displayOptions && toolRuntimeConfig.displayOptions.hideTitle) {
+          return 'q-election-executive-title--hidden';
+        }
+        return '';
+      },
       sortedCandidates: (candidates) => {
         if (candidates) {
           return candidates.sort(function(candidateA, candidateB) {

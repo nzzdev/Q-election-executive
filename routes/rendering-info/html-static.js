@@ -10,6 +10,10 @@ const schemaString = JSON.parse(fs.readFileSync(resourcesDir + 'schema.json', {
 }));
 const schema = Enjoi(schemaString);
 
+const displayOptionsSchema = Enjoi(JSON.parse(fs.readFileSync(resourcesDir + 'display-options-schema.json', {
+  encoding: 'utf-8'
+})));
+
 require('svelte/ssr/register');
 const staticTemplate = require(viewsDir + 'html-static.html');
 
@@ -23,17 +27,40 @@ module.exports = {
       },
 			payload: {
 				item: schema,
-        toolRuntimeConfig: Joi.object()
+        toolRuntimeConfig: {
+          displayOptions: displayOptionsSchema
+        }
 			}
 		},
     cors: true
 	},
 	handler: function(request, reply) {
-    if (request.query.updatedDate) {
-      request.payload.item.updatedDate = request.query.updatedDate;
+    // rendering data will be used by template to create the markup
+    // it contains the item itself and additional options impacting the markup
+    let renderingData = {
+      item: request.payload.item
     }
+
+    if (request.query.updatedDate) {
+      renderingData.item.updatedDate = request.query.updatedDate;
+    }
+
+    if (request.payload.toolRuntimeConfig) {
+      renderingData.toolRuntimeConfig = request.payload.toolRuntimeConfig;
+    }
+
+		let responseData = {
+			stylesheets: [
+				{
+					name: 'default'
+				}
+			],
+			markup: staticTemplate.render(renderingData)
+		}
+
+    // add sophie viz color module to stylesheets in response iff necessary
     let isSophieVizColorDefined = false;
-    let candidates = request.payload.item.candidates;
+    let candidates = renderingData.item.candidates;
     if (candidates !== undefined) {
       candidates.forEach(candidate => {
         let vizPattern = /^s-viz-color-party.*/;
@@ -45,20 +72,12 @@ module.exports = {
       })
     }
 
-		let data = {
-			stylesheets: [
-				{
-					name: 'default'
-				}
-			],
-			markup: staticTemplate.render(request.payload.item)
-		}
     if (isSophieVizColorDefined) {
-      data.stylesheets.push({
+      responseData.stylesheets.push({
         url: 'https://service.sophie.nzz.ch/bundle/sophie-viz-color@^1.0.0[parties].css'
       });
     }
 
-		return reply(data);
+		return reply(responseData);
 	}
 }
