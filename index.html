@@ -5,7 +5,7 @@
     <title>Q Election Executive</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://service.sophie.nzz.ch/bundle/sophie-q@~0.1.1,sophie-font@^0.1.0,sophie-color@~1.0.0,sophie-viz-color@^1.0.0[diverging-6].css">
+    <link rel="stylesheet" href="https://service.sophie.nzz.ch/bundle/sophie-q@~0.1.1,sophie-font@^0.1.0,sophie-color@~1.0.0,sophie-viz-color@^1.0.0[diverging-6+general].css">
     <script src="https://rawgit.com/filamentgroup/loadCSS/master/src/loadCSS.js"></script>
   </head>
   <body>
@@ -32,7 +32,7 @@
               "color": 
                 {
                   "full": {
-                    "colorCode": "#0084c7"
+                    
                   }
                 },
               "votes": 120000,
@@ -46,7 +46,7 @@
               "color": 
                 {
                   "full": {
-                    "colorCode": "#c31906"
+                    
                   }
                 },
               "votes": 80000,
@@ -59,7 +59,7 @@
               "color": 
                 {
                   "full": {
-                    "colorCode": "#66a622"
+                    
                   }
                 },
               "isPrevious":false,
@@ -72,10 +72,10 @@
               "color": 
               {
                 "full": {
-                  "colorCode": "#a35fd1"
+                 
                 },
                 "light": {
-                  "classAttribute": "s-viz-color-party-sp-3"
+                  
                 }
               },
               "isPrevious": true,
@@ -99,12 +99,10 @@
           }
         })
         .then(response => {
-          console.log(response.json);
           return response.json()
         })
         .then(data => {
           data.stylesheets.forEach(stylesheet => {
-            console.log(stylesheet);
             if (stylesheet.name) {
               stylesheet.url = `http://localhost:3000/stylesheet/${stylesheet.name}`
             }
