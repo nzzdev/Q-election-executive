@@ -1,10 +1,10 @@
-<div class="q-item-container s-q-item">
-  <Header title='{{title}}' subtitle='{{subtitle}}'/>
-  <div class="q-election-executive">
+<div class="q-election-executive" style="opacity: 0;">
+  <Header title='{{item.title}}' hideTitle='{{hideTitle}}' subtitle='{{item.subtitle}}'/>
+  <div class="q-election-executive-container">
     <MajorityInfo majority='{{majority}}' maxNumber='{{enhancedCandidates.candidatesInfo.maxNumber}}' hasVotes='{{enhancedCandidates.candidatesInfo.hasVotes}}'/>
-    <Candidates candidates ='{{enhancedCandidates}}' isPercentage='{{isPercentage}}'/>
+    <Candidates candidates ='{{enhancedCandidates}}' isPercentage='{{item.isPercentage}}'/>
   </div>
-  <Footer majority='{{majority}}' candidatesInfo='{{enhancedCandidates.candidatesInfo}}' sources='{{sources}}' notes='{{notes}}' updatedDate='{{updatedDate}}'/>
+  <Footer majority='{{majority}}' candidatesInfo='{{enhancedCandidates.candidatesInfo}}' sources='{{item.sources}}' notes='{{item.notes}}' updatedDate='{{item.updatedDate}}'/>
 </div>
 
 <script>
@@ -15,6 +15,21 @@
 
   export default {
     computed: {
+      hideTitle: (toolRuntimeConfig) => {
+        return toolRuntimeConfig.displayOptions && toolRuntimeConfig.displayOptions.hideTitle;
+      },
+      candidates: (item) => {
+        return item.candidates;
+      },
+      majority: (item) => {
+        return item.majority;
+      },
+      titleClassAttribute: (toolRuntimeConfig) => {
+        if (toolRuntimeConfig.displayOptions && toolRuntimeConfig.displayOptions.hideTitle) {
+          return 'q-election-executive-title--hidden';
+        }
+        return '';
+      },
       sortedCandidates: (candidates) => {
         if (candidates) {
           return candidates.sort(function(candidateA, candidateB) {
@@ -57,26 +72,37 @@
           let width = '1px';
           let colorStyle = '';
           let colorClass = '';
+          const defaultColor = {
+            light: 's-viz-color-one-3',
+            full: 's-viz-color-one-5'
+          }
           if (hasVotes && candidate.votes && candidate.votes > 0) {
             let widthPercentage = (candidate.votes * 100 / maxNumber).toFixed(2);
             width = widthPercentage + '%';
           }
           candidate.width = width;
-          if (candidate.color) {
-            let colorDef;
-            if (candidate.status === "elected" || candidate.status === "undefined") {
-              colorDef = 'full';
-            } else {
-              colorDef = 'light';
-            }
+
+          let colorDef;
+          if (candidate.status === "elected" || candidate.status === "undefined") {
+            colorDef = 'full';
+          } else {
+            colorDef = 'light';
+          }
+
+          if (candidate.color) {  
             if (candidate.color[colorDef]) {
               if (candidate.color[colorDef].classAttribute) {
                 colorClass = candidate.color[colorDef].classAttribute;
-              } else {
+              } else if (candidate.color[colorDef].colorCode) {
                 colorStyle = 'color: ' + candidate.color[colorDef].colorCode + ';'; 
               }
             }
           }
+
+          if (!colorClass && !colorStyle) {
+            colorClass = defaultColor[colorDef];
+          }
+
           candidate.colorClass = colorClass;
           candidate.colorStyle = colorStyle;
           // check if we have previous, elected or dropped candidates for footer info
