@@ -72,26 +72,37 @@
           let width = '1px';
           let colorStyle = '';
           let colorClass = '';
+          const defaultColor = {
+            light: 's-viz-color-one-3',
+            full: 's-viz-color-one-5'
+          }
           if (hasVotes && candidate.votes && candidate.votes > 0) {
             let widthPercentage = (candidate.votes * 100 / maxNumber).toFixed(2);
             width = widthPercentage + '%';
           }
           candidate.width = width;
-          if (candidate.color) {
-            let colorDef;
-            if (candidate.status === "elected" || candidate.status === "undefined") {
-              colorDef = 'full';
-            } else {
-              colorDef = 'light';
-            }
+
+          let colorDef;
+          if (candidate.status === "elected" || candidate.status === "undefined") {
+            colorDef = 'full';
+          } else {
+            colorDef = 'light';
+          }
+
+          if (candidate.color) {  
             if (candidate.color[colorDef]) {
               if (candidate.color[colorDef].classAttribute) {
                 colorClass = candidate.color[colorDef].classAttribute;
-              } else {
+              } else if (candidate.color[colorDef].colorCode) {
                 colorStyle = 'color: ' + candidate.color[colorDef].colorCode + ';'; 
               }
             }
           }
+
+          if (!colorClass && !colorStyle) {
+            colorClass = defaultColor[colorDef];
+          }
+
           candidate.colorClass = colorClass;
           candidate.colorStyle = colorStyle;
           // check if we have previous, elected or dropped candidates for footer info
