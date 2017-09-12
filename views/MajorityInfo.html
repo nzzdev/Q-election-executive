@@ -1,6 +1,6 @@
-{{#if majority && hasVotes}}
+{{#if majority}}
   <!-- move majority line 1px to the left to display it correctly in case majority value is the highest value -->
-  <div class="q-election-executive-majority s-color-gray-5" style="left: calc({{(majority * 100 / maxNumber).toFixed(2)}}% - 1px);">
+  <div class="q-election-executive-majority s-color-gray-5" style="left: calc({{(majority * 100 / base).toFixed(2)}}% - 1px);">
     <!-- majority arrow -->
     <svg class="q-election-executive-majority-arrow" viewBox="0 0 7 35" xmlns="http://www.w3.org/2000/svg" width="7" height="35">
       <path d="M4 5v30H3V5H0l3.5-5L7 5H4z" fill="currentColor" fill-rule="evenodd"/>
@@ -16,8 +16,8 @@
 <script>
   export default {
     computed: {
-      majorityTextAlignClass : (maxNumber, majority) => {
-        if (maxNumber === 0 || ((majority * 100 / maxNumber) > 50)) {
+      majorityTextAlignClass : (base, majority) => {
+        if (base === 0 || ((majority * 100 / base) > 50)) {
           return "right";
         } else {
           return "left";

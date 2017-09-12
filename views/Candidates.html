@@ -9,7 +9,7 @@
     {{/if}}
     <!-- if no candidate has an image, width of candidate info text is overwritten with 100% -->
     <div class="q-election-executive-item-text" style="{{fullWidth}}">
-      <div class="q-election-executive-item-text-name s-font-title-xs {{candidate.textClassAttribute}}">
+      <div class="q-election-executive-item-text-name s-font-text-s {{candidate.textClassAttribute}}">
         {{#if candidate.status === "elected"}}
           <!-- checkmark -->
           <svg viewBox="0 0 16 16" width="14" height="14" xmlns="http://www.w3.org/2000/svg">
@@ -29,7 +29,7 @@
         {{candidate.name || ""}}
       </div>{{#if candidate.isPrevious}}<div class="s-font-title-xs {{candidate.textClassAttribute}}">*</div>{{/if}}
       <div class="s-font-note q-election-executive-item-text-party {{candidate.textClassAttribute}}">{{candidate.party || ""}}</div>
-      {{#if candidate.votes}}
+      {{#if candidate.votes !== undefined}}
         <div class="s-font-note q-election-executive-item-text-votes {{candidate.textClassAttribute}}">
           <!-- insert a space after each three digits -->
           {{candidate.votes.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")}}{{#if isPercentage}}%{{/if}}

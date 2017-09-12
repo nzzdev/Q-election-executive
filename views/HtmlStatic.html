@@ -1,7 +1,7 @@
 <div class="q-election-executive" style="opacity: 0;">
   <Header title='{{item.title}}' hideTitle='{{hideTitle}}' subtitle='{{item.subtitle}}'/>
   <div class="q-election-executive-container">
-    <MajorityInfo majority='{{majority}}' maxNumber='{{enhancedCandidates.candidatesInfo.maxNumber}}' hasVotes='{{enhancedCandidates.candidatesInfo.hasVotes}}'/>
+    <MajorityInfo majority='{{majority}}' base='{{majorityBase}}'/>
     <Candidates candidates ='{{enhancedCandidates}}' isPercentage='{{item.isPercentage}}'/>
   </div>
   <Footer majority='{{majority}}' candidatesInfo='{{enhancedCandidates.candidatesInfo}}' sources='{{item.sources}}' notes='{{item.notes}}' updatedDate='{{item.updatedDate}}'/>
@@ -137,6 +137,13 @@
         };
 
         return sortedCandidates;
+      },
+      majorityBase: (enhancedCandidates, majority) => {
+        let majorityBase = enhancedCandidates.candidatesInfo.maxNumber;
+        if (!enhancedCandidates.candidatesInfo.hasVotes) {
+          majorityBase = majority;
+        }
+        return majorityBase;
       }
     },
 
