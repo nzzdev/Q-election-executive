@@ -1,4 +1,5 @@
-$image-size: 44px;
+$row-height: 50px;
+$image-size: $row-height;
 $image-margin: 7px;
 
 .q-election-executive {
@@ -47,7 +48,7 @@ $image-margin: 7px;
   }
 
 	&-item {
-    height: 44px;
+    height: $row-height;
     margin: 0 0 7px 0;
 
     &-bar {
@@ -91,6 +92,7 @@ $image-margin: 7px;
       // background-color of articles
       background-color: currentColor;
       display: flex;
+      align-items: baseline;
       width: calc(100% - (#{$image-size} + #{$image-margin}));
       position: relative;
       z-index: 1;
