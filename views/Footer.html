@@ -4,7 +4,7 @@
   {{/if}}
   {{#if candidatesInfo.isPrevious}}
     *bisher
-    {{#if shouldHaveResultLegend || notes || shouldHaveSources || shouldHaveUpdateInfo}}&ndash;{{/if}}
+    {{#if shouldHaveResultLegend}},{{elseif notes || shouldHaveSources || shouldHaveUpdateInfo}}&ndash;{{/if}}
   {{/if}}
   {{#if candidatesInfo.isElected}}
     <!-- checkmark -->
@@ -14,7 +14,7 @@
       </g>
     </svg> 
     = gewählt
-    {{#if candidatesInfo.isDropped}},{{elseif notes || shouldHaveSources || showUpdateInfo}}&ndash;{{/if}}
+    {{#if candidatesInfo.isDropped}},{{elseif notes || shouldHaveSources || shouldHaveUpdateInfo}}&ndash;{{/if}}
   {{/if}}
   {{#if candidatesInfo.isDropped}}
     <!-- crossmark -->
