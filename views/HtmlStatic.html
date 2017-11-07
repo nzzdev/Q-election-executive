@@ -4,7 +4,7 @@
     <MajorityInfo majority='{{majority}}' base='{{majorityBase}}'/>
     <Candidates candidates ='{{enhancedCandidates}}' isPercentage='{{item.isPercentage}}'/>
   </div>
-  <Footer majority='{{majority}}' candidatesInfo='{{enhancedCandidates.candidatesInfo}}' sources='{{item.sources}}' notes='{{item.notes}}' updatedDate='{{item.updatedDate}}'/>
+  <Footer majority='{{majority}}' candidatesInfo='{{enhancedCandidates.candidatesInfo}}' sources='{{item.sources}}' notes='{{item.notes}}' updatedDate='{{item.updatedDate}}' hideUpdatedDate='{{hideUpdatedDate}}'/>
 </div>
 
 <script>
@@ -144,6 +144,12 @@
           majorityBase = majority;
         }
         return majorityBase;
+      },
+      hideUpdatedDate: (item) => {
+        if (item.options && item.options.hideUpdatedDate) {
+          return true;
+        }
+        return false;
       }
     },
 
