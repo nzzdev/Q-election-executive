@@ -180,6 +180,14 @@
     "options": {
       "title": "Allgemeine Optionen",
       "type": "object",
+      "Q:options": {
+        "availabilityChecks": [
+          {
+            "type": "UserHasRole",
+            "role": "expert-election-executive"
+          }
+        ]
+      },
       "properties": {
         "hideUpdatedDate": {
           "title": "Aktualisierungsdatum ausblenden",
