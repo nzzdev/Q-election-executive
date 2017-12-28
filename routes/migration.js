@@ -34,7 +34,6 @@ module.exports = {
         item: item
       }
     }
-    console.log('handler before 304');
     return h.response('item had not be modified').code(304);
   }
 }

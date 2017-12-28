@@ -40,23 +40,23 @@ async function start() {
   
   });
   
-  const mockDataV1 = JSON.parse(JSON.stringify(require('./resources/mock-data-v1.0.0')));
-  const mockDataV2 = JSON.parse(JSON.stringify(require('./resources/mock-data-v2.0.0')));
+  const fixtureDataV1 = require('../resources/fixtures/data/before-v2.0.0/empty-candidate-name.json');
+  const fixtureDataV2 = require('../resources/fixtures/data/results-majority-partly-images.json');
   
   describe('rendering-info endpoints', () => {
-
+    
     it('should return 200 for /rendering-info/html-static', async () => {
       const request = {
         method: 'POST',
         url: '/rendering-info/html-static',
-        payload: JSON.stringify({ 
-          item: mockDataV2,
+        payload: { 
+          item: fixtureDataV2,
           toolRuntimeConfig: {
             displayOptions: {
   
             }
           }
-        })
+        }
       };
       const response = await server.inject(request)
       expect(response.statusCode).to.be.equal(200);
@@ -67,13 +67,14 @@ async function start() {
   describe('migration endpoint', () => {
 
     it('should return status code 200 and pass validation against new schema after migration', async () => {
+      expect(Joi.validate(fixtureDataV1, schema).error).not.to.be.null;      
       const request = {
         method: 'POST',
         url: '/migration',
-        payload: JSON.stringify({ 
-          item: mockDataV1
-        })
-      } ;
+        payload: { 
+          item: fixtureDataV1
+        }
+      };
       const response = await server.inject(request)
       expect(response.statusCode).to.be.equal(200);
       expect(Joi.validate(response.result.item, schema).error).to.be.null;
@@ -83,10 +84,10 @@ async function start() {
       const request = {
         method: 'POST',
         url: '/migration',
-        payload: JSON.stringify({ 
-          item: mockDataV2
-        })
-      } ;
+        payload: { 
+          item: fixtureDataV2
+        }
+      };
       const response = await server.inject(request);
       expect(response.statusCode).to.be.equal(304);
     });
