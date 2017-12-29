@@ -14,7 +14,7 @@ const fixtureData = [
 module.exports = {
   path: '/fixtures/data',
   method: 'GET',
-  config: {
+  options: {
     tags: ['api'],
     cors: true
   },
