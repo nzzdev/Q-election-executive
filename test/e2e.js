@@ -1,6 +1,5 @@
 'use strict';
 
-const Hoek = require('hoek');
 const expect = require('chai').expect;
 const server = require('../server.js');
 const plugins = require('../server-plugins.js');
