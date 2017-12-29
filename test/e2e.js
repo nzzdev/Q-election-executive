@@ -21,19 +21,34 @@ async function start() {
   server.route(routes);
   await server.start();
 
-  describe('Q required API', () => {
-    
-    it('should return 200 for /schema.json', async () => {
+  describe('basic routes', () => {
+    it('starts the server', () => {
+      expect(server.info.port).to.be.equal(3000);
+    });
+  
+    it('is healthy', async () => {
+      const response = await server.inject('/health');
+      expect(response.payload).to.be.equal('ok');
+    });
+  });
+
+  describe('schema endpoint', () => {
+
+    it('returns 200 for /schema.json', async () => {
       const response = await server.inject('/schema.json');
       expect(response.statusCode).to.be.equal(200);
     });
   
-    it('should return 200 for /stylesheet/default.123.css', async () => {
+  });
+
+  describe('stylesheet endpoint', () => {
+    
+    it('returns 200 for /stylesheet/default.123.css', async () => {
       const response = await server.inject('/stylesheet/default.123.css')
       expect(response.statusCode).to.be.equal(200);
     });
   
-    it('should return 404 for inexistent stylesheet', async () => {
+    it('returns 404 for inexistent stylesheet', async () => {
       const response = await server.inject('/stylesheet/inexisting.123.css')
       expect(response.statusCode).to.be.equal(404);
     });
@@ -43,9 +58,9 @@ async function start() {
   const fixtureDataV1 = require('../resources/fixtures/data/before-v2.0.0/empty-candidate-name.json');
   const fixtureDataV2 = require('../resources/fixtures/data/results-majority-partly-images.json');
   
-  describe('rendering-info endpoints', () => {
+  describe('rendering-info endpoint', () => {
     
-    it('should return 200 for /rendering-info/html-static', async () => {
+    it('returns 200 for /rendering-info/html-static', async () => {
       const request = {
         method: 'POST',
         url: '/rendering-info/html-static',
@@ -66,7 +81,7 @@ async function start() {
   
   describe('migration endpoint', () => {
 
-    it('should return status code 200 and pass validation against new schema after migration', async () => {
+    it('returns status code 200 and pass validation against new schema after migration', async () => {
       expect(Joi.validate(fixtureDataV1, schema).error).not.to.be.null;      
       const request = {
         method: 'POST',
@@ -80,7 +95,7 @@ async function start() {
       expect(Joi.validate(response.result.item, schema).error).to.be.null;
     });
   
-    it('should return 304 for /migration', async () => {
+    it('returns 304 for /migration', async () => {
       const request = {
         method: 'POST',
         url: '/migration',
@@ -93,6 +108,14 @@ async function start() {
     });
   
   })
+
+  describe('fixture data endpoint', () => {
+    it('returns 7 fixture data items for /fixtures/data', async () => {
+      const response = await server.inject('/fixtures/data');
+      expect(response.statusCode).to.be.equal(200);
+      expect(response.result.length).to.be.equal(7);
+    })
+  });
 }
 
 start();
