@@ -1,0 +1,66 @@
+{
+  "title": "FIXTURE: results - no majority - no images",
+  "sources": [
+    {
+      "text": "NZZ",
+      "link": {
+        "url": "https://nzz.ch",
+        "isValid": true
+      }
+    }
+  ],
+  "subtitle": "Möglichkeit zusätzliche Informationen als Untertitel zu erfassen",
+  "notes": "Jemand musste Josef K. verleumdet haben, denn ohne dass er etwas Böses getan hätte, wurde er eines 'Morgens verhaftet.",
+  "candidates": [
+    {
+      "name": "Hans Wurst",
+      "color": 
+        {
+          "full": {
+            
+          }
+        },
+      "isPrevious": true,
+      "votes": 50000
+    },
+    {
+      "name": "Maria Müller",
+      "party": "SPD",
+      "color": 
+        {
+          "full": {
+            
+          }
+        },
+      "isPrevious": false,
+      "votes": 120000
+    },
+    {
+      "name": "Abdalá Bucaram",
+      "party": "Fuerza Compromiso Social Social",
+      "color": 
+        {
+          "full": {
+            
+          }
+        },
+      "isPrevious": false,
+      "votes": 90000
+    },
+    {
+      "name": "Susann Salami",
+      "party": "Die Linke",
+      "color": 
+      {
+        "full": {
+         
+        },
+        "light": {
+          
+        }
+      },
+      "isPrevious": true,
+      "votes": 130000
+    }
+  ]
+}
