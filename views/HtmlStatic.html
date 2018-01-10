@@ -1,8 +1,17 @@
 <div class="q-election-executive" style="opacity: 0;">
   <Header title='{{item.title}}' hideTitle='{{hideTitle}}' subtitle='{{item.subtitle}}'/>
   <div class="q-election-executive-container">
-    <MajorityInfo majority='{{majority}}' base='{{majorityBase}}'/>
-    <Candidates candidates ='{{enhancedCandidates}}' isPercentage='{{item.isPercentage}}'/>
+    <div class="q-election-executive-candidates {{majorityOffset}}">
+      <MajorityInfo majority='{{majority}}' base='{{majorityBase}}'/>
+      {{#each enhancedCandidates as candidate}}
+        <Candidate candidate ='{{candidate}}' isPercentage='{{item.isPercentage}}' fullWidth='{{fullWidth}}' candidatesInfo='{{enhancedCandidates.candidatesInfo}}'/>
+      {{/each}}
+    </div>
+    {{#if enhancedCandidates.others}}
+      <div class="q-election-executive-others">
+        <Candidate candidate ='{{enhancedCandidates.others}}' isPercentage='{{item.isPercentage}}' fullWidth='{{fullWidth}}'/>
+      </div>
+    {{/if}}
   </div>
   <Footer majority='{{majority}}' candidatesInfo='{{enhancedCandidates.candidatesInfo}}' sources='{{item.sources}}' notes='{{item.notes}}' updatedDate='{{item.updatedDate}}' hideUpdatedDate='{{hideUpdatedDate}}'/>
 </div>
@@ -10,7 +19,7 @@
 <script>
   import Header from './Header.html';
   import MajorityInfo from './MajorityInfo.html';
-  import Candidates from './Candidates.html';
+  import Candidate from './Candidate.html';
   import Footer from './Footer.html';
 
   export default {
@@ -136,7 +145,26 @@
           isImagePresent: isImagePresent
         };
 
+        // process the group of other candidates differently - not part of the majority
+        let othersIndex = sortedCandidates.findIndex(candidate => {
+        let othersPattern = /((.*(A|a)ndere.*)|(.*(S|s)onstig.*))/; 
+          return othersPattern.test(candidate.name);
+        })
+        if (othersIndex >= 0) {
+          let others = sortedCandidates.splice(othersIndex, 1);
+          sortedCandidates.others = others[0];
+          sortedCandidates.candidatesInfo.hasOthers = true;
+        }
+
         return sortedCandidates;
+      },
+      fullWidth: (enhancedCandidates) => {
+        if (enhancedCandidates.candidatesInfo.isImagePresent) {
+          return ""
+        }
+        else {
+          return "width: 100%";
+        }
       },
       majorityBase: (enhancedCandidates, majority) => {
         let majorityBase = enhancedCandidates.candidatesInfo.maxNumber;
@@ -144,6 +172,12 @@
           majorityBase = majority;
         }
         return majorityBase;
+      },
+      majorityOffset: (majority, majorityBase) => {
+        if (majority !== undefined && majority > 0 && majorityBase > 0) {
+          return 'q-election-executive-majority-offset';
+        }
+        else '';
       },
       hideUpdatedDate: (item) => {
         return item.options && item.options.hideUpdatedDate;
@@ -153,7 +187,7 @@
     components: {
       Header,
       MajorityInfo,
-      Candidates,
+      Candidate,
       Footer
     }
   };

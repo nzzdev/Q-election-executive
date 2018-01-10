@@ -9,6 +9,10 @@ $image-margin: 7px;
     position: relative;
   }
 
+  &-candidates {
+    position: relative;
+  }
+
 	&-info {
 		margin-bottom: 16px;
 	}
@@ -42,8 +46,13 @@ $image-margin: 7px;
       }
     } 
 
+    &-offset {
+      margin-bottom: 38px;
+    }
+
+    /* because of two-line majority text we have insert a space which is as high as the line height */
     &-gap {
-      height: 40px;
+      height: 14px;
     }
   }
 

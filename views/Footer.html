@@ -1,5 +1,5 @@
 <div class="s-q-item__footer">
-  {{#if majority}}
+  {{#if majority && !candidatesInfo.hasOthers}}
     <div class="q-election-executive-majority-gap"></div>
   {{/if}}
   {{#if candidatesInfo.isPrevious}}
