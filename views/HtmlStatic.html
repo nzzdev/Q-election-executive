@@ -3,17 +3,17 @@
   <div class="q-election-executive-container">
     <div class="q-election-executive-candidates {{majorityOffset}}">
       <MajorityInfo majority='{{majority}}' base='{{majorityBase}}'/>
-      {{#each enhancedCandidates as candidate}}
-        <Candidate candidate ='{{candidate}}' isPercentage='{{item.isPercentage}}' fullWidth='{{fullWidth}}' candidatesInfo='{{enhancedCandidates.candidatesInfo}}'/>
+      {{#each candidatesInfo.sortedCandidates as candidate}}
+        <Candidate candidate ='{{candidate}}' isPercentage='{{item.isPercentage}}' fullWidth='{{fullWidth}}' isImagePresent='{{candidatesInfo.isImagePresent}}'/>
       {{/each}}
     </div>
-    {{#if enhancedCandidates.others}}
+    {{#if candidatesInfo.others}}
       <div class="q-election-executive-others">
-        <Candidate candidate ='{{enhancedCandidates.others}}' isPercentage='{{item.isPercentage}}' fullWidth='{{fullWidth}}'/>
+        <Candidate candidate ='{{candidatesInfo.others}}' isPercentage='{{item.isPercentage}}' fullWidth='{{fullWidth}}' isImagePresent='{{candidatesInfo.isImagePresent}}'/>
       </div>
     {{/if}}
   </div>
-  <Footer majority='{{majority}}' candidatesInfo='{{enhancedCandidates.candidatesInfo}}' sources='{{item.sources}}' notes='{{item.notes}}' updatedDate='{{item.updatedDate}}' hideUpdatedDate='{{hideUpdatedDate}}'/>
+  <Footer majority='{{majority}}' candidatesInfo='{{candidatesInfo}}' sources='{{item.sources}}' notes='{{item.notes}}' updatedDate='{{item.updatedDate}}' hideUpdatedDate='{{hideUpdatedDate}}'/>
 </div>
 
 <script>
@@ -53,7 +53,7 @@
         }
         return [];
       },
-      enhancedCandidates: (sortedCandidates, majority) => {
+      candidatesInfo: (sortedCandidates, majority) => {
         // enhance candidates object with additional information
         let isPrevious = false;
         let isElected = false;
@@ -136,14 +136,16 @@
           }
         })
 
-        sortedCandidates.candidatesInfo = {
+        // define info object which contains general information and sorted candidates
+        const candidatesInfo = {
           hasVotes: hasVotes,
           maxNumber: maxNumber,
           isPrevious: isPrevious,
           isElected: isElected,
           isDropped: isDropped,
-          isImagePresent: isImagePresent
-        };
+          isImagePresent: isImagePresent,
+          sortedCandidates: sortedCandidates
+        }
 
         // process the group of other candidates differently - not part of the majority
         let othersIndex = sortedCandidates.findIndex(candidate => {
@@ -152,23 +154,23 @@
         })
         if (othersIndex >= 0) {
           let others = sortedCandidates.splice(othersIndex, 1);
-          sortedCandidates.others = others[0];
-          sortedCandidates.candidatesInfo.hasOthers = true;
+          candidatesInfo.others = others[0];
+          candidatesInfo.hasOthers = true;
         }
 
-        return sortedCandidates;
+        return candidatesInfo;
       },
-      fullWidth: (enhancedCandidates) => {
-        if (enhancedCandidates.candidatesInfo.isImagePresent) {
+      fullWidth: (candidatesInfo) => {
+        if (candidatesInfo.isImagePresent) {
           return ""
         }
         else {
           return "width: 100%";
         }
       },
-      majorityBase: (enhancedCandidates, majority) => {
-        let majorityBase = enhancedCandidates.candidatesInfo.maxNumber;
-        if (!enhancedCandidates.candidatesInfo.hasVotes) {
+      majorityBase: (candidatesInfo, majority) => {
+        let majorityBase = candidatesInfo.maxNumber;
+        if (!candidatesInfo.hasVotes) {
           majorityBase = majority;
         }
         return majorityBase;
