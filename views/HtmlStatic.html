@@ -1,16 +1,25 @@
 <div class="q-election-executive" style="opacity: 0;">
   <Header title='{{item.title}}' hideTitle='{{hideTitle}}' subtitle='{{item.subtitle}}'/>
   <div class="q-election-executive-container">
-    <MajorityInfo majority='{{majority}}' base='{{majorityBase}}'/>
-    <Candidates candidates ='{{enhancedCandidates}}' isPercentage='{{item.isPercentage}}'/>
+    <div class="q-election-executive-candidates {{majorityOffset}}">
+      <MajorityInfo majority='{{majority}}' base='{{majorityBase}}'/>
+      {{#each candidatesInfo.sortedCandidates as candidate}}
+        <Candidate candidate ='{{candidate}}' isPercentage='{{item.isPercentage}}' fullWidth='{{fullWidth}}' isImagePresent='{{candidatesInfo.isImagePresent}}'/>
+      {{/each}}
+    </div>
+    {{#if candidatesInfo.others}}
+      <div class="q-election-executive-others">
+        <Candidate candidate ='{{candidatesInfo.others}}' isPercentage='{{item.isPercentage}}' fullWidth='{{fullWidth}}' isImagePresent='{{candidatesInfo.isImagePresent}}'/>
+      </div>
+    {{/if}}
   </div>
-  <Footer majority='{{majority}}' candidatesInfo='{{enhancedCandidates.candidatesInfo}}' sources='{{item.sources}}' notes='{{item.notes}}' updatedDate='{{item.updatedDate}}' hideUpdatedDate='{{hideUpdatedDate}}'/>
+  <Footer majority='{{majority}}' candidatesInfo='{{candidatesInfo}}' sources='{{item.sources}}' notes='{{item.notes}}' updatedDate='{{item.updatedDate}}' hideUpdatedDate='{{hideUpdatedDate}}'/>
 </div>
 
 <script>
   import Header from './Header.html';
   import MajorityInfo from './MajorityInfo.html';
-  import Candidates from './Candidates.html';
+  import Candidate from './Candidate.html';
   import Footer from './Footer.html';
 
   export default {
@@ -44,7 +53,7 @@
         }
         return [];
       },
-      enhancedCandidates: (sortedCandidates, majority) => {
+      candidatesInfo: (sortedCandidates, majority) => {
         // enhance candidates object with additional information
         let isPrevious = false;
         let isElected = false;
@@ -127,23 +136,50 @@
           }
         })
 
-        sortedCandidates.candidatesInfo = {
+        // define info object which contains general information and sorted candidates
+        const candidatesInfo = {
           hasVotes: hasVotes,
           maxNumber: maxNumber,
           isPrevious: isPrevious,
           isElected: isElected,
           isDropped: isDropped,
-          isImagePresent: isImagePresent
-        };
+          isImagePresent: isImagePresent,
+          sortedCandidates: sortedCandidates
+        }
 
-        return sortedCandidates;
+        // process the group of other candidates differently - not part of the majority
+        let othersIndex = sortedCandidates.findIndex(candidate => {
+        let othersPattern = /((.*(A|a)ndere.*)|(.*(S|s)onstig.*))/; 
+          return othersPattern.test(candidate.name);
+        })
+        if (othersIndex >= 0) {
+          let others = sortedCandidates.splice(othersIndex, 1);
+          candidatesInfo.others = others[0];
+          candidatesInfo.hasOthers = true;
+        }
+
+        return candidatesInfo;
       },
-      majorityBase: (enhancedCandidates, majority) => {
-        let majorityBase = enhancedCandidates.candidatesInfo.maxNumber;
-        if (!enhancedCandidates.candidatesInfo.hasVotes) {
+      fullWidth: (candidatesInfo) => {
+        if (candidatesInfo.isImagePresent) {
+          return ""
+        }
+        else {
+          return "width: 100%";
+        }
+      },
+      majorityBase: (candidatesInfo, majority) => {
+        let majorityBase = candidatesInfo.maxNumber;
+        if (!candidatesInfo.hasVotes) {
           majorityBase = majority;
         }
         return majorityBase;
+      },
+      majorityOffset: (majority, majorityBase) => {
+        if (majority !== undefined && majority > 0 && majorityBase > 0) {
+          return 'q-election-executive-majority-offset';
+        }
+        else '';
       },
       hideUpdatedDate: (item) => {
         return item.options && item.options.hideUpdatedDate;
@@ -153,7 +189,7 @@
     components: {
       Header,
       MajorityInfo,
-      Candidates,
+      Candidate,
       Footer
     }
   };
