@@ -1,48 +1,54 @@
-const fs = require('fs');
-const Enjoi = require('enjoi');
-const Joi = require('joi');
-const _ = require('lodash');
-const resourcesDir = __dirname + '/../../resources/';
-const viewsDir = __dirname + '/../../views/';
+const fs = require("fs");
+const Enjoi = require("enjoi");
+const Joi = require("joi");
+const _ = require("lodash");
+const resourcesDir = __dirname + "/../../resources/";
+const viewsDir = __dirname + "/../../views/";
 
 const styleHashMap = require(__dirname + `/../../styles/hashMap.json`);
 
-const schemaString = JSON.parse(fs.readFileSync(resourcesDir + 'schema.json', {
-	encoding: 'utf-8'
-}));
+const schemaString = JSON.parse(
+  fs.readFileSync(resourcesDir + "schema.json", {
+    encoding: "utf-8"
+  })
+);
 const schema = Enjoi(schemaString);
 
-const displayOptionsSchema = Enjoi(JSON.parse(fs.readFileSync(resourcesDir + 'display-options-schema.json', {
-  encoding: 'utf-8'
-})));
+const displayOptionsSchema = Enjoi(
+  JSON.parse(
+    fs.readFileSync(resourcesDir + "display-options-schema.json", {
+      encoding: "utf-8"
+    })
+  )
+);
 
-require('svelte/ssr/register');
-const staticTemplate = require(viewsDir + 'HtmlStatic.html');
+require("svelte/ssr/register");
+const staticTemplate = require(viewsDir + "HtmlStatic.html");
 
 module.exports = {
-	method: 'POST',
-	path: '/rendering-info/html-static',
-	options: {
-		validate: {
+  method: "POST",
+  path: "/rendering-info/html-static",
+  options: {
+    validate: {
       options: {
         allowUnknown: true
       },
-			payload: {
-				item: schema,
+      payload: {
+        item: schema,
         toolRuntimeConfig: {
           displayOptions: displayOptionsSchema
         }
-			}
+      }
     },
     cache: false, // do not send cache control header to let it be added by Q Server
     cors: true
-	},
-	handler: function(request, h) {
+  },
+  handler: function(request, h) {
     // rendering data will be used by template to create the markup
     // it contains the item itself and additional options impacting the markup
     let renderingData = {
       item: request.payload.item
-    }
+    };
 
     if (request.query.updatedDate) {
       renderingData.item.updatedDate = request.query.updatedDate;
@@ -52,14 +58,14 @@ module.exports = {
       renderingData.toolRuntimeConfig = request.payload.toolRuntimeConfig;
     }
 
-		let responseData = {
-			stylesheets: [
-				{
-					name: styleHashMap.default
-				}
-			],
-			markup: staticTemplate.render(renderingData)
-		}
+    let responseData = {
+      stylesheets: [
+        {
+          name: styleHashMap.default
+        }
+      ],
+      markup: staticTemplate.render(renderingData)
+    };
 
     // add sophie viz color module to stylesheets in response iff necessary
     let isSophieVizColorDefined = false;
@@ -67,20 +73,27 @@ module.exports = {
     if (candidates !== undefined) {
       candidates.forEach(candidate => {
         let vizPattern = /^s-viz-color-party.*/;
-        if (_.has(candidate, 'color.full.classAttribute') && vizPattern.test(candidate.color.full.classAttribute)) {
+        if (
+          _.has(candidate, "color.full.classAttribute") &&
+          vizPattern.test(candidate.color.full.classAttribute)
+        ) {
           isSophieVizColorDefined = true;
-        } else if (_.has(candidate, 'color.light.classAttribute') && vizPattern.test(candidate.color.light.classAttribute)) {
+        } else if (
+          _.has(candidate, "color.light.classAttribute") &&
+          vizPattern.test(candidate.color.light.classAttribute)
+        ) {
           isSophieVizColorDefined = true;
         }
-      })
+      });
     }
 
     if (isSophieVizColorDefined) {
       responseData.stylesheets.push({
-        url: 'https://service.sophie.nzz.ch/bundle/sophie-viz-color@^1.0.0[parties].css'
+        url:
+          "https://service.sophie.nzz.ch/bundle/sophie-viz-color@^1.0.0[parties].css"
       });
     }
 
-		return responseData;
-	}
-}
+    return responseData;
+  }
+};

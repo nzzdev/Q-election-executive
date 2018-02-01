@@ -1,4 +1,4 @@
-const fixtureDataDirectory = '../../resources/fixtures/data';
+const fixtureDataDirectory = "../../resources/fixtures/data";
 
 // provide every fixture data file present in ../../resources/fixtures/data
 const fixtureData = [
@@ -11,17 +11,17 @@ const fixtureData = [
   require(`${fixtureDataDirectory}/results-percentage-partly-images-colors.json`),
   require(`${fixtureDataDirectory}/results-percentage-with-others.json`),
   require(`${fixtureDataDirectory}/results-majority-with-others.json`),
-  require(`${fixtureDataDirectory}/results-majority-partly-images-with-others.json`),
+  require(`${fixtureDataDirectory}/results-majority-partly-images-with-others.json`)
 ];
 
 module.exports = {
-  path: '/fixtures/data',
-  method: 'GET',
+  path: "/fixtures/data",
+  method: "GET",
   options: {
-    tags: ['api'],
+    tags: ["api"],
     cors: true
   },
   handler: (request, h) => {
     return fixtureData;
   }
-}
+};

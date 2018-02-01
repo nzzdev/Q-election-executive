@@ -54,17 +54,9 @@
             "type": "string",
             "title": "Status",
             "default": "undefined",
-            "enum": [
-              "undefined",
-              "elected",
-              "not elected"
-            ],
+            "enum": ["undefined", "elected", "not elected"],
             "Q:options": {
-              "enum_titles": [
-                "offen",
-                "gewählt",
-                "nicht gewählt"
-              ]
+              "enum_titles": ["offen", "gewählt", "nicht gewählt"]
             }
           },
           "color": {
@@ -139,9 +131,7 @@
             }
           }
         },
-        "required": [
-          "name"
-        ]
+        "required": ["name"]
       }
     },
     "notes": {
@@ -170,7 +160,7 @@
               },
               "isValid": {
                 "type": "boolean"
-              }    
+              }
             }
           }
         },
@@ -197,7 +187,5 @@
       }
     }
   },
-  "required": [
-    "title"
-  ]
+  "required": ["title"]
 }

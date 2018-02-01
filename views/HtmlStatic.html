@@ -1,19 +1,20 @@
 <div class="q-election-executive" style="opacity: 0;">
-  <Header title='{{item.title}}' hideTitle='{{hideTitle}}' subtitle='{{item.subtitle}}'/>
+  <Header title='{{item.title}}' hideTitle='{{hideTitle}}' subtitle='{{item.subtitle}}' />
   <div class="q-election-executive-container">
     <div class="q-election-executive-candidates {{majorityOffset}}">
-      <MajorityInfo majority='{{majority}}' base='{{majorityBase}}'/>
-      {{#each candidatesInfo.sortedCandidates as candidate}}
-        <Candidate candidate ='{{candidate}}' isPercentage='{{item.isPercentage}}' fullWidth='{{fullWidth}}' isImagePresent='{{candidatesInfo.isImagePresent}}'/>
-      {{/each}}
+      <MajorityInfo majority='{{majority}}' base='{{majorityBase}}' /> {{#each candidatesInfo.sortedCandidates as candidate}}
+      <Candidate candidate='{{candidate}}' isPercentage='{{item.isPercentage}}' fullWidth='{{fullWidth}}' isImagePresent='{{candidatesInfo.isImagePresent}}'
+      /> {{/each}}
     </div>
     {{#if candidatesInfo.others}}
-      <div class="q-election-executive-others">
-        <Candidate candidate ='{{candidatesInfo.others}}' isPercentage='{{item.isPercentage}}' fullWidth='{{fullWidth}}' isImagePresent='{{candidatesInfo.isImagePresent}}'/>
-      </div>
+    <div class="q-election-executive-others">
+      <Candidate candidate='{{candidatesInfo.others}}' isPercentage='{{item.isPercentage}}' fullWidth='{{fullWidth}}' isImagePresent='{{candidatesInfo.isImagePresent}}'
+      />
+    </div>
     {{/if}}
   </div>
-  <Footer majority='{{majority}}' candidatesInfo='{{candidatesInfo}}' sources='{{item.sources}}' notes='{{item.notes}}' updatedDate='{{item.updatedDate}}' hideUpdatedDate='{{hideUpdatedDate}}'/>
+  <Footer majority='{{majority}}' candidatesInfo='{{candidatesInfo}}' sources='{{item.sources}}' notes='{{item.notes}}' updatedDate='{{item.updatedDate}}'
+    hideUpdatedDate='{{hideUpdatedDate}}' />
 </div>
 
 <script>
@@ -70,7 +71,7 @@
         let hasVotes = maxVotes > 0;
         let maxNumber = maxVotes;
         if (majority !== undefined && majority > maxVotes) {
-          maxNumber = majority; 
+          maxNumber = majority;
         }
 
         sortedCandidates.forEach(candidate => {
@@ -98,12 +99,12 @@
             colorDef = 'light';
           }
 
-          if (candidate.color) {  
+          if (candidate.color) {
             if (candidate.color[colorDef]) {
               if (candidate.color[colorDef].classAttribute) {
                 colorClass = candidate.color[colorDef].classAttribute;
               } else if (candidate.color[colorDef].colorCode) {
-                colorStyle = 'color: ' + candidate.color[colorDef].colorCode + ';'; 
+                colorStyle = 'color: ' + candidate.color[colorDef].colorCode + ';';
               }
             }
           }
@@ -115,10 +116,10 @@
           candidate.colorClass = colorClass;
           candidate.colorStyle = colorStyle;
           // check if we have previous, elected or dropped candidates for footer info
-          if(candidate.isPrevious) {
+          if (candidate.isPrevious) {
             isPrevious = true;
             if (candidate.status === "not elected") {
-              isDropped = true; 
+              isDropped = true;
             }
           }
           if (candidate.status === "elected") {
@@ -149,7 +150,7 @@
 
         // process the group of other candidates differently - not part of the majority
         let othersIndex = sortedCandidates.findIndex(candidate => {
-        let othersPattern = /((.*(A|a)ndere.*)|(.*(S|s)onstig.*))/; 
+          let othersPattern = /((.*(A|a)ndere.*)|(.*(S|s)onstig.*))/;
           return othersPattern.test(candidate.name);
         })
         if (othersIndex >= 0) {
@@ -194,4 +195,3 @@
     }
   };
 </script>
-

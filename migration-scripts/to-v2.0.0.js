@@ -4,16 +4,16 @@
 module.exports.migrate = function(item) {
   let result = {
     isChanged: false
-  }
+  };
   if (item.candidates) {
     let truthyCandidates = item.candidates.filter(candidate => {
-      return candidate.name !== undefined && candidate.name !== '';
+      return candidate.name !== undefined && candidate.name !== "";
     });
     if (truthyCandidates.length < item.candidates.length) {
       item.candidates = truthyCandidates;
       result.isChanged = true;
-    } 
+    }
   }
   result.item = item;
   return result;
-}
+};
