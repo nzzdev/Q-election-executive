@@ -28,9 +28,8 @@
             {{/if}} {{candidate.name || ""}} {{#if candidate.isPrevious}}
             <span class="s-font-title-xs {{candidate.textClassAttribute}}">*</span>{{/if}}
           </div>
-          {{#if candidate.party !== undefined}}
-          <div class="s-font-note q-election-executive-item-text-party {{candidate.textClassAttribute}}">{{candidate.party}}</div>
-          {{/if}}
+          <div class="s-font-note q-election-executive-item-text-party {{candidate.textClassAttribute}}">{{#if candidate.party !== undefined}}{{candidate.party || ''}} {{/if}}
+          </div>
         </div>
         {{#if candidate.votes !== undefined}}
         <div class="s-font-note q-election-executive-item-text-votes {{candidate.textClassAttribute}}">
