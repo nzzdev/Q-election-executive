@@ -1,6 +1,8 @@
-$row-height: 50px;
-$image-size: $row-height;
+$row-height: 55px;
+$image-size: 50px;
 $image-margin: 7px;
+$majority-text-width: 120px;
+$bar-height: 13px;
 
 .q-election-executive {
   opacity: 1 !important;
@@ -21,33 +23,29 @@ $image-margin: 7px;
     position: absolute;
     background-color: currentColor;
     width: 1px;
-    top: 0;
-    bottom: 0;
+    height: 5px;
+    margin-top: $bar-height;
+
+    &-group {
+      position: relative;
+    }
 
     &-arrow {
       position: absolute;
-      bottom: -35px;
       height: 35px;
-      left: -4px;
+      margin-top: $bar-height;
     }
 
     &-text {
-      position: absolute;
-      bottom: -40px;
-      width: 120px;
+      padding-top: 20px;
 
       &--left {
         text-align: left;
-        left: 10px;
       }
       &--right {
         text-align: right;
-        right: 10px;
+        padding-right: 10px;
       }
-    }
-
-    &-offset {
-      margin-bottom: 38px;
     }
 
     /* because of two-line majority text we have insert a space which is as high as the line height */
@@ -60,12 +58,22 @@ $image-margin: 7px;
     height: $row-height;
     margin: 0 0 7px 0;
 
+    position: relative;
+
+    &-group {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      width: calc(100% - (#{$image-size} + #{$image-margin}));
+    }
+
     &-bar {
+      width: 100%;
       float: left;
-      height: 26px;
+      height: $bar-height;
       position: relative;
       background-color: currentColor;
-      width: calc(100% - (#{$image-size} + #{$image-margin}));
 
       &-color {
         background-color: currentColor;
@@ -82,12 +90,15 @@ $image-margin: 7px;
       height: $image-size;
       overflow: hidden;
       border-radius: 50%;
-      margin-right: $image-margin;
+      margin: 2px $image-margin 2px 0;
+      position: relative;
 
       img {
         display: block;
         height: $image-size;
-        margin: 0 auto;
+        position: absolute;
+        top: 50%;
+        margin-top: calc(-#{$image-size} / 2);
       }
 
       &-gray {
@@ -98,13 +109,16 @@ $image-margin: 7px;
     }
 
     &-text {
-      // background-color of articles
-      background-color: currentColor;
       display: flex;
-      align-items: baseline;
-      width: calc(100% - (#{$image-size} + #{$image-margin}));
-      position: relative;
-      z-index: 1;
+      justify-content: space-between;
+      margin-bottom: 3px;
+
+      &-candidate {
+        flex-grow: 1;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
 
       &-name {
         overflow: hidden;
@@ -116,15 +130,19 @@ $image-margin: 7px;
         overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis;
-        padding-left: 5px;
+        margin-top: 2px;
       }
 
       &-votes {
         margin-left: auto;
-        z-index: 1;
+        /*         z-index: 1;
+ */
         white-space: nowrap;
         padding-right: 3px;
         padding-left: 5px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
       }
     }
   }

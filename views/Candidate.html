@@ -1,4 +1,4 @@
-<div class="q-election-executive-item">
+<div class="q-election-executive-item" style="{{itemHeightAttribute}}">
   {{#if isImagePresent}}
   <div class="q-election-executive-item-image">
     {{#if candidate.image && candidate.image.base64}}
@@ -6,35 +6,97 @@
   </div>
   {{/if}}
   <!-- if no candidate has an image, width of candidate info text is overwritten with 100% -->
-  <div class="q-election-executive-item-text" style="{{fullWidth}}">
-    <div class="q-election-executive-item-text-name s-font-text-s {{candidate.textClassAttribute}}">
-      {{#if candidate.status === "elected"}}
-      <!-- checkmark -->
-      <svg viewBox="0 0 16 16" width="14" height="14" xmlns="http://www.w3.org/2000/svg">
-        <g fill="none" fill-rule="evenodd">
-          <path fill="currentColor" d="M0 9l5 5L16 3l-2-2-9 9-3-3z" />
-        </g>
-      </svg>
-      {{/if}} {{#if candidate.status === "not elected" && candidate.isPrevious}}
-      <!-- crossmark -->
-      <svg viewBox="0 0 16 16" width="14" height="14" xmlns="http://www.w3.org/2000/svg">
-        <g fill="none" fill-rule="evenodd">
-          <path fill="currentColor" d="M6 8l-5 5 2 2 5-5 5 5 2-2-5-5 5-5-2-2-5 5-5-5-2 2 5 5z" />
-        </g>
-      </svg>
-      {{/if}} {{candidate.name || ""}}
-    </div>{{#if candidate.isPrevious}}
-    <div class="s-font-title-xs {{candidate.textClassAttribute}}">*</div>{{/if}}
-    <div class="s-font-note q-election-executive-item-text-party {{candidate.textClassAttribute}}">{{candidate.party || ""}}</div>
-    {{#if candidate.votes !== undefined}}
-    <div class="s-font-note q-election-executive-item-text-votes {{candidate.textClassAttribute}}">
-      <!-- insert a space after each three digits -->
-      {{candidate.votes.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")}}{{#if isPercentage}}%{{/if}}
+  <div class="q-election-executive-item-group" style="{{fullWidth}}">
+    <div class="q-election-executive-item-group-content">
+      <div class="q-election-executive-item-text">
+        <div class="q-election-executive-item-text-candidate">
+          <div class="q-election-executive-item-text-name s-font-text-s {{candidate.textClassAttribute}}">
+            {{#if candidate.status === "elected"}}
+            <!-- checkmark -->
+            <svg viewBox="0 0 16 16" width="14" height="14" xmlns="http://www.w3.org/2000/svg">
+              <g fill="none" fill-rule="evenodd">
+                <path fill="currentColor" d="M0 9l5 5L16 3l-2-2-9 9-3-3z" />
+              </g>
+            </svg>
+            {{/if}} {{#if candidate.status === "not elected" && candidate.isPrevious}}
+            <!-- crossmark -->
+            <svg viewBox="0 0 16 16" width="14" height="14" xmlns="http://www.w3.org/2000/svg">
+              <g fill="none" fill-rule="evenodd">
+                <path fill="currentColor" d="M6 8l-5 5 2 2 5-5 5 5 2-2-5-5 5-5-2-2-5 5-5-5-2 2 5 5z" />
+              </g>
+            </svg>
+            {{/if}} {{candidate.name || ""}} {{#if candidate.isPrevious}}
+            <span class="s-font-title-xs {{candidate.textClassAttribute}}">*</span>{{/if}}
+          </div>
+          {{#if candidate.party !== undefined}}
+          <div class="s-font-note q-election-executive-item-text-party {{candidate.textClassAttribute}}">{{candidate.party}}</div>
+          {{/if}}
+        </div>
+        {{#if candidate.votes !== undefined}}
+        <div class="s-font-note q-election-executive-item-text-votes {{candidate.textClassAttribute}}">
+          <!-- insert a space after each three digits -->
+          {{candidate.votes.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")}}{{#if isPercentage}}%{{/if}}
+        </div>
+        {{/if}}
+      </div>
+      <!-- if no candidate has an image, width of bar is overwritten with 100% -->
+      <div class="q-election-executive-item-bar s-color-gray-3">
+        <div class="q-election-executive-item-bar-color {{candidate.colorClass}}" style="{{candidate.colorStyle}} width: {{candidate.width}};"></div>
+      </div>
+      {{#if !isLastCandidate && majority}}
+      <div class="q-election-executive-majority s-color-gray-5" style="left: calc({{(majority * 100 / base).toFixed(2)}}% - 1px);">
+      </div>
+      {{/if}} {{#if isLastCandidate && majority}}
+      <div class="q-election-executive-majority-group">
+        <!-- majority arrow -->
+        <svg class="q-election-executive-majority-arrow s-color-gray-5" style="left: calc({{(majority * 100 / base).toFixed(2)}}% - {{arrowOffset}}px);"
+          viewBox="0 0 7 35" xmlns="http://www.w3.org/2000/svg" width="7" height="35">
+          <path d="M4 5v30H3V5H0l3.5-5L7 5H4z" fill="currentColor" fill-rule="evenodd" />
+        </svg>
+        <div class="q-election-executive-majority-text q-election-executive-majority-text--{{majorityTextAlignClass}} s-font-note-s"
+          style="{{textPadding}}">
+          <div>Absolutes Mehr</div>
+          <!-- insert a space after each three digits -->
+          <div>{{majority.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")}} Stimmen</div>
+        </div>
+      </div>
+      {{/if}}
     </div>
-    {{/if}}
-  </div>
-  <!-- if no candidate has an image, width of bar is overwritten with 100% -->
-  <div class="q-election-executive-item-bar s-color-gray-3" style="{{fullWidth}}">
-    <div class="q-election-executive-item-bar-color {{candidate.colorClass}}" style="{{candidate.colorStyle}} width: {{candidate.width}};"></div>
   </div>
 </div>
+
+
+<script>
+  export default {
+    computed: {
+      majorityTextAlignClass: (base, majority) => {
+        if (base === 0 || ((majority * 100 / base) > 50)) {
+          return "right";
+        } else {
+          return "left";
+        }
+      },
+      itemHeightAttribute: (isLastCandidate, majority) => {
+        if (isLastCandidate && majority) {
+          return 'height: 90px;'; // 55px normal height + 35px height of majority arrow
+        } else {
+          return '';
+        }
+      },
+      arrowOffset: (base, majority) => {
+        if ((majority * 100 / base) === 100) {
+          return '7';
+        } else {
+          return '4';
+        }
+      },
+      textPadding: (majorityTextAlignClass, majority, base, arrowOffset) => {
+        if (majorityTextAlignClass === 'left') {
+          return `padding-left: calc(${(majority * 100 / base).toFixed(2)}% + ${arrowOffset}px + 10px)`;
+        } else {
+          return `padding-right: calc(${(100 % - (majority * 100 / base).toFixed(2))}% + ${arrowOffset}px + 10px)`;
+        }
+      }
+    }
+  };
+</script>

@@ -2,8 +2,9 @@
   <Header title='{{item.title}}' hideTitle='{{hideTitle}}' subtitle='{{item.subtitle}}' />
   <div class="q-election-executive-container">
     <div class="q-election-executive-candidates {{majorityOffset}}">
-      <MajorityInfo majority='{{majority}}' base='{{majorityBase}}' /> {{#each candidatesInfo.sortedCandidates as candidate}}
+      {{#each candidatesInfo.sortedCandidates as candidate, index}}
       <Candidate candidate='{{candidate}}' isPercentage='{{item.isPercentage}}' fullWidth='{{fullWidth}}' isImagePresent='{{candidatesInfo.isImagePresent}}'
+        isLastCandidate='{{index === candidatesInfo.sortedCandidates.length - 1}}' majority='{{majority}}' base='{{majorityBase}}'
       /> {{/each}}
     </div>
     {{#if candidatesInfo.others}}
@@ -19,7 +20,6 @@
 
 <script>
   import Header from './Header.html';
-  import MajorityInfo from './MajorityInfo.html';
   import Candidate from './Candidate.html';
   import Footer from './Footer.html';
 
@@ -176,12 +176,6 @@
         }
         return majorityBase;
       },
-      majorityOffset: (majority, majorityBase) => {
-        if (majority !== undefined && majority > 0 && majorityBase > 0) {
-          return 'q-election-executive-majority-offset';
-        }
-        else '';
-      },
       hideUpdatedDate: (item) => {
         return item.options && item.options.hideUpdatedDate;
       }
@@ -189,7 +183,6 @@
 
     components: {
       Header,
-      MajorityInfo,
       Candidate,
       Footer
     }

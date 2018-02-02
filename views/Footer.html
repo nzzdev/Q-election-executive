@@ -1,7 +1,5 @@
 <div class="s-q-item__footer">
-  {{#if majority && !candidatesInfo.hasOthers}}
-  <div class="q-election-executive-majority-gap"></div>
-  {{/if}} {{#if candidatesInfo.isPrevious}} *bisher {{#if shouldHaveResultLegend}},{{elseif notes || shouldHaveSources || shouldHaveUpdateInfo}}&ndash;{{/if}}
+  {{#if candidatesInfo.isPrevious}} *bisher {{#if shouldHaveResultLegend}},{{elseif notes || shouldHaveSources || shouldHaveUpdateInfo}}&ndash;{{/if}}
   {{/if}} {{#if candidatesInfo.isElected}}
   <!-- checkmark -->
   <svg viewBox="0 0 16 16" width="10" height="10" xmlns="http://www.w3.org/2000/svg">
@@ -24,8 +22,7 @@
             To avoid unwanted whitespaces around commas separating each source, we keep render infos for sources at one line here.
             See also: https://github.com/sveltejs/svelte/issues/189  -->
   {{#if source.text !== ''}}{{#if source.link && source.link.url && source.link.isValid}}
-  <a href="{{source.link.url}}" target="blank"
-    rel="noopener noreferrer">{{source.text}}</a>{{else}}{{source.text}}{{/if}}{{#if index !== sources.length - 1 && sources[index + 1] !== ''}}, {{/if}}{{/if}}
+  <a href="{{source.link.url}}" target="blank" rel="noopener noreferrer">{{source.text}}</a>{{else}}{{source.text}}{{/if}}{{#if index !== sources.length - 1 && sources[index + 1] !== ''}}, {{/if}}{{/if}}
   {{/each}} {{#if shouldHaveUpdateInfo}}&ndash;{{/if}} {{/if}} {{#if shouldHaveUpdateInfo}}Update {{updateInfo}}{{/if}}
 </div>
 <script>
