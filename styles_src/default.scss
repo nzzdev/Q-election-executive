@@ -24,7 +24,6 @@ $bar-height: 13px;
     background-color: currentColor;
     width: 1px;
     height: 5px;
-    margin-top: $bar-height;
 
     &-group {
       position: relative;
@@ -33,7 +32,6 @@ $bar-height: 13px;
     &-arrow {
       position: absolute;
       height: 35px;
-      margin-top: $bar-height;
     }
 
     &-text {
@@ -47,21 +45,13 @@ $bar-height: 13px;
         padding-right: 10px;
       }
     }
-
-    /* because of two-line majority text we have insert a space which is as high as the line height */
-    &-gap {
-      height: 14px;
-    }
   }
 
   &-item {
-    height: $row-height;
     margin: 0 0 7px 0;
-
     position: relative;
 
     &-group {
-      height: 100%;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -70,7 +60,6 @@ $bar-height: 13px;
 
     &-bar {
       width: 100%;
-      float: left;
       height: $bar-height;
       position: relative;
       background-color: currentColor;
@@ -136,8 +125,6 @@ $bar-height: 13px;
 
       &-votes {
         margin-left: auto;
-        /*         z-index: 1;
- */
         white-space: nowrap;
         padding-right: 3px;
         padding-left: 5px;
@@ -151,9 +138,5 @@ $bar-height: 13px;
   &-elected,
   &-dropped {
     height: 1em;
-  }
-
-  &-footer {
-    margin-top: 16px;
   }
 }

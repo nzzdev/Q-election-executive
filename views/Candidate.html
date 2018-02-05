@@ -1,4 +1,4 @@
-<div class="q-election-executive-item" style="{{itemHeightAttribute}}">
+<div class="q-election-executive-item">
   {{#if isImagePresent}}
   <div class="q-election-executive-item-image">
     {{#if candidate.image && candidate.image.base64}}
@@ -26,7 +26,7 @@
               </g>
             </svg>
             {{/if}} {{candidate.name || ""}} {{#if candidate.isPrevious}}
-            <span class="s-font-title-xs {{candidate.textClassAttribute}}">*</span>{{/if}}
+            <span>*</span>{{/if}}
           </div>
           {{#if !isOthers}}
           <div class="s-font-note q-election-executive-item-text-party {{candidate.textClassAttribute}}">{{#if candidate.party !== undefined}}{{candidate.party || ''}} {{/if}}
@@ -75,13 +75,6 @@
           return "right";
         } else {
           return "left";
-        }
-      },
-      itemHeightAttribute: (isLastCandidate, majority) => {
-        if (isLastCandidate && majority) {
-          return 'height: 90px;'; // 55px normal height + 35px height of majority arrow
-        } else {
-          return '';
         }
       },
       arrowOffset: (base, majority) => {
