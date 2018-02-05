@@ -10,6 +10,10 @@
     <div class="q-election-executive-item-group-content">
       <div class="q-election-executive-item-text">
         <div class="q-election-executive-item-text-candidate">
+          <!-- if no majority, add space on top of others group which is as high as party name -->
+          {{#if isOthers && majority === undefined}}
+          <div class="s-font-note q-election-executive-item-others-spacer">&nbsp;</div>
+          {{/if}}
           <div class="q-election-executive-item-text-name s-font-text-s {{candidate.textClassAttribute}}">
             {{#if candidate.status === "elected"}}
             <!-- checkmark -->
@@ -28,6 +32,7 @@
             {{/if}} {{candidate.name || ""}} {{#if candidate.isPrevious}}
             <span>*</span>{{/if}}
           </div>
+          <!-- no party name if it's others group -->
           {{#if !isOthers}}
           <div class="s-font-note q-election-executive-item-text-party {{candidate.textClassAttribute}}">{{#if candidate.party !== undefined}}{{candidate.party || ''}} {{/if}}
           </div>

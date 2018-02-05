@@ -3,6 +3,7 @@ $image-size: 50px;
 $image-margin: 7px;
 $majority-text-width: 120px;
 $bar-height: 13px;
+$party-margin: 2px;
 
 .q-election-executive {
   opacity: 1 !important;
@@ -73,6 +74,10 @@ $bar-height: 13px;
       }
     }
 
+    &-others-spacer {
+      margin-top: 2px;
+    }
+
     &-image {
       float: left;
       width: $image-size;
@@ -119,7 +124,7 @@ $bar-height: 13px;
         overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis;
-        margin-top: 2px;
+        margin-top: $party-margin;
         min-height: 17px;
       }
 
