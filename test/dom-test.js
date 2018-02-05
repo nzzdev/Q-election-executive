@@ -29,10 +29,12 @@ function elementCount(selector) {
 }
 
 describe("Q election executive dom tests", function() {
-  it("should pass if majority marker is found", function() {
-    return elementCount("div.q-election-executive-majority").then(value => {
-      expect(value).to.be.equal(1);
-    });
+  it("should pass if one majority arrow is found", function() {
+    return elementCount("svg.q-election-executive-majority-arrow").then(
+      value => {
+        expect(value).to.be.equal(1);
+      }
+    );
   });
 
   it("should pass if for each data entry a DOM element is created", function() {

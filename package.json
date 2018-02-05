@@ -2,7 +2,10 @@
   "name": "@nzz/q-elections-executive",
   "version": "2.6.0",
   "description": "Q executive election tool",
-  "keywords": ["storytelling", "nzz"],
+  "keywords": [
+    "storytelling",
+    "nzz"
+  ],
   "homepage": "https://github.com/nzzdev/Q-election-executive",
   "bugs": {
     "url": "https://github.com/nzzdev/Q-election-executive/issues"
