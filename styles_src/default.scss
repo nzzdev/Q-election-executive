@@ -75,7 +75,7 @@ $party-margin: 2px;
     }
 
     &-others-spacer {
-      margin-top: 2px;
+      margin-top: $party-margin;
     }
 
     &-image {
