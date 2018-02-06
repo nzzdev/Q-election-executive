@@ -1,5 +1,5 @@
 $row-height: 55px;
-$image-size: 50px;
+$image-size: 54px;
 $image-margin: 7px;
 $majority-text-width: 120px;
 $bar-height: 13px;
@@ -8,18 +8,12 @@ $party-margin: 2px;
 .q-election-executive {
   opacity: 1 !important;
 
-  &-container {
-    position: relative;
-  }
-
-  &-candidates {
-    position: relative;
-  }
-
+  /* subtitle */
   &-info {
     margin-bottom: 16px;
   }
 
+  /* majority including arrow and text */
   &-majority {
     position: absolute;
     background-color: currentColor;
@@ -48,36 +42,37 @@ $party-margin: 2px;
     }
   }
 
+  /* each candidate with image, text and bar */
   &-item {
     margin: 0 0 7px 0;
-    position: relative;
 
+    /* candidate, votes, bar and majority line */
     &-group {
+      position: relative;
       display: flex;
       flex-direction: column;
       justify-content: center;
       width: calc(100% - (#{$image-size} + #{$image-margin}));
     }
 
+    /* result bar */
     &-bar {
       width: 100%;
       height: $bar-height;
-      position: relative;
       background-color: currentColor;
 
       &-color {
         background-color: currentColor;
         height: 100%;
-        position: absolute;
-        top: 0;
-        left: 0;
       }
     }
 
+    /* space on top of others group if no majority */
     &-others-spacer {
       margin-top: $party-margin;
     }
 
+    /* candidates image */
     &-image {
       float: left;
       width: $image-size;
@@ -85,14 +80,10 @@ $party-margin: 2px;
       overflow: hidden;
       border-radius: 50%;
       margin: 2px $image-margin 2px 0;
-      position: relative;
 
       img {
         display: block;
         height: $image-size;
-        position: absolute;
-        top: 50%;
-        margin-top: calc(-#{$image-size} / 2);
       }
 
       &-gray {
@@ -102,6 +93,7 @@ $party-margin: 2px;
       }
     }
 
+    /* candidate including name, party, votes */
     &-text {
       display: flex;
       justify-content: space-between;
