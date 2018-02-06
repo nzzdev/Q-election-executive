@@ -49,7 +49,7 @@
       <div class="q-election-executive-item-bar s-color-gray-3">
         <div class="q-election-executive-item-bar-color {{candidate.colorClass}}" style="{{candidate.colorStyle}} width: {{candidate.width}};"></div>
       </div>
-      {{#if !isLastCandidate && majority}}
+      {{#if !isLastCandidate && majority && !isOthers}}
       <div class="q-election-executive-majority s-color-gray-5" style="left: calc({{(majority * 100 / base).toFixed(2)}}% - 1px);">
       </div>
       {{/if}} {{#if isLastCandidate && majority}}
