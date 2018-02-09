@@ -111,8 +111,8 @@
             }
           },
           "image": {
-            "title": "Bild",
             "type": "object",
+            "Q:type": "files",
             "Q:options": {
               "compact": true,
               "availabilityChecks": [
@@ -120,13 +120,15 @@
                   "type": "UserHasRole",
                   "role": "expert-election-executive"
                 }
-              ]
-            },
-            "properties": {
-              "base64": {
-                "title": "Bild auswählen",
-                "type": "string",
-                "Q:type": "base64image"
+              ],
+              "maxFiles": 1,
+              "acceptedFiles": "image/*",
+              "fileProperties": {
+                "url": "url",
+                "key": "key",
+                "size": "size",
+                "width": "width",
+                "height": "height"
               }
             }
           }
