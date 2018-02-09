@@ -2,7 +2,10 @@
   {{#if isImagePresent}}
   <div class="q-election-executive-item-image">
     {{#if candidate.image && candidate.image.base64}}
-    <img class="{{candidate.imageClassAttribute}}" src="{{candidate.image.base64}}" alt="{{candidate.name}}" /> {{/if}}
+    <img class="{{candidate.imageClassAttribute}}" src="{{candidate.image.base64}}" alt="{{candidate.name}}" />
+    {{elseif candidate.image && candidate.image.url}}
+    <img class="{{candidate.imageClassAttribute}}" src="{{candidate.image.url}}" alt="{{candidate.name}}" />
+    {{/if}}
   </div>
   {{/if}}
   <!-- if no candidate has an image, width of candidate info text is overwritten with 100% -->
