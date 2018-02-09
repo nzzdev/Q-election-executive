@@ -1,6 +1,5 @@
 {
   "title": "FIXTURE: results - majority - partly images",
-  "title": "FIXTURE: results - majority - partly images",
   "sources": [
     {
       "text": "NZZ",
@@ -40,9 +39,9 @@
         "full": {}
       },
       "image": {
-        "key": "2018/02/09/1228ce0f-0053-4671-b984-b0bc86358b7d.png",
+        "key": "2018/02/09/42ff8731-a6ea-4593-9297-d4e95f14162f.png",
         "url":
-          "https://nzz-q-assets-stage.s3.eu-west-1.amazonaws.com/2018/02/09/1228ce0f-0053-4671-b984-b0bc86358b7d.png",
+          "https://nzz-q-assets-stage.s3.eu-west-1.amazonaws.com/2018/02/09/42ff8731-a6ea-4593-9297-d4e95f14162f.png",
         "length": 4615,
         "width": 88,
         "height": 88
@@ -58,9 +57,9 @@
         "light": {}
       },
       "image": {
-        "key": "2018/02/09/e4fb0227-1440-4613-badb-2479cd5a66d8.png",
+        "key": "2018/02/09/56f81f5a-7452-401a-a1b3-ddaaf5e53827.png",
         "url":
-          "https://nzz-q-assets-stage.s3.eu-west-1.amazonaws.com/2018/02/09/e4fb0227-1440-4613-badb-2479cd5a66d8.png",
+          "https://nzz-q-assets-stage.s3.eu-west-1.amazonaws.com/2018/02/09/56f81f5a-7452-401a-a1b3-ddaaf5e53827.png",
         "length": 5239,
         "width": 88,
         "height": 88
