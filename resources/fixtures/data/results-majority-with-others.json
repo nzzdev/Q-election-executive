@@ -25,7 +25,7 @@
           "colorCode": "#d28b00"
         }
       },
-      "image": {},
+      "picture": {},
       "name": "Milos Zeman",
       "isPrevious": true,
       "votes": 30
@@ -40,7 +40,7 @@
           "colorCode": "#716e48"
         }
       },
-      "image": {},
+      "picture": {},
       "name": "Jiri Drahos",
       "party": "unabhängig",
       "votes": 20
@@ -55,7 +55,7 @@
           "colorCode": "#716e48"
         }
       },
-      "image": {},
+      "picture": {},
       "name": "Michal Horacek",
       "party": "unabhängig",
       "votes": 10
@@ -70,7 +70,7 @@
           "colorCode": "#616161"
         }
       },
-      "image": {},
+      "picture": {},
       "name": "andere",
       "votes": 40
     }
