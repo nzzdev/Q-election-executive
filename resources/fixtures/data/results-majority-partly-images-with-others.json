@@ -38,7 +38,7 @@
       "color": {
         "full": {}
       },
-      "image": {
+      "picture": {
         "key": "2018/02/09/1be859c2-778d-4fe1-b1f7-fdadf81826a5.png",
         "url":
           "https://nzz-q-assets-stage.s3.eu-west-1.amazonaws.com/2018/02/09/1be859c2-778d-4fe1-b1f7-fdadf81826a5.png",
@@ -56,7 +56,7 @@
         "full": {},
         "light": {}
       },
-      "image": {
+      "picture": {
         "key": "2018/02/09/89fca68e-cf0b-4ad3-8d8e-6eb43835871b.png",
         "url":
           "https://nzz-q-assets-stage.s3.eu-west-1.amazonaws.com/2018/02/09/89fca68e-cf0b-4ad3-8d8e-6eb43835871b.png",
@@ -77,7 +77,7 @@
           "colorCode": "#616161"
         }
       },
-      "image": {},
+      "picture": {},
       "name": "andere",
       "votes": 1000
     }
