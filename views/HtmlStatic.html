@@ -75,7 +75,7 @@
         }
 
         sortedCandidates.forEach(candidate => {
-          if (candidate.image !== undefined && candidate.image.base64 !== undefined) {
+          if ((candidate.image !== undefined && candidate.image.base64 !== undefined) || (candidate.picture !== undefined && candidate.picture.url !== undefined)) {
             isImagePresent = true;
           }
           // define width and color of each candidate's bar

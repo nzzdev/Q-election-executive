@@ -47,8 +47,18 @@ module.exports = {
     // rendering data will be used by template to create the markup
     // it contains the item itself and additional options impacting the markup
     let renderingData = {
-      item: request.payload.item
+      item: request.payload.item,
+      imageServiceUrl: process.env.IMAGE_SERVICE_URL
     };
+
+    renderingData.item.candidates.map(candidate => {
+      if (candidate.picture && candidate.picture.key) {
+        candidate.picture.url = process.env.IMAGE_SERVICE_URL.replace(
+          "{key}",
+          candidate.picture.key
+        );
+      }
+    });
 
     if (request.query.updatedDate) {
       renderingData.item.updatedDate = request.query.updatedDate;

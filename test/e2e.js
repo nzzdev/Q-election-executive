@@ -7,6 +7,8 @@ const routes = require("../routes/routes.js");
 const Joi = require("joi");
 const Enjoi = require("enjoi");
 const fs = require("fs");
+process.env.IMAGE_SERVICE_URL =
+  "https://q-images-staging-nzz-ch.global.ssl.fastly.net/{key}?width=108&format=png&auto=webp";
 
 const resourcesDir = __dirname + "/../resources/";
 

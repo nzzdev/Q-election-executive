@@ -115,6 +115,7 @@
             "type": "object",
             "Q:options": {
               "compact": true,
+              "hideInEditor": true,
               "availabilityChecks": [
                 {
                   "type": "UserHasRole",
@@ -127,6 +128,28 @@
                 "title": "Bild auswählen",
                 "type": "string",
                 "Q:type": "base64image"
+              }
+            }
+          },
+          "picture": {
+            "type": "object",
+            "Q:type": "files",
+            "Q:options": {
+              "compact": true,
+              "availabilityChecks": [
+                {
+                  "type": "UserHasRole",
+                  "role": "expert-election-executive"
+                }
+              ],
+              "maxFiles": 1,
+              "acceptedFiles": "image/*",
+              "fileProperties": {
+                "url": "url",
+                "key": "key",
+                "size": "size",
+                "width": "width",
+                "height": "height"
               }
             }
           }
