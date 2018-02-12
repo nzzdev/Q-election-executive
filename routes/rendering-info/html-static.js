@@ -52,10 +52,10 @@ module.exports = {
     };
 
     renderingData.item.candidates.map(candidate => {
-      if (candidate.image && candidate.image.key) {
-        candidate.image.url = process.env.IMAGE_SERVICE_URL.replace(
+      if (candidate.picture && candidate.picture.key) {
+        candidate.picture.url = process.env.IMAGE_SERVICE_URL.replace(
           "{key}",
-          candidate.image.key
+          candidate.picture.key
         );
       }
     });
