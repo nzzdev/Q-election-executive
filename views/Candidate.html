@@ -1,9 +1,7 @@
 <div class="q-election-executive-item">
   {{#if isImagePresent}}
   <div class="q-election-executive-item-image">
-    {{#if candidate.image && candidate.image.base64}}
-    <img class="{{candidate.imageClassAttribute}}" src="{{candidate.image.base64}}" alt="{{candidate.name}}" />
-    {{elseif candidate.picture && candidate.picture.url}}
+    {{#if candidate.picture && candidate.picture.url}}
     <img class="{{candidate.imageClassAttribute}}" src="{{candidate.picture.url}}" alt="{{candidate.name}}" />
     {{/if}}
   </div>

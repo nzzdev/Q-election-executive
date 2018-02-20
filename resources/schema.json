@@ -110,27 +110,6 @@
               }
             }
           },
-          "image": {
-            "title": "Bild",
-            "type": "object",
-            "Q:options": {
-              "compact": true,
-              "hideInEditor": true,
-              "availabilityChecks": [
-                {
-                  "type": "UserHasRole",
-                  "role": "expert-election-executive"
-                }
-              ]
-            },
-            "properties": {
-              "base64": {
-                "title": "Bild auswählen",
-                "type": "string",
-                "Q:type": "base64image"
-              }
-            }
-          },
           "picture": {
             "type": "object",
             "Q:type": "files",
