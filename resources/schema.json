@@ -5,18 +5,27 @@
   "properties": {
     "title": {
       "title": "Titel",
-      "type": "string"
+      "type": "string",
+      "Q:options": {
+        "placeholder": "Der Titel bringt die Kernaussage der Grafik auf den Punkt, zB. 'Der Stadtrat bleibt links'."
+      }
     },
     "subtitle": {
       "title": "Untertitel",
-      "type": "string"
+      "type": "string",
+      "Q:options": {
+        "placeholder": "Der Untertitel benennt präzise, um welche Wahl (und ggf. welchen Wahlgang) es sich handelt."
+      }
     },
     "majority": {
       "title": "Absolutes Mehr",
-      "type": "number"
+      "type": "number",
+      "Q:options": {
+        "placeholder": "Nur eintragen, sofern für den Ausgang der Wahl relevant."
+     }
     },
     "isPercentage": {
-      "title": "Anzahl Stimmen in % anzeigen",
+      "title": "Stimmen liegen in % anstatt absoluten Zahlen vor",
       "type": "boolean"
     },
     "availableSeats": {
@@ -24,7 +33,7 @@
       "type": "number"
     },
     "candidates": {
-      "title": "Kandidaten",
+      "title": "KandidatInnen",
       "type": "array",
       "Q:options": {
         "expandable": {
@@ -33,14 +42,14 @@
       },
       "items": {
         "type": "object",
-        "title": "Kandidat",
+        "title": "KandidatIn",
         "properties": {
           "name": {
             "title": "Name",
             "type": "string"
           },
           "party": {
-            "title": "Parteiname (Kürzel)",
+            "title": "Parteiname oder Kürzel",
             "type": "string"
           },
           "isPrevious": {
@@ -64,7 +73,7 @@
             }
           },
           "color": {
-            "title": "Farbe",
+            "title": "Parteifarbe",
             "type": "object",
             "Q:options": {
               "compact": true,
@@ -118,14 +127,14 @@
       "type": "string"
     },
     "sources": {
-      "title": "Quellen",
+      "title": "Quelle(n)",
       "type": "array",
       "items": {
         "type": "object",
         "title": "Quelle",
         "properties": {
           "text": {
-            "title": "Text",
+            "title": "Quelle",
             "type": "string"
           },
           "link": {
@@ -134,8 +143,11 @@
             "type": "object",
             "properties": {
               "url": {
-                "title": "Url",
-                "type": "string"
+                "title": "Link",
+                "type": "string",
+                "Q:options": {
+                  "placeholder": "Direktlink zur Quelle, http://..."
+                }
               },
               "isValid": {
                 "type": "boolean"
@@ -147,7 +159,7 @@
       }
     },
     "options": {
-      "title": "Allgemeine Optionen",
+      "title": "Optionen",
       "type": "object",
       "Q:options": {
         "availabilityChecks": [
