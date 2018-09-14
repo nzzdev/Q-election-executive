@@ -1,7 +1,7 @@
 <div class="q-election-executive" style="opacity: 0;">
   <Header title='{{item.title}}' hideTitle='{{hideTitle}}' subtitle='{{item.subtitle}}' />
   <div class="q-election-executive-container">
-    <div class="q-election-executive-candidates {{majorityOffset}}">
+    <div class="q-election-executive-candidates">
       {{#each candidatesInfo.sortedCandidates as candidate, index}}
       <Candidate candidate='{{candidate}}' isPercentage='{{item.isPercentage}}' fullWidth='{{fullWidth}}' isImagePresent='{{candidatesInfo.isImagePresent}}'
         isLastCandidate='{{index === candidatesInfo.sortedCandidates.length - 1}}' majority='{{majority}}' base='{{majorityBase}}'
@@ -82,35 +82,30 @@
           let width = '1px';
           let colorStyle = '';
           let colorClass = '';
-          const defaultColor = {
-            light: 's-viz-color-one-3',
-            full: 's-viz-color-one-5'
-          }
+          const defaultColor = 's-viz-color-one-5';
+
           if (hasVotes && candidate.votes && candidate.votes > 0) {
             let widthPercentage = (candidate.votes * 100 / maxNumber).toFixed(2);
             width = widthPercentage + '%';
           }
           candidate.width = width;
 
-          let colorDef;
           if (candidate.status === "elected" || candidate.status === "undefined") {
-            colorDef = 'full';
+            candidate.opacity = 1;
           } else {
-            colorDef = 'light';
+            candidate.opacity = 0.5;
           }
 
           if (candidate.color) {
-            if (candidate.color[colorDef]) {
-              if (candidate.color[colorDef].classAttribute) {
-                colorClass = candidate.color[colorDef].classAttribute;
-              } else if (candidate.color[colorDef].colorCode) {
-                colorStyle = 'color: ' + candidate.color[colorDef].colorCode + ';';
+              if (candidate.color.classAttribute) {
+                colorClass = candidate.color.classAttribute;
+              } else if (candidate.color.colorCode) {
+                colorStyle = 'color: ' + candidate.color.colorCode + ';';
               }
-            }
           }
 
           if (!colorClass && !colorStyle) {
-            colorClass = defaultColor[colorDef];
+            colorClass = defaultColor;
           }
 
           candidate.colorClass = colorClass;
@@ -126,15 +121,6 @@
             isElected = true;
           }
 
-          // add grayscale class for image and color class for text
-          // if candidate is not elected
-          if (candidate.status === "not elected") {
-            candidate.imageClassAttribute = "q-election-executive-item-image-gray";
-            candidate.textClassAttribute = "s-color-gray-7";
-          } else {
-            candidate.imageClassAttribute = "";
-            candidate.textClassAttribute = "";
-          }
         })
 
         // define info object which contains general information and sorted candidates
