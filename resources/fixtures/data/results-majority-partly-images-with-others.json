@@ -9,39 +9,30 @@
       }
     }
   ],
-  "subtitle":
-    "Möglichkeit zusätzliche Informationen als Untertitel zu erfassen",
-  "notes":
-    "Jemand musste Josef K. verleumdet haben, denn ohne dass er etwas Böses getan hätte, wurde er eines 'Morgens verhaftet.",
+  "subtitle": "Möglichkeit zusätzliche Informationen als Untertitel zu erfassen",
+  "notes": "Jemand musste Josef K. verleumdet haben, denn ohne dass er etwas Böses getan hätte, wurde er eines 'Morgens verhaftet.",
   "majority": 100000,
   "candidates": [
     {
       "name": "Hans Wurst",
-      "color": {
-        "full": {}
-      },
+      "color": {},
       "isPrevious": true,
       "votes": 50000
     },
     {
       "name": "Maria Müller",
       "party": "SPD",
-      "color": {
-        "full": {}
-      },
+      "color": {},
       "isPrevious": false,
       "votes": 50000
     },
     {
       "name": "Abdalá Bucaram",
       "party": "Fuerza Compromiso Social Social",
-      "color": {
-        "full": {}
-      },
+      "color": {},
       "picture": {
         "key": "2018/02/09/1be859c2-778d-4fe1-b1f7-fdadf81826a5.png",
-        "url":
-          "https://nzz-q-assets-stage.s3.eu-west-1.amazonaws.com/2018/02/09/1be859c2-778d-4fe1-b1f7-fdadf81826a5.png",
+        "url": "https://nzz-q-assets-stage.s3.eu-west-1.amazonaws.com/2018/02/09/1be859c2-778d-4fe1-b1f7-fdadf81826a5.png",
         "length": 4615,
         "width": 88,
         "height": 88
@@ -52,14 +43,10 @@
     {
       "name": "Susann Salami",
       "party": "Die Linke",
-      "color": {
-        "full": {},
-        "light": {}
-      },
+      "color": {},
       "picture": {
         "key": "2018/02/09/89fca68e-cf0b-4ad3-8d8e-6eb43835871b.png",
-        "url":
-          "https://nzz-q-assets-stage.s3.eu-west-1.amazonaws.com/2018/02/09/89fca68e-cf0b-4ad3-8d8e-6eb43835871b.png",
+        "url": "https://nzz-q-assets-stage.s3.eu-west-1.amazonaws.com/2018/02/09/89fca68e-cf0b-4ad3-8d8e-6eb43835871b.png",
         "length": 5239,
         "width": 88,
         "height": 88
@@ -70,12 +57,7 @@
     {
       "status": "undefined",
       "color": {
-        "full": {
-          "colorCode": "#616161"
-        },
-        "light": {
-          "colorCode": "#616161"
-        }
+        "colorCode": "#616161"
       },
       "picture": {},
       "name": "andere",

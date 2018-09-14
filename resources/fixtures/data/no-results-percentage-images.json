@@ -9,21 +9,16 @@
       }
     }
   ],
-  "subtitle":
-    "Möglichkeit zusätzliche Informationen als Untertitel zu erfassen",
-  "notes":
-    "Jemand musste Josef K. verleumdet haben, denn ohne dass er etwas Böses getan hätte, wurde er eines 'Morgens verhaftet.",
+  "subtitle": "Möglichkeit zusätzliche Informationen als Untertitel zu erfassen",
+  "notes": "Jemand musste Josef K. verleumdet haben, denn ohne dass er etwas Böses getan hätte, wurde er eines 'Morgens verhaftet.",
   "isPercentage": true,
   "candidates": [
     {
       "name": "Hans Wurst",
-      "color": {
-        "full": {}
-      },
+      "color": {},
       "picture": {
         "key": "2018/02/09/edf380b4-fbb2-4484-abb4-df793fab852e.png",
-        "url":
-          "https://nzz-q-assets-stage.s3.eu-west-1.amazonaws.com/2018/02/09/edf380b4-fbb2-4484-abb4-df793fab852e.png",
+        "url": "https://nzz-q-assets-stage.s3.eu-west-1.amazonaws.com/2018/02/09/edf380b4-fbb2-4484-abb4-df793fab852e.png",
         "length": 5239,
         "width": 88,
         "height": 88
@@ -33,13 +28,10 @@
     {
       "name": "Maria Müller",
       "party": "SPD",
-      "color": {
-        "full": {}
-      },
+      "color": {},
       "picture": {
         "key": "2018/02/09/29cd1aed-1751-4cc9-95ca-d170834951de.png",
-        "url":
-          "https://nzz-q-assets-stage.s3.eu-west-1.amazonaws.com/2018/02/09/29cd1aed-1751-4cc9-95ca-d170834951de.png",
+        "url": "https://nzz-q-assets-stage.s3.eu-west-1.amazonaws.com/2018/02/09/29cd1aed-1751-4cc9-95ca-d170834951de.png",
         "length": 4615,
         "width": 88,
         "height": 88
@@ -49,13 +41,10 @@
     {
       "name": "Abdalá Bucaram",
       "party": "Fuerza Compromiso Social Social",
-      "color": {
-        "full": {}
-      },
+      "color": {},
       "picture": {
         "key": "2018/02/09/491f4f89-104c-4e06-a75d-582dd8299e23.png",
-        "url":
-          "https://nzz-q-assets-stage.s3.eu-west-1.amazonaws.com/2018/02/09/491f4f89-104c-4e06-a75d-582dd8299e23.png",
+        "url": "https://nzz-q-assets-stage.s3.eu-west-1.amazonaws.com/2018/02/09/491f4f89-104c-4e06-a75d-582dd8299e23.png",
         "length": 4615,
         "width": 88,
         "height": 88
@@ -65,14 +54,10 @@
     {
       "name": "Susann Salami",
       "party": "Die Linke",
-      "color": {
-        "full": {},
-        "light": {}
-      },
+      "color": {},
       "picture": {
         "key": "2018/02/09/c37e1f08-13a2-4254-b375-efb73cf1e9f6.png",
-        "url":
-          "https://nzz-q-assets-stage.s3.eu-west-1.amazonaws.com/2018/02/09/c37e1f08-13a2-4254-b375-efb73cf1e9f6.png",
+        "url": "https://nzz-q-assets-stage.s3.eu-west-1.amazonaws.com/2018/02/09/c37e1f08-13a2-4254-b375-efb73cf1e9f6.png",
         "length": 5239,
         "width": 88,
         "height": 88

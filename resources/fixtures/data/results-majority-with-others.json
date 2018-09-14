@@ -9,21 +9,14 @@
       }
     }
   ],
-  "subtitle":
-    "Möglichkeit zusätzliche Informationen als Untertitel zu erfassen",
-  "notes":
-    "Jemand musste Josef K. verleumdet haben, denn ohne dass er etwas Böses getan hätte, wurde er eines 'Morgens verhaftet.",
+  "subtitle": "Möglichkeit zusätzliche Informationen als Untertitel zu erfassen",
+  "notes": "Jemand musste Josef K. verleumdet haben, denn ohne dass er etwas Böses getan hätte, wurde er eines 'Morgens verhaftet.",
   "majority": 25,
   "candidates": [
     {
       "status": "undefined",
       "color": {
-        "full": {
-          "colorCode": "#d28b00"
-        },
-        "light": {
-          "colorCode": "#d28b00"
-        }
+        "colorCode": "#d28b00"
       },
       "picture": {},
       "name": "Milos Zeman",
@@ -33,12 +26,7 @@
     {
       "status": "undefined",
       "color": {
-        "full": {
-          "colorCode": "#716e48"
-        },
-        "light": {
-          "colorCode": "#716e48"
-        }
+        "colorCode": "#716e48"
       },
       "picture": {},
       "name": "Jiri Drahos",
@@ -48,12 +36,7 @@
     {
       "status": "undefined",
       "color": {
-        "full": {
-          "colorCode": "#716e48"
-        },
-        "light": {
-          "colorCode": "#716e48"
-        }
+        "colorCode": "#716e48"
       },
       "picture": {},
       "name": "Michal Horacek",
@@ -63,12 +46,7 @@
     {
       "status": "undefined",
       "color": {
-        "full": {
-          "colorCode": "#616161"
-        },
-        "light": {
-          "colorCode": "#616161"
-        }
+        "colorCode": "#616161"
       },
       "picture": {},
       "name": "andere",
