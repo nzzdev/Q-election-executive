@@ -4,8 +4,13 @@
     <div class="q-election-executive-candidates">
       {{#each candidatesInfo.sortedCandidates as candidate, index}}
       <Candidate candidate='{{candidate}}' isPercentage='{{item.isPercentage}}' fullWidth='{{fullWidth}}' isImagePresent='{{candidatesInfo.isImagePresent}}'
-        isLastCandidate='{{index === candidatesInfo.sortedCandidates.length - 1}}' majority='{{majority}}' base='{{majorityBase}}'
-      /> {{/each}}
+        isLastCandidate='{{index === candidatesInfo.sortedCandidates.length - 1}}' majority='{{majority}}' base='{{majorityBase}}' /> 
+        {{#if item.availableSeats === index+1}}
+          <div class="q-election-executive-available-seats">
+            <span class="s-font-note-s q-election-executive-available-seats-text">Verfügbare Sitze: {{item.availableSeats}}</span>
+          </div>
+        {{/if}}
+      {{/each}}
     </div>
     {{#if candidatesInfo.others}}
     <div class="q-election-executive-others">
