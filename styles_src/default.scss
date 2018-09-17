@@ -133,13 +133,12 @@ $party-margin: 2px;
     border-bottom: 1px solid #000; 
     line-height:0.1em!important;
     margin: 20px 0 16px 0;
-    
-  }
-
-  &-available-seats-text {
-    background: white!important;
-    line-height:0.1em!important;
-    padding: 0 3px 0 10px;
+   
+    &-text {
+      background: white!important;
+      line-height:0.1em!important;
+      padding: 0 3px 0 10px;
+    }
   }
 
   &-elected,
