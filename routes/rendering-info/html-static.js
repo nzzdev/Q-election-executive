@@ -74,6 +74,7 @@ module.exports = {
           name: styleHashMap.default
         }
       ],
+      sophieModules: [],
       markup: staticTemplate.render(renderingData)
     };
 
@@ -98,9 +99,9 @@ module.exports = {
     }
 
     if (isSophieVizColorDefined) {
-      responseData.stylesheets.push({
-        url:
-          "https://service.sophie.nzz.ch/bundle/sophie-viz-color@^1.0.0[parties].css"
+      responseData.sophieModules.push({
+        name: "sophie-viz-color@^1.0.0",
+        submodules: ["parties"]
       });
     }
 
