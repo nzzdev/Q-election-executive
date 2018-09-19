@@ -85,13 +85,8 @@ module.exports = {
       candidates.forEach(candidate => {
         let vizPattern = /^s-viz-color-party.*/;
         if (
-          _.has(candidate, "color.full.classAttribute") &&
-          vizPattern.test(candidate.color.full.classAttribute)
-        ) {
-          isSophieVizColorDefined = true;
-        } else if (
-          _.has(candidate, "color.light.classAttribute") &&
-          vizPattern.test(candidate.color.light.classAttribute)
+          _.has(candidate, "color.classAttribute") &&
+          vizPattern.test(candidate.color.classAttribute)
         ) {
           isSophieVizColorDefined = true;
         }
