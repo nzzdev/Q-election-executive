@@ -19,6 +19,10 @@
       "title": "Anzahl Stimmen in % anzeigen",
       "type": "boolean"
     },
+    "availableSeats": {
+      "title": "Verfügbare Sitze",
+      "type": "number"
+    },
     "candidates": {
       "title": "Kandidaten",
       "type": "array",
