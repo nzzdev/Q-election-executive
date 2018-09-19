@@ -86,12 +86,6 @@ $party-margin: 2px;
         display: block;
         height: $image-size;
       }
-
-      &-gray {
-        filter: gray;
-        -webkit-filter: grayscale(100%);
-        filter: grayscale(100%);
-      }
     }
 
     /* candidate including name, party, votes */

@@ -24,7 +24,8 @@
   "main": "index.js",
   "scripts": {
     "build": "rm -rf styles && mkdir styles && node tasks/build.js",
-    "test": "./node_modules/mocha/bin/mocha --exit"
+    "test": "./node_modules/mocha/bin/mocha --exit",
+    "update-local-fixtureData": "node tasks/updateFixtureData.js"
   },
   "repository": {
     "type": "git",
