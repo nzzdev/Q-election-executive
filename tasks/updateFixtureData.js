@@ -42,6 +42,10 @@ const fixtureData = [
   [
     `${fixtureDataDirectory}/results-majority-partly-images-with-others.json`,
     require(`${fixtureDataDirectory}/results-majority-partly-images-with-others.json`)
+  ],
+  [
+    `${fixtureDataDirectory}/results-with-available-seats.json`,
+    require(`${fixtureDataDirectory}/results-with-available-seats.json`)
   ]
 ];
 
