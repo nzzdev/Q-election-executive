@@ -7,21 +7,21 @@
       "title": "Titel",
       "type": "string",
       "Q:options": {
-        "placeholder": "Der Titel bringt die Kernaussage der Grafik auf den Punkt, zB. 'Der Stadtrat bleibt links'."
+        "placeholder": "Der Titel bringt die Kernaussage der Grafik auf den Punkt, zB&#46; 'Der Stadtrat bleibt links'&#46;"
       }
     },
     "subtitle": {
       "title": "Untertitel",
       "type": "string",
       "Q:options": {
-        "placeholder": "Der Untertitel benennt präzise, um welche Wahl (und ggf. welchen Wahlgang) es sich handelt."
+        "placeholder": "Der Untertitel benennt präzise, um welche Wahl (und ggf&#46; welchen Wahlgang) es sich handelt&#46;"
       }
     },
     "majority": {
       "title": "Absolutes Mehr",
       "type": "number",
       "Q:options": {
-        "placeholder": "Nur eintragen, sofern für den Ausgang der Wahl relevant."
+        "placeholder": "Nur eintragen, sofern für den Ausgang der Wahl relevant&#46;"
      }
     },
     "isPercentage": {
@@ -92,7 +92,10 @@
               },
               "classAttribute": {
                 "title": "CSS Klassenname",
-                "type": "string"
+                "type": "string",
+                "Q:options": {
+                  "placeholder": "s-viz-color-party-&#46;&#46;&#46;"
+                }
               }
             }
           },
@@ -146,7 +149,7 @@
                 "title": "Link",
                 "type": "string",
                 "Q:options": {
-                  "placeholder": "Direktlink zur Quelle, http://..."
+                  "placeholder": "Direktlink zur Quelle, http://&#46;&#46;&#46;"
                 }
               },
               "isValid": {
