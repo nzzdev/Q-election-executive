@@ -9,39 +9,30 @@
       }
     }
   ],
-  "subtitle":
-    "Möglichkeit zusätzliche Informationen als Untertitel zu erfassen",
-  "notes":
-    "Jemand musste Josef K. verleumdet haben, denn ohne dass er etwas Böses getan hätte, wurde er eines 'Morgens verhaftet.",
+  "subtitle": "Möglichkeit zusätzliche Informationen als Untertitel zu erfassen",
+  "notes": "Jemand musste Josef K. verleumdet haben, denn ohne dass er etwas Böses getan hätte, wurde er eines 'Morgens verhaftet.",
   "majority": 20000,
   "candidates": [
     {
       "name": "Hans Wurst",
-      "color": {
-        "full": {}
-      },
+      "color": {},
       "isPrevious": true,
       "votes": 50000
     },
     {
       "name": "Maria Müller",
       "party": "SPD",
-      "color": {
-        "full": {}
-      },
+      "color": {},
       "isPrevious": false,
       "votes": 50000
     },
     {
       "name": "Abdalá Bucaram",
       "party": "Fuerza Compromiso Social Social",
-      "color": {
-        "full": {}
-      },
+      "color": {},
       "picture": {
         "key": "2018/02/09/42ff8731-a6ea-4593-9297-d4e95f14162f.png",
-        "url":
-          "https://nzz-q-assets-stage.s3.eu-west-1.amazonaws.com/2018/02/09/42ff8731-a6ea-4593-9297-d4e95f14162f.png",
+        "url": "https://nzz-q-assets-stage.s3.eu-west-1.amazonaws.com/2018/02/09/42ff8731-a6ea-4593-9297-d4e95f14162f.png",
         "length": 4615,
         "width": 88,
         "height": 88
@@ -52,14 +43,10 @@
     {
       "name": "Susann Salami",
       "party": "Die Linke",
-      "color": {
-        "full": {},
-        "light": {}
-      },
+      "color": {},
       "picture": {
         "key": "2018/02/09/56f81f5a-7452-401a-a1b3-ddaaf5e53827.png",
-        "url":
-          "https://nzz-q-assets-stage.s3.eu-west-1.amazonaws.com/2018/02/09/56f81f5a-7452-401a-a1b3-ddaaf5e53827.png",
+        "url": "https://nzz-q-assets-stage.s3.eu-west-1.amazonaws.com/2018/02/09/56f81f5a-7452-401a-a1b3-ddaaf5e53827.png",
         "length": 5239,
         "width": 88,
         "height": 88

@@ -8,7 +8,7 @@ const Joi = require("joi");
 const Enjoi = require("enjoi");
 const fs = require("fs");
 process.env.IMAGE_SERVICE_URL =
-  "https://q-images-staging-nzz-ch.global.ssl.fastly.net/{key}?width=108&format=png&auto=webp";
+  "https://q-images-stage.nzz.ch/{key}?width=108&format=png&auto=webp";
 
 const resourcesDir = __dirname + "/../resources/";
 
@@ -103,10 +103,10 @@ async function start() {
   });
 
   describe("fixture data endpoint", () => {
-    it("returns 9 fixture data items for /fixtures/data", async () => {
+    it("returns 11 fixture data items for /fixtures/data", async () => {
       const response = await server.inject("/fixtures/data");
       expect(response.statusCode).to.be.equal(200);
-      expect(response.result.length).to.be.equal(10);
+      expect(response.result.length).to.be.equal(11);
     });
   });
 }

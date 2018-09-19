@@ -1,23 +1,21 @@
 <div class="q-election-executive-item">
   {{#if isImagePresent}}
-  <div class="q-election-executive-item-image">
-    {{#if candidate.image && candidate.image.base64}}
-    <img class="{{candidate.imageClassAttribute}}" src="{{candidate.image.base64}}" alt="{{candidate.name}}" />
-    {{elseif candidate.picture && candidate.picture.url}}
-    <img class="{{candidate.imageClassAttribute}}" src="{{candidate.picture.url}}" alt="{{candidate.name}}" />
+  <div class="q-election-executive-item-image" style="opacity: {{candidate.opacity}}">
+    {{#if candidate.picture && candidate.picture.url}}
+    <img src="{{candidate.picture.url}}" alt="{{candidate.name}}" />
     {{/if}}
   </div>
   {{/if}}
   <!-- if no candidate has an image, width of candidate info text is overwritten with 100% -->
   <div class="q-election-executive-item-group" style="{{fullWidth}}">
     <div class="q-election-executive-item-group-content">
-      <div class="q-election-executive-item-text">
+      <div class="q-election-executive-item-text" style="opacity: {{candidate.opacity}}">
         <div class="q-election-executive-item-text-candidate">
           <!-- if no majority, add space on top of others group which is as high as party name -->
           {{#if isOthers && majority === undefined}}
           <div class="s-font-note q-election-executive-item-others-spacer">&nbsp;</div>
           {{/if}}
-          <div class="q-election-executive-item-text-name s-font-text-s {{candidate.textClassAttribute}}">
+          <div class="q-election-executive-item-text-name s-font-text-s">
             {{#if candidate.status === "elected"}}
             <!-- checkmark -->
             <svg viewBox="0 0 16 16" width="14" height="14" xmlns="http://www.w3.org/2000/svg">
@@ -37,19 +35,19 @@
           </div>
           <!-- no party name if it's others group -->
           {{#if !isOthers}}
-          <div class="s-font-note q-election-executive-item-text-party {{candidate.textClassAttribute}}">{{#if candidate.party !== undefined}}{{candidate.party || ''}} {{/if}}
+          <div class="s-font-note q-election-executive-item-text-party">{{#if candidate.party !== undefined}}{{candidate.party || ''}} {{/if}}
           </div>
           {{/if}}
         </div>
         {{#if candidate.votes !== undefined}}
-        <div class="s-font-note q-election-executive-item-text-votes {{candidate.textClassAttribute}}">
+        <div class="s-font-note q-election-executive-item-text-votes">
           <!-- insert a space after each three digits -->
           {{candidate.votes.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")}}{{#if isPercentage}}%{{/if}}
         </div>
         {{/if}}
       </div>
       <!-- if no candidate has an image, width of bar is overwritten with 100% -->
-      <div class="q-election-executive-item-bar s-color-gray-3">
+      <div class="q-election-executive-item-bar s-color-gray-3" style="opacity: {{candidate.opacity}}">
         <div class="q-election-executive-item-bar-color {{candidate.colorClass}}" style="{{candidate.colorStyle}} width: {{candidate.width}};"></div>
       </div>
       {{#if !isLastCandidate && majority && !isOthers}}

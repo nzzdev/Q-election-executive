@@ -86,12 +86,6 @@ $party-margin: 2px;
         display: block;
         height: $image-size;
       }
-
-      &-gray {
-        filter: gray;
-        -webkit-filter: grayscale(100%);
-        filter: grayscale(100%);
-      }
     }
 
     /* candidate including name, party, votes */
@@ -124,12 +118,25 @@ $party-margin: 2px;
       &-votes {
         margin-left: auto;
         white-space: nowrap;
-        padding-right: 3px;
         padding-left: 5px;
         display: flex;
         flex-direction: column;
         justify-content: flex-end;
       }
+    }
+  }
+
+  &-available-seats {
+    width:100%; 
+    text-align:right;
+    border-bottom: 1px solid currentColor; 
+    line-height:0.1em!important;
+    margin: 20px 0 16px 0;
+   
+    &-text {
+      background: white!important;
+      line-height:0.1em!important;
+      padding-left: 10px;
     }
   }
 

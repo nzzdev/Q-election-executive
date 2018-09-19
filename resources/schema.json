@@ -5,22 +5,35 @@
   "properties": {
     "title": {
       "title": "Titel",
-      "type": "string"
+      "type": "string",
+      "Q:options": {
+        "placeholder": "Der Titel bringt die Kernaussage der Grafik auf den Punkt, zB&#46; 'Der Stadtrat bleibt links'&#46;"
+      }
     },
     "subtitle": {
       "title": "Untertitel",
-      "type": "string"
+      "type": "string",
+      "Q:options": {
+        "placeholder": "Der Untertitel benennt präzise, um welche Wahl (und ggf&#46; welchen Wahlgang) es sich handelt&#46;"
+      }
     },
     "majority": {
       "title": "Absolutes Mehr",
-      "type": "number"
+      "type": "number",
+      "Q:options": {
+        "placeholder": "Nur eintragen, sofern für den Ausgang der Wahl relevant&#46;"
+     }
     },
     "isPercentage": {
-      "title": "Anzahl Stimmen in % anzeigen",
+      "title": "Stimmen liegen in % anstatt absoluten Zahlen vor",
       "type": "boolean"
     },
+    "availableSeats": {
+      "title": "Verfügbare Sitze",
+      "type": "number"
+    },
     "candidates": {
-      "title": "Kandidaten",
+      "title": "KandidatInnen",
       "type": "array",
       "Q:options": {
         "expandable": {
@@ -29,14 +42,14 @@
       },
       "items": {
         "type": "object",
-        "title": "Kandidat",
+        "title": "KandidatIn",
         "properties": {
           "name": {
             "title": "Name",
             "type": "string"
           },
           "party": {
-            "title": "Parteiname (Kürzel)",
+            "title": "Parteiname oder Kürzel",
             "type": "string"
           },
           "isPrevious": {
@@ -60,7 +73,7 @@
             }
           },
           "color": {
-            "title": "Farbe",
+            "title": "Parteifarbe",
             "type": "object",
             "Q:options": {
               "compact": true,
@@ -72,62 +85,17 @@
               ]
             },
             "properties": {
-              "full": {
-                "title": "gewählt",
-                "type": "object",
-                "Q:options": {
-                  "compact": true
-                },
-                "properties": {
-                  "colorCode": {
-                    "title": "Farbcode",
-                    "type": "string",
-                    "Q:type": "color"
-                  },
-                  "classAttribute": {
-                    "title": "CSS Klassenname",
-                    "type": "string"
-                  }
-                }
-              },
-              "light": {
-                "title": "nicht gewählt",
-                "type": "object",
-                "Q:options": {
-                  "compact": true
-                },
-                "properties": {
-                  "colorCode": {
-                    "title": "Farbcode",
-                    "type": "string",
-                    "Q:type": "color"
-                  },
-                  "classAttribute": {
-                    "title": "CSS Klassenname",
-                    "type": "string"
-                  }
-                }
-              }
-            }
-          },
-          "image": {
-            "title": "Bild",
-            "type": "object",
-            "Q:options": {
-              "compact": true,
-              "hideInEditor": true,
-              "availabilityChecks": [
-                {
-                  "type": "UserHasRole",
-                  "role": "expert-election-executive"
-                }
-              ]
-            },
-            "properties": {
-              "base64": {
-                "title": "Bild auswählen",
+              "colorCode": {
+                "title": "Farbcode",
                 "type": "string",
-                "Q:type": "base64image"
+                "Q:type": "color"
+              },
+              "classAttribute": {
+                "title": "CSS Klassenname",
+                "type": "string",
+                "Q:options": {
+                  "placeholder": "s-viz-color-party-&#46;&#46;&#46;"
+                }
               }
             }
           },
@@ -162,14 +130,14 @@
       "type": "string"
     },
     "sources": {
-      "title": "Quellen",
+      "title": "Quelle(n)",
       "type": "array",
       "items": {
         "type": "object",
         "title": "Quelle",
         "properties": {
           "text": {
-            "title": "Text",
+            "title": "Quelle",
             "type": "string"
           },
           "link": {
@@ -178,8 +146,11 @@
             "type": "object",
             "properties": {
               "url": {
-                "title": "Url",
-                "type": "string"
+                "title": "Link",
+                "type": "string",
+                "Q:options": {
+                  "placeholder": "Direktlink zur Quelle, http://&#46;&#46;&#46;"
+                }
               },
               "isValid": {
                 "type": "boolean"
@@ -191,7 +162,7 @@
       }
     },
     "options": {
-      "title": "Allgemeine Optionen",
+      "title": "Optionen",
       "type": "object",
       "Q:options": {
         "availabilityChecks": [
