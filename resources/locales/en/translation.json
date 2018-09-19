@@ -28,5 +28,7 @@
   "Quelle(n)": "sources",
   "Quelle": "source",
   "Text": "text",
-  "Link": "link"
+  "Link": "link",
+  "Optionen": "options",
+  "Aktualisierungsdatum ausblenden": "hide update date"
 }
