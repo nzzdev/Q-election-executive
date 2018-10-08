@@ -127,15 +127,19 @@ $party-margin: 2px;
   }
 
   &-available-seats {
-    width:100%; 
-    text-align:right;
-    border-bottom: 1px solid currentColor; 
-    line-height:0.1em!important;
-    margin: 20px 0 16px 0;
+    display: flex;
+    margin: 15px 0;
+
+    &-line {
+      height: 1px;
+      background-color: black;
+      align-self: center;
+      width: 100%;
+    }
    
     &-text {
-      background: white!important;
-      line-height:0.1em!important;
+      text-align: right;
+      white-space: nowrap;
       padding-left: 10px;
     }
   }
