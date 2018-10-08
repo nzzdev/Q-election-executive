@@ -11,7 +11,8 @@ const fixtureData = [
   require(`${fixtureDataDirectory}/results-percentage-partly-images-colors.json`),
   require(`${fixtureDataDirectory}/results-percentage-with-others.json`),
   require(`${fixtureDataDirectory}/results-majority-with-others.json`),
-  require(`${fixtureDataDirectory}/results-majority-partly-images-with-others.json`)
+  require(`${fixtureDataDirectory}/results-majority-partly-images-with-others.json`),
+  require(`${fixtureDataDirectory}/results-with-available-seats.json`)
 ];
 
 module.exports = {
