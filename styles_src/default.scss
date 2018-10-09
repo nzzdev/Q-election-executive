@@ -129,19 +129,20 @@ $party-margin: 2px;
   &-available-seats {
     display: flex;
     margin: 15px 0;
-
-    &-line {
-      height: 1px;
-      background-color: black;
-      align-self: center;
-      width: 100%;
-    }
    
     &-text {
       text-align: right;
       white-space: nowrap;
       padding-left: 10px;
     }
+  }
+
+  &-available-seats::before {
+    content: "";
+    height: 1px;
+    background-color: currentColor;
+    align-self: center;
+    width: 100%; 
   }
 
   &-elected,
