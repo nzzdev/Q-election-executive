@@ -7,7 +7,7 @@
         isLastCandidate='{{index === candidatesInfo.sortedCandidates.length - 1}}' majority='{{majority}}' base='{{majorityBase}}' /> 
         {{#if item.availableSeats === index+1}}
           <div class="q-election-executive-available-seats s-color-gray-5">
-            <span class="s-font-note-s q-election-executive-available-seats-text">Verfügbare Sitze: {{item.availableSeats}}</span>
+            <div class="s-font-note-s q-election-executive-available-seats-text">Verfügbare Sitze: {{item.availableSeats}}</div>
           </div>
         {{/if}}
       {{/each}}
