@@ -22,7 +22,7 @@
       "type": "number",
       "Q:options": {
         "placeholder": "Nur eintragen, sofern für den Ausgang der Wahl relevant&#46;"
-     }
+      }
     },
     "isPercentage": {
       "title": "Stimmen liegen in % anstatt absoluten Zahlen vor",
@@ -117,7 +117,8 @@
                 "key": "key",
                 "size": "size",
                 "width": "width",
-                "height": "height"
+                "height": "height",
+                "type": "type"
               }
             }
           }
