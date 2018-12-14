@@ -1,38 +1,4 @@
 <div class="s-q-item__footer">
-  {{#if candidatesInfo.isPrevious}} 
-    *bisher 
-    {{#if shouldHaveResultLegend}}
-      ,
-    {{elseif notes || shouldHaveSources || shouldHaveUpdateInfo}}
-      &ndash;
-    {{/if}}
-  {{/if}} 
-  {{#if candidatesInfo.isElected}}
-    <!-- checkmark -->
-    <svg viewBox="0 0 16 16" width="10" height="10" xmlns="http://www.w3.org/2000/svg">
-      <g fill="none" fill-rule="evenodd">
-        <path fill="currentColor" d="M0 9l5 5L16 3l-2-2-9 9-3-3z" />
-      </g>
-    </svg>
-    = gewählt 
-    {{#if candidatesInfo.isDropped}}
-      ,
-    {{elseif notes || shouldHaveSources || shouldHaveUpdateInfo}}
-      &ndash;
-    {{/if}} 
-  {{/if}}
-  {{#if candidatesInfo.isDropped}}
-    <!-- crossmark -->
-    <svg viewBox="0 0 16 16" width="10" height="10" xmlns="http://www.w3.org/2000/svg">
-      <g fill="none" fill-rule="evenodd">
-        <path fill="currentColor" d="M6 8l-5 5 2 2 5-5 5 5 2-2-5-5 5-5-2-2-5 5-5-5-2 2 5 5z" />
-      </g>
-    </svg>
-    = abgewählt 
-    {{#if notes || shouldHaveSources || shouldHaveUpdateInfo}}
-      &ndash;
-    {{/if}} 
-  {{/if}} 
   {{#if notes}} 
     {{notes}} 
     {{#if shouldHaveSources || shouldHaveUpdateInfo}}
@@ -95,9 +61,6 @@
       },
       shouldHaveUpdateInfo: (updatedDate, hideUpdatedDate) => {
         return updatedDate !== undefined && !hideUpdatedDate;
-      },
-      shouldHaveResultLegend: (candidatesInfo) => {
-        return candidatesInfo.isElected || candidatesInfo.isDropped;
       },
       shouldHaveSources: (sources) => {
         return sources !== undefined && sources.length > 0;

@@ -1,5 +1,5 @@
 <div class="q-election-executive" style="opacity: 0;">
-  <Header title='{{item.title}}' hideTitle='{{hideTitle}}' subtitle='{{item.subtitle}}' />
+  <Header title='{{item.title}}' hideTitle='{{hideTitle}}' subtitle='{{item.subtitle}}' candidatesInfo='{{candidatesInfo}}' />
   <div class="q-election-executive-container">
     <div class="q-election-executive-candidates">
       {{#each candidatesInfo.sortedCandidates as candidate, index}}
@@ -19,7 +19,7 @@
     </div>
     {{/if}}
   </div>
-  <Footer majority='{{majority}}' candidatesInfo='{{candidatesInfo}}' sources='{{item.sources}}' notes='{{item.notes}}' updatedDate='{{item.updatedDate}}'
+  <Footer majority='{{majority}}' sources='{{item.sources}}' notes='{{item.notes}}' updatedDate='{{item.updatedDate}}'
     hideUpdatedDate='{{hideUpdatedDate}}' />
 </div>
 
