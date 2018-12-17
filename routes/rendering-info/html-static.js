@@ -74,11 +74,7 @@ module.exports = {
           name: styleHashMap.default
         }
       ],
-      sophieModules: [
-        {
-          name: "sophie-legend@1"
-        }
-      ],
+      sophieModules: [],
       markup: staticTemplate.render(renderingData)
     };
 
