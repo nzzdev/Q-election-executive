@@ -1,29 +1,31 @@
 <div class="s-q-item__footer">
-  {{#if candidatesInfo.isPrevious}} *bisher {{#if shouldHaveResultLegend}},{{elseif notes || shouldHaveSources || shouldHaveUpdateInfo}}&ndash;{{/if}}
-  {{/if}} {{#if candidatesInfo.isElected}}
-  <!-- checkmark -->
-  <svg viewBox="0 0 16 16" width="10" height="10" xmlns="http://www.w3.org/2000/svg">
-    <g fill="none" fill-rule="evenodd">
-      <path fill="currentColor" d="M0 9l5 5L16 3l-2-2-9 9-3-3z" />
-    </g>
-  </svg>
-  = gewählt {{#if candidatesInfo.isDropped}},{{elseif notes || shouldHaveSources || shouldHaveUpdateInfo}}&ndash;{{/if}} {{/if}}
-  {{#if candidatesInfo.isDropped}}
-  <!-- crossmark -->
-  <svg viewBox="0 0 16 16" width="10" height="10" xmlns="http://www.w3.org/2000/svg">
-    <g fill="none" fill-rule="evenodd">
-      <path fill="currentColor" d="M6 8l-5 5 2 2 5-5 5 5 2-2-5-5 5-5-2-2-5 5-5-5-2 2 5 5z" />
-    </g>
-  </svg>
-  = abgewählt {{#if notes || shouldHaveSources || shouldHaveUpdateInfo}}&ndash;{{/if}} {{/if}} {{#if notes}} {{notes}} {{#if
-  shouldHaveSources || shouldHaveUpdateInfo}}&ndash;{{/if}} {{/if}} {{#if shouldHaveSources}} {{#if sources.length > 1}}
-  Quellen: {{else}} Quelle: {{/if}} {{#each sources as source, index}}
-  <!-- 	If you separate DOM siblings with newlines whitespaces cannot be removed by svelte renderer
-            To avoid unwanted whitespaces around commas separating each source, we keep render infos for sources at one line here.
-            See also: https://github.com/sveltejs/svelte/issues/189  -->
-  {{#if source.text !== ''}}{{#if source.link && source.link.url && source.link.isValid}}
-  <a href="{{source.link.url}}" target="blank" rel="noopener noreferrer">{{source.text}}</a>{{else}}{{source.text}}{{/if}}{{#if index !== sources.length - 1 && sources[index + 1] !== ''}}, {{/if}}{{/if}}
-  {{/each}} {{#if shouldHaveUpdateInfo}}&ndash;{{/if}} {{/if}} {{#if shouldHaveUpdateInfo}}Update {{updateInfo}}{{/if}}
+  {{#if notes}} 
+    {{notes}} 
+    {{#if shouldHaveSources || shouldHaveUpdateInfo}}
+      &ndash;
+    {{/if}} 
+  {{/if}} 
+  {{#if shouldHaveSources}} 
+    {{#if sources.length > 1}}
+      Quellen: 
+    {{else}} 
+      Quelle: 
+    {{/if}} 
+    {{#each sources as source, index}}
+      {{#if source.text !== ''}}
+      <!-- 	If you separate DOM siblings with newlines whitespaces cannot be removed by svelte renderer
+                To avoid unwanted whitespaces around commas separating each source, we keep render infos for sources at one line here.
+                See also: https://github.com/sveltejs/svelte/issues/189  -->
+        {{#if source.link && source.link.url && source.link.isValid}}<a href="{{source.link.url}}" target="blank" rel="noopener noreferrer">{{source.text}}</a>{{else}}{{source.text}}{{/if}}{{#if index !== sources.length - 1 && sources[index + 1] !== ''}}, {{/if}}
+      {{/if}}
+    {{/each}} 
+    {{#if shouldHaveUpdateInfo}}
+      &ndash;
+    {{/if}}
+  {{/if}} 
+  {{#if shouldHaveUpdateInfo}}
+    Update {{updateInfo}}
+  {{/if}}
 </div>
 <script>
   export default {
@@ -52,9 +54,6 @@
       },
       shouldHaveUpdateInfo: (updatedDate, hideUpdatedDate) => {
         return updatedDate !== undefined && !hideUpdatedDate;
-      },
-      shouldHaveResultLegend: (candidatesInfo) => {
-        return candidatesInfo.isElected || candidatesInfo.isDropped;
       },
       shouldHaveSources: (sources) => {
         return sources !== undefined && sources.length > 0;
