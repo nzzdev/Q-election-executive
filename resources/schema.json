@@ -80,7 +80,9 @@
               "availabilityChecks": [
                 {
                   "type": "UserHasRole",
-                  "role": "expert-election-executive"
+                  "config": {
+                    "role": "expert-election-executive"
+                  }
                 }
               ]
             },
@@ -107,7 +109,9 @@
               "availabilityChecks": [
                 {
                   "type": "UserHasRole",
-                  "role": "expert-election-executive"
+                  "config": {
+                    "role": "expert-election-executive"
+                  }
                 }
               ],
               "maxFiles": 1,
@@ -169,7 +173,9 @@
         "availabilityChecks": [
           {
             "type": "UserHasRole",
-            "role": "expert-election-executive"
+            "config": {
+              "role": "expert-election-executive"
+            }
           }
         ]
       },
