@@ -1,9 +1,11 @@
 {{#if hideTitle !== true}}
 <h3 class="s-q-item__title">{{title}}</h3>
 {{/if}}
-<div class="q-election-executive-info s-font-note">
-  {{#if subtitle}} {{subtitle}} {{/if}}
-</div>
+{{#if subtitle}} 
+  <div class="s-q-item__subtitle s-font-node">
+    {{subtitle}} 
+  </div>
+{{/if}}
 <div class="s-legend-icon-label">
   {{#if candidatesInfo.isPrevious}} 
     <div class="s-legend-item-label__item">
