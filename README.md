@@ -11,9 +11,9 @@ Here is what the tool looks like on mobile and other devices. The example shows 
 
 Each graphic has the following three sections:
 
-* Header: contains specified title and subtitle
+* Header: contains specified title, subtitle and legend
 * Main Part: displays results for each candidate. Optionally candidate pictures are shown on the left. As soon as the results are final a checkmark for elected candidates or a crossmark for voted off candidates are displayed. Additionally all candidates who have not been elected have b/w pictures and a less saturated color bar. If applicable a majority line will be shown.
-* Footer: contains a legend, further notes (e.g. how many municipalities already finished counting), source(s) and update information
+* Footer: contains further notes (e.g. how many municipalities already finished counting), source(s) and update information
 
 Here is a completely fictional example to show you the different states (currently part of the government, elected, voted off) and the majority line:
 
