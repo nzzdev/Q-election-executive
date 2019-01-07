@@ -1,5 +1,7 @@
 # Q Election Executive
 
+**Maintainer**: [benib](https://github.com/benib)
+
 Q election executive is one tool of the Q toolbox to display results of executive elections.
 
 ## Example
