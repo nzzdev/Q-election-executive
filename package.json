@@ -24,7 +24,7 @@
   "main": "index.js",
   "scripts": {
     "build": "rm -rf styles && mkdir styles && node tasks/build.js",
-    "test": "./node_modules/mocha/bin/mocha --exit",
+    "test": "lab -a code -c -P tests --verbose --leaks",
     "update-local-fixtureData": "node tasks/updateFixtureData.js"
   },
   "repository": {
@@ -33,19 +33,21 @@
   },
   "dependencies": {
     "autoprefixer": "^7.2.6",
-    "chai": "^4.1.2",
+    "code": "^5.2.4",
     "cssnano": "^3.10.0",
     "enjoi": "^2.1.0",
     "forever": "^0.15.3",
     "hapi": "^17.6.0",
     "inert": "^5.0.1",
     "joi": "^13.6.0",
-    "jsdom": "^9.9.1",
+    "lab": "^18.0.1",
     "lodash": "^4.17.11",
-    "mocha": "^4.0.1",
     "node-sass": "^4.9.4",
     "postcss": "^5.2.18",
     "postcss-import": "^11.1.0",
     "svelte": "1.22.3"
+  },
+  "devDependencies": {
+    "jsdom": "^9.12.0"
   }
 }
