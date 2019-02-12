@@ -1,5 +1,7 @@
 # Q Election Executive
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/nzzdev/Q-election-executive.svg)](https://greenkeeper.io/)
+
 **Maintainer**: [benib](https://github.com/benib)
 
 Q election executive is one tool of the Q toolbox to display results of executive elections.
