@@ -1,26 +1,26 @@
 <div class="q-election-executive" style="opacity: 0;">
-  <Header title='{{item.title}}' hideTitle='{{hideTitle}}' subtitle='{{item.subtitle}}' candidatesInfo='{{candidatesInfo}}' />
+  <Header title='{item.title}' hideTitle='{hideTitle}' subtitle='{item.subtitle}' candidatesInfo='{candidatesInfo}' />
   <div class="q-election-executive-container">
     <div class="q-election-executive-candidates">
-      {{#each candidatesInfo.sortedCandidates as candidate, index}}
-      <Candidate candidate='{{candidate}}' isPercentage='{{item.isPercentage}}' fullWidth='{{fullWidth}}' isImagePresent='{{candidatesInfo.isImagePresent}}'
-        isLastCandidate='{{index === candidatesInfo.sortedCandidates.length - 1}}' majority='{{majority}}' base='{{majorityBase}}' /> 
-        {{#if item.availableSeats === index+1}}
+      {#each candidatesInfo.sortedCandidates as candidate, index}
+      <Candidate candidate='{candidate}' isPercentage='{item.isPercentage}' fullWidth='{fullWidth}' isImagePresent='{candidatesInfo.isImagePresent}'
+        isLastCandidate='{index === candidatesInfo.sortedCandidates.length - 1}' majority='{majority}' base='{majorityBase}' /> 
+        {#if item.availableSeats === index+1}
           <div class="q-election-executive-available-seats s-color-gray-5">
-            <div class="s-font-note-s q-election-executive-available-seats-text">Verfügbare Sitze: {{item.availableSeats}}</div>
+            <div class="s-font-note-s q-election-executive-available-seats-text">Verfügbare Sitze: {item.availableSeats}</div>
           </div>
-        {{/if}}
-      {{/each}}
+        {/if}
+      {/each}
     </div>
-    {{#if candidatesInfo.others}}
+    {#if candidatesInfo.others}
     <div class="q-election-executive-others">
-      <Candidate candidate='{{candidatesInfo.others}}' isPercentage='{{item.isPercentage}}' fullWidth='{{fullWidth}}' isImagePresent='{{candidatesInfo.isImagePresent}}'
-        isOthers='true' majority='{{majority}}' />
+      <Candidate candidate='{candidatesInfo.others}' isPercentage='{item.isPercentage}' fullWidth='{fullWidth}' isImagePresent='{candidatesInfo.isImagePresent}'
+        isOthers='true' majority='{majority}' />
     </div>
-    {{/if}}
+    {/if}
   </div>
-  <Footer majority='{{majority}}' sources='{{item.sources}}' notes='{{item.notes}}' updatedDate='{{item.updatedDate}}'
-    hideUpdatedDate='{{hideUpdatedDate}}' />
+  <Footer majority='{majority}' sources='{item.sources}' notes='{item.notes}' updatedDate='{item.updatedDate}'
+    hideUpdatedDate='{hideUpdatedDate}' />
 </div>
 
 <script>
@@ -30,22 +30,22 @@
 
   export default {
     computed: {
-      hideTitle: (toolRuntimeConfig) => {
+      hideTitle: ({ toolRuntimeConfig }) => {
         return toolRuntimeConfig.displayOptions && toolRuntimeConfig.displayOptions.hideTitle;
       },
-      candidates: (item) => {
+      candidates: ({ item }) => {
         return item.candidates;
       },
-      majority: (item) => {
+      majority: ({ item }) => {
         return item.majority;
       },
-      titleClassAttribute: (toolRuntimeConfig) => {
+      titleClassAttribute: ({ toolRuntimeConfig }) => {
         if (toolRuntimeConfig.displayOptions && toolRuntimeConfig.displayOptions.hideTitle) {
           return 'q-election-executive-title--hidden';
         }
         return '';
       },
-      sortedCandidates: (candidates) => {
+      sortedCandidates: ({ candidates }) => {
         if (candidates) {
           return candidates.sort(function(candidateA, candidateB) {
             if ((candidateA.votes === undefined && candidateB.votes === undefined) || candidateA.votes === candidateB.votes) {
@@ -59,7 +59,7 @@
         }
         return [];
       },
-      candidatesInfo: (sortedCandidates, majority) => {
+      candidatesInfo: ({ sortedCandidates, majority }) => {
         // enhance candidates object with additional information
         let isPrevious = false;
         let isElected = false;
@@ -152,7 +152,7 @@
 
         return candidatesInfo;
       },
-      fullWidth: (candidatesInfo) => {
+      fullWidth: ({ candidatesInfo }) => {
         if (candidatesInfo.isImagePresent) {
           return ""
         }
@@ -160,14 +160,14 @@
           return "width: 100%";
         }
       },
-      majorityBase: (candidatesInfo, majority) => {
+      majorityBase: ({ candidatesInfo, majority }) => {
         let majorityBase = candidatesInfo.maxNumber;
         if (!candidatesInfo.hasVotes) {
           majorityBase = majority;
         }
         return majorityBase;
       },
-      hideUpdatedDate: (item) => {
+      hideUpdatedDate: ({ item }) => {
         return item.options && item.options.hideUpdatedDate;
       }
     },

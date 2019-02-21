@@ -1,21 +1,21 @@
-{{#if hideTitle !== true}}
-<h3 class="s-q-item__title">{{title}}</h3>
-{{/if}}
-{{#if subtitle}} 
+{#if hideTitle !== true}
+<h3 class="s-q-item__title">{title}</h3>
+{/if}
+{#if subtitle} 
   <div class="s-q-item__subtitle s-font-node">
-    {{subtitle}} 
+    {subtitle} 
   </div>
-{{/if}}
+{/if}
 <div class="s-legend-icon-label">
-  {{#if candidatesInfo.isPrevious}} 
+  {#if candidatesInfo.isPrevious} 
     <div class="s-legend-item-label__item">
       <div class="s-legend-item-label__item__icon s-legend-item-label__item__icon--text">
         *
       </div>
       <div class="s-legend-item-label__item__label">bisher im Amt</div>
     </div>
-  {{/if}} 
-  {{#if candidatesInfo.isElected}}
+  {/if} 
+  {#if candidatesInfo.isElected}
     <div class="s-legend-item-label__item"> 
       <div class="s-legend-item-label__item__icon s-legend-item-label__item__icon--text">
         <!-- checkmark -->
@@ -27,8 +27,8 @@
       </div>
       <div class="s-legend-item-label__item__label">gewählt</div>
     </div>
-  {{/if}}
-  {{#if candidatesInfo.isDropped}} 
+  {/if}
+  {#if candidatesInfo.isDropped} 
     <div class="s-legend-item-label__item">
       <div class="s-legend-item-label__item__icon s-legend-item-label__item__icon--text">
         <!-- crossmark -->
@@ -40,5 +40,5 @@
       </div>
       <div class="s-legend-item-label__item__label">abgewählt</div>
     </div>    
-  {{/if}}
+  {/if}
 </div>
