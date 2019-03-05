@@ -5,57 +5,72 @@
 Q election executive is one tool of the Q toolbox to display results of executive elections. Test it in the [demo](https://editor.q.tools/).
 
 ## Table of contents
+
 - [Installation](#installation)
 - [Configuration](#configuration)
 - [Development](#development)
 - [Testing](#testing)
-- [Features](#features)
-- [Options](#options)
+- [Deployment](#deployment)
+- [Functionality](#functionality)
 - [License](#license)
 
 ## Installation
+
 ```
-$ git clone git@github.com:nzzdev/Q-table.git
-$ npm install
-$ npm run build
+git clone git@github.com:nzzdev/Q-election-executive.git
+cd ./Q-election-executive
+nvm use
+npm install
+npm run build
 ```
 
 [to the top](#table-of-contents)
 
 ## Configuration
+
 The following environment variables must be specified when starting the tool:
 
 - `IMAGE_SERVICE_URL`
 
 Please have a look at the test environment for examples on what this variables should look like.
 
+[to the top](#table-of-contents)
+
 ## Development
-Install the Q cli and start the Q dev server:
+
+Start the Q dev server:
+
 ```
-$ Q server
+npx @nzz/q-cli server
 ```
 
 To run the tool create a new file called `dev.js` and use the env-variable listed above with the local urls.
+
 ```
 process.env.IMAGE_SERVICE_URL = "https://q-images.nzz.ch/{key}?width=108&format=png&auto=webp";
 require('./index.js');
-``` 
-You can then start the tool with:
 ```
-$ node dev.js
+
+You can then start the tool with:
+
+```
+node dev.js
 ```
 
 [to the top](#table-of-contents)
 
-## Testing 
+## Testing
+
 The testing framework used in this repository is [Code](https://github.com/hapijs/code).
 
 Run the tests:
+
 ```
-$ npm run test
+npm run test
 ```
 
 ### Implementing a new test
+
 When changing or implementing...
 
 - A `route`, it needs to be tested in the `e2e-tests.js` file
@@ -63,40 +78,62 @@ When changing or implementing...
 
 [to the top](#table-of-contents)
 
-##  Tool implentation details
+## Deployment
+
+We provide automatically built [docker images](https://hub.docker.com/r/nzzonline/q-election-executive/).
+There are three options for deployment:
+
+- Use the provided images
+- Build your own docker images
+- Deploy the service using another technology
+
+### Use the provided docker images
+
+1. Deploy `nzzonline/q-election-executive` to a docker environment
+2. Set the ENV variables as described in the [configuration section](#configuration)
+
+[to the top](#table-of-contents)
+
+## Functionality
+
 If a tool then it can use this reference to the Q-server documentation about Q-tools:
 
 The tool structure follows the general structure of each Q tool. Further information can be found in [Q server documentation - Developing tools](https://nzzdev.github.io/Q-server/developing-tools.html).
 
-[to the top](#table-of-contents)
+Q Election Executive uses the [svelte framework](https://svelte.technology/guide) to render the markup on server-side.
 
-
-## Features
+### Features
 
 Here is what the tool looks like on mobile and other devices. The example shows survey results of the presidential elections in France in 2017. It's in German because we do not have multilanguage support (yet).
 
-<img src="/doc/exec_desk.png">
-<img src="/doc/exec_mob.png">
+![Election results as shown on other devices](./doc/exec_desk.png)
+![Election results as shown on mobile](./doc/exec_mob.png)
 
 Each graphic has the following three sections:
 
-* Header: contains specified title, subtitle and legend
-* Main Part: displays results for each candidate. Optionally candidate pictures are shown on the left. As soon as the results are final a checkmark for elected candidates or a crossmark for voted off candidates are displayed. Additionally all candidates who have not been elected have b/w pictures and a less saturated color bar. If applicable a majority line will be shown.
-* Footer: contains further notes (e.g. how many municipalities already finished counting), source(s) and update information
+- Header: contains specified title, subtitle and legend
+- Main Part: displays results for each candidate. Optionally candidate pictures are shown on the left. As soon as the results are final a checkmark for elected candidates or a crossmark for voted off candidates are displayed. Additionally all candidates who have not been elected have b/w pictures and a less saturated color bar. If applicable a majority line will be shown.
+- Footer: contains further notes (e.g. how many municipalities already finished counting), source(s) and update information
 
 Here is a completely fictional example to show you the different states (currently part of the government, elected, voted off) and the majority line:
-<img src="/doc/exec_features.png">
+
+![Fictional election results showing all features](./doc/exec_features.png)
 
 [to the top](#table-of-contents)
 
-## Options
+### Options
 
-### Hide updated date
-<img src="/doc/hideUpdatedDate.png" align="right" width=300 height=355>
-This option will hide the date shown in the footer when it's updated. 
+#### hideUpdatedDate
+
+<img src="/doc/hideUpdatedDate.png" align="right" width=321 height=122>
+This option will hide the date shown in the footer when it's updated.
 
 [to the top](#table-of-contents)
 
-## License
+## License
 
 Copyright (c) 2019 Neue Zürcher Zeitung. All rights reserved.
+
+This software is licensed under the [MIT](https://github.com/nzzdev/Q-election-executive/blob/feat-test-doc/LICENSE) License.
+
+[to the top](#table-of-contents)
