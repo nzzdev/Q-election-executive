@@ -1,6 +1,6 @@
 {
-  "title": "FIXTURE: hide updated date",
-  "sources": [
+  "title": "FIXTURE: show update date",
+    "sources": [
     {
       "text": "NZZ",
       "link": {
@@ -65,7 +65,5 @@
       "isPrevious": true
     }
   ],
-  "options": {
-    "hideUpdatedDate": true
-  }
+  "updatedDate": "2019-03-05T13:59:55.309Z"
 }

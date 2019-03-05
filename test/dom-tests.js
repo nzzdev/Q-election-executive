@@ -84,3 +84,39 @@ lab.experiment("Q election executive dom tests", () => {
     });
   });
 });
+
+lab.experiment("hide updated date", () => {
+  it("should display the updated date", async () => {
+    const response = await server.inject({
+      url: "/rendering-info/html-static?_id=someid",
+      method: "POST",
+      payload: {
+        item: require("../resources/fixtures/data/show-updated-date.json"),
+        toolRuntimeConfig: {
+          displayOptions: {}
+        }
+      }
+    });
+
+    return element(response.result.markup, "div.s-q-item__footer").then(element => {
+      expect(element.innerHTML.includes("Update")).to.be.equals(true)
+    });
+  })
+  it("shouldn't display the updated date", async () => {
+    const response = await server.inject({
+      url: "/rendering-info/html-static?_id=someid",
+      method: "POST",
+      payload: {
+        item: require("../resources/fixtures/data/hide-updated-date.json"),
+        toolRuntimeConfig: {
+          displayOptions: {}
+        }
+      }
+    });
+
+    return element(response.result.markup, "div.s-q-item__footer").then(element => {
+
+      expect(element.innerHTML.includes("Update")).to.be.equals(false)
+    });
+  })
+})
