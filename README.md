@@ -128,6 +128,14 @@ Here is a completely fictional example to show you the different states (current
 <img src="/doc/hideUpdatedDate.png" align="right" width=321 height=122>
 This option will hide the date shown in the footer when it's updated.
 
+#### Display options
+
+Display options can be set before embedding the graphic in the article.
+
+##### hideTitle
+
+Allows to hide the title
+
 [to the top](#table-of-contents)
 
 ## License
