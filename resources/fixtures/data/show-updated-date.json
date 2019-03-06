@@ -1,0 +1,69 @@
+{
+  "title": "FIXTURE: show update date",
+    "sources": [
+    {
+      "text": "NZZ",
+      "link": {
+        "url": "https://nzz.ch",
+        "isValid": true
+      }
+    }
+  ],
+  "subtitle": "Möglichkeit zusätzliche Informationen als Untertitel zu erfassen",
+  "notes": "Jemand musste Josef K. verleumdet haben, denn ohne dass er etwas Böses getan hätte, wurde er eines 'Morgens verhaftet.",
+  "majority": 100000,
+  "candidates": [
+    {
+      "name": "Hans Wurst",
+      "color": {},
+      "picture": {
+        "key": "2018/02/09/81402b8b-49af-4329-afe4-222402f696cf.png",
+        "url": "https://nzz-q-assets-stage.s3.eu-west-1.amazonaws.com/2018/02/09/81402b8b-49af-4329-afe4-222402f696cf.png",
+        "length": 5239,
+        "width": 88,
+        "height": 88
+      },
+      "isPrevious": true
+    },
+    {
+      "name": "Maria Müller",
+      "party": "SPD",
+      "color": {},
+      "picture": {
+        "key": "2018/02/09/17cde314-b609-43df-a811-ca2828f3d545.png",
+        "url": "https://nzz-q-assets-stage.s3.eu-west-1.amazonaws.com/2018/02/09/17cde314-b609-43df-a811-ca2828f3d545.png",
+        "length": 4615,
+        "width": 88,
+        "height": 88
+      },
+      "isPrevious": false
+    },
+    {
+      "name": "Abdalá Bucaram",
+      "party": "Fuerza Compromiso Social Social",
+      "color": {},
+      "picture": {
+        "key": "2018/02/09/c4ace0d8-fe56-4a70-92b3-d8601a3ad134.png",
+        "url": "https://nzz-q-assets-stage.s3.eu-west-1.amazonaws.com/2018/02/09/c4ace0d8-fe56-4a70-92b3-d8601a3ad134.png",
+        "length": 4615,
+        "width": 88,
+        "height": 88
+      },
+      "isPrevious": false
+    },
+    {
+      "name": "Susann Salami",
+      "party": "Die Linke",
+      "color": {},
+      "picture": {
+        "key": "2018/02/09/7aaf35be-7da3-4703-8413-9ba1a4790786.png",
+        "url": "https://nzz-q-assets-stage.s3.eu-west-1.amazonaws.com/2018/02/09/7aaf35be-7da3-4703-8413-9ba1a4790786.png",
+        "length": 5239,
+        "width": 88,
+        "height": 88
+      },
+      "isPrevious": true
+    }
+  ],
+  "updatedDate": "2019-03-05T13:59:55.309Z"
+}

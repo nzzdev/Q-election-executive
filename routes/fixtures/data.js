@@ -12,7 +12,8 @@ const fixtureData = [
   require(`${fixtureDataDirectory}/results-percentage-with-others.json`),
   require(`${fixtureDataDirectory}/results-majority-with-others.json`),
   require(`${fixtureDataDirectory}/results-majority-partly-images-with-others.json`),
-  require(`${fixtureDataDirectory}/results-with-available-seats.json`)
+  require(`${fixtureDataDirectory}/results-with-available-seats.json`),
+  require(`${fixtureDataDirectory}/hide-updated-date.json`),
 ];
 
 module.exports = {

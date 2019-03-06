@@ -11,8 +11,6 @@ const after = lab.after;
 const it = lab.it;
 
 const routes = require("../routes/routes.js");
-require("svelte/ssr/register");
-const staticTpl = require("../views/HtmlStatic.html");
 
 let server;
 
@@ -51,15 +49,18 @@ function elementCount(markup, selector) {
 
 lab.experiment("Q election executive dom tests", () => {
   it("should pass if one majority arrow is found", async () => {
-    const renderingData = {
-      item: require("../resources/fixtures/data/results-majority-partly-images.json"),
-      toolRuntimeConfig: {
-        displayOptions: {}
+    const response = await server.inject({
+      url: "/rendering-info/html-static?_id=someid",
+      method: "POST",
+      payload: {
+        item: require("../resources/fixtures/data/results-majority-partly-images.json"),
+        toolRuntimeConfig: {
+          displayOptions: {}
+        }
       }
-    };
-    var markup = staticTpl.render(JSON.parse(JSON.stringify(renderingData)));
+    });
 
-    return elementCount(markup, "svg.q-election-executive-majority-arrow").then(
+    return elementCount(response.result.markup, "svg.q-election-executive-majority-arrow").then(
       value => {
         expect(value).to.be.equal(1);
       }
@@ -67,16 +68,55 @@ lab.experiment("Q election executive dom tests", () => {
   });
 
   it("should pass if for each data entry a DOM element is created", async () => {
-    const renderingData = {
-      item: require("../resources/fixtures/data/results-majority-partly-images.json"),
-      toolRuntimeConfig: {
-        displayOptions: {}
+    const response = await server.inject({
+      url: "/rendering-info/html-static?_id=someid",
+      method: "POST",
+      payload: {
+        item: require("../resources/fixtures/data/results-majority-partly-images.json"),
+        toolRuntimeConfig: {
+          displayOptions: {}
+        }
       }
-    };
-    var markup = staticTpl.render(JSON.parse(JSON.stringify(renderingData)));
+    });
 
-    return elementCount(markup, "div.q-election-executive-item").then(value => {
-      expect(value).to.be.equal(renderingData.item.candidates.length);
+    return elementCount(response.result.markup, "div.q-election-executive-item").then(value => {
+      expect(value).to.be.equal(4);
     });
   });
 });
+
+lab.experiment("hide updated date", () => {
+  it("should display the updated date", async () => {
+    const response = await server.inject({
+      url: "/rendering-info/html-static?_id=someid",
+      method: "POST",
+      payload: {
+        item: require("../resources/fixtures/data/show-updated-date.json"),
+        toolRuntimeConfig: {
+          displayOptions: {}
+        }
+      }
+    });
+
+    return element(response.result.markup, "div.s-q-item__footer").then(element => {
+      expect(element.innerHTML.includes("Update")).to.be.equals(true)
+    });
+  })
+  it("shouldn't display the updated date", async () => {
+    const response = await server.inject({
+      url: "/rendering-info/html-static?_id=someid",
+      method: "POST",
+      payload: {
+        item: require("../resources/fixtures/data/hide-updated-date.json"),
+        toolRuntimeConfig: {
+          displayOptions: {}
+        }
+      }
+    });
+
+    return element(response.result.markup, "div.s-q-item__footer").then(element => {
+
+      expect(element.innerHTML.includes("Update")).to.be.equals(false)
+    });
+  })
+})

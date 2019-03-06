@@ -46,6 +46,10 @@ const fixtureData = [
   [
     `${fixtureDataDirectory}/results-with-available-seats.json`,
     require(`${fixtureDataDirectory}/results-with-available-seats.json`)
+  ],
+  [
+    `${fixtureDataDirectory}/hide-updated-date.json`,
+    require(`${fixtureDataDirectory}/hide-updated-date.json`)
   ]
 ];
 
@@ -62,7 +66,7 @@ fixtureData.forEach(item => {
     fs.writeFile(
       item[0].split("../")[1],
       JSON.stringify(item[1], null, 2),
-      function(err) {
+      function (err) {
         if (err) {
           return console.log(err);
         }
