@@ -1,10 +1,11 @@
 <div class="q-election-executive" style="opacity: 0;">
   <Header title='{item.title}' hideTitle='{hideTitle}' subtitle='{item.subtitle}' candidatesInfo='{candidatesInfo}' />
+  <Legend candidatesInfo='{candidatesInfo}' withErrorMargin='{withErrorMargin}' hasErrorMargin='{hasErrorMargin}' errorMarginLabels='{errorMarginLabels}'></Legend>
   <div class="q-election-executive-container">
     <div class="q-election-executive-candidates">
       {#each candidatesInfo.sortedCandidates as candidate, index}
-      <Candidate candidate='{candidate}' isPercentage='{item.isPercentage}' fullWidth='{fullWidth}' isImagePresent='{candidatesInfo.isImagePresent}'
-        isLastCandidate='{index === candidatesInfo.sortedCandidates.length - 1}' majority='{majority}' base='{majorityBase}' /> 
+      <Candidate candidate='{candidate}' isPercentage='{item.isPercentage}' isImagePresent='{candidatesInfo.isImagePresent}'
+        isLastCandidate='{index === candidatesInfo.sortedCandidates.length - 1}' majority='{majority}' base='{majorityBase}' withErrorMargin='{withErrorMargin}' maxErrorMarginValue='{maxErrorMarginValue}'/> 
         {#if item.availableSeats === index+1}
           <div class="q-election-executive-available-seats s-color-gray-5">
             <div class="s-font-note-s q-election-executive-available-seats-text">Verfügbare Sitze: {item.availableSeats}</div>
@@ -14,8 +15,8 @@
     </div>
     {#if candidatesInfo.others}
     <div class="q-election-executive-others">
-      <Candidate candidate='{candidatesInfo.others}' isPercentage='{item.isPercentage}' fullWidth='{fullWidth}' isImagePresent='{candidatesInfo.isImagePresent}'
-        isOthers='true' majority='{majority}' />
+      <Candidate candidate='{candidatesInfo.others}' isPercentage='{item.isPercentage}' isImagePresent='{candidatesInfo.isImagePresent}'
+        isOthers='true' majority='{majority}' maxErrorMarginValue='{maxErrorMarginValue}'/>
     </div>
     {/if}
   </div>
@@ -25,6 +26,7 @@
 
 <script>
   import Header from './Header.html';
+  import Legend from './Legend.html';
   import Candidate from './Candidate.html';
   import Footer from './Footer.html';
 
@@ -39,12 +41,37 @@
       majority: ({ item }) => {
         return item.majority;
       },
+      maxVotes: ({ item }) => {
+        const maxResult = Math.max(...item.candidates.map(candidate => { 
+          if (candidate.votes !== undefined) {
+            return candidate.votes;
+          }
+          return 0;
+        }));
+        if (item.threshold > maxResult) {
+          return item.threshold;
+        }
+        return maxResult;
+      },
+      maxErrorMarginValue: ({ item }) => {
+        const maxErrorMarginValue = Math.max(...item.candidates.map(candidate => { 
+          if (candidate.errorMargin && candidate.errorMargin.upper !== undefined) {
+            return candidate.errorMargin.upper;
+          }
+          return 0;
+        }));
+        if (item.threshold > maxErrorMarginValue) {
+          return item.threshold;
+        }
+        return maxErrorMarginValue;
+      },
       titleClassAttribute: ({ toolRuntimeConfig }) => {
         if (toolRuntimeConfig.displayOptions && toolRuntimeConfig.displayOptions.hideTitle) {
           return 'q-election-executive-title--hidden';
         }
         return '';
       },
+      //TODO: do not random sort but return by array index if no values given
       sortedCandidates: ({ candidates }) => {
         if (candidates) {
           return candidates.sort(function(candidateA, candidateB) {
@@ -59,19 +86,12 @@
         }
         return [];
       },
-      candidatesInfo: ({ sortedCandidates, majority }) => {
+      candidatesInfo: ({ sortedCandidates, majority, maxVotes, withErrorMargin, maxErrorMarginValue }) => {
         // enhance candidates object with additional information
         let isPrevious = false;
         let isElected = false;
         let isDropped = false;
         let isImagePresent = false;
-
-        // if there are already any votes the first candidate 
-        // of sorted list of candidates has max votes
-        let maxVotes = 0;
-        if (sortedCandidates[0] && sortedCandidates[0].votes) {
-          maxVotes = sortedCandidates[0].votes;
-        }
 
         let hasVotes = maxVotes > 0;
         let maxNumber = maxVotes;
@@ -90,7 +110,7 @@
           const defaultColor = 's-viz-color-one-5';
 
           if (hasVotes && candidate.votes && candidate.votes > 0) {
-            let widthPercentage = (candidate.votes * 100 / maxNumber).toFixed(2);
+            const widthPercentage = (candidate.votes * 100 / maxNumber).toFixed(2);
             width = widthPercentage + '%';
           }
           candidate.width = width;
@@ -152,14 +172,6 @@
 
         return candidatesInfo;
       },
-      fullWidth: ({ candidatesInfo }) => {
-        if (candidatesInfo.isImagePresent) {
-          return ""
-        }
-        else {
-          return "width: 100%";
-        }
-      },
       majorityBase: ({ candidatesInfo, majority }) => {
         let majorityBase = candidatesInfo.maxNumber;
         if (!candidatesInfo.hasVotes) {
@@ -169,11 +181,23 @@
       },
       hideUpdatedDate: ({ item }) => {
         return item.options && item.options.hideUpdatedDate;
-      }
+      },
+      withErrorMargin: ({ item }) => {
+        return item.withErrorMargin;
+      },
+      errorMarginLabels: ({ item }) => {
+        return item.errorMarginLabels;
+      },
+      hasErrorMargin: ({ item }) => {
+        return item.candidates.some(candidate => {
+          return candidate.errorMargin && candidate.errorMargin.lower !== undefined && candidate.errorMargin.upper !== undefined
+        });
+      },
     },
 
     components: {
       Header,
+      Legend,
       Candidate,
       Footer
     }
