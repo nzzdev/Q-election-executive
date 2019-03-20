@@ -71,18 +71,35 @@
         }
         return '';
       },
-      //TODO: do not random sort but return by array index if no values given
-      sortedCandidates: ({ candidates }) => {
+      sortedCandidates: ({ candidates, withErrorMargin }) => {
         if (candidates) {
-          return candidates.sort(function(candidateA, candidateB) {
-            if ((candidateA.votes === undefined && candidateB.votes === undefined) || candidateA.votes === candidateB.votes) {
-              return 0;
-            }
-            if ((candidateA.votes === undefined && candidateB.votes !== undefined) || (candidateA.votes < candidateB.votes)) {
-              return 1;
-            }
-            return -1;
-          })
+          if (withErrorMargin) {
+            return candidates.sort(function(candidateA, candidateB) {
+              // if both have no errorMargin set, keep the order
+              if (candidateA.errorMargin === undefined && candidateB.errorMargin === undefined) {
+                return 0;
+              } // if only A has no errorMargin, sort B before A
+              if (candidateA.errorMargin === undefined && candidateB.errorMargin !== undefined) {
+                return 1;
+              }
+              // if only A has no bestGuess or B bestGuess is higher than A, sort B before A
+              if ((candidateA.errorMargin.bestGuess === undefined && candidateB.errorMargin.bestGuess !== undefined) || (candidateA.errorMargin.bestGuess < candidateB.errorMargin.bestGuess)) {
+                return 1;
+              }
+              // otherwise sort A before B
+              return -1;
+            });
+          } else {
+            return candidates.sort(function(candidateA, candidateB) {
+              if ((candidateA.votes === undefined && candidateB.votes === undefined) || candidateA.votes === candidateB.votes) {
+                return 0;
+              }
+              if ((candidateA.votes === undefined && candidateB.votes !== undefined) || (candidateA.votes < candidateB.votes)) {
+                return 1;
+              }
+              return -1;
+            });
+          }
         }
         return [];
       },
