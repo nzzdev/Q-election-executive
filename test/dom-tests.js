@@ -60,11 +60,12 @@ lab.experiment("Q election executive dom tests", () => {
       }
     });
 
-    return elementCount(response.result.markup, "svg.q-election-executive-majority-arrow").then(
-      value => {
-        expect(value).to.be.equal(1);
-      }
-    );
+    return elementCount(
+      response.result.markup,
+      "svg.q-election-executive-majority-arrow"
+    ).then(value => {
+      expect(value).to.be.equal(1);
+    });
   });
 
   it("should pass if for each data entry a DOM element is created", async () => {
@@ -79,7 +80,10 @@ lab.experiment("Q election executive dom tests", () => {
       }
     });
 
-    return elementCount(response.result.markup, "div.q-election-executive-item").then(value => {
+    return elementCount(
+      response.result.markup,
+      "div.q-election-executive-item"
+    ).then(value => {
       expect(value).to.be.equal(4);
     });
   });
@@ -98,10 +102,12 @@ lab.experiment("hide updated date", () => {
       }
     });
 
-    return element(response.result.markup, "div.s-q-item__footer").then(element => {
-      expect(element.innerHTML.includes("Update")).to.be.equals(true)
-    });
-  })
+    return element(response.result.markup, "div.s-q-item__footer").then(
+      element => {
+        expect(element.innerHTML.includes("Update")).to.be.equals(true);
+      }
+    );
+  });
   it("shouldn't display the updated date", async () => {
     const response = await server.inject({
       url: "/rendering-info/html-static?_id=someid",
@@ -114,9 +120,31 @@ lab.experiment("hide updated date", () => {
       }
     });
 
-    return element(response.result.markup, "div.s-q-item__footer").then(element => {
+    return element(response.result.markup, "div.s-q-item__footer").then(
+      element => {
+        expect(element.innerHTML.includes("Update")).to.be.equals(false);
+      }
+    );
+  });
+});
 
-      expect(element.innerHTML.includes("Update")).to.be.equals(false)
+lab.experiment("error margin data", function() {
+  it("should show error margin layout if hasErrorMargin is set to true", async () => {
+    const response = await server.inject({
+      url: "/rendering-info/html-static?_id=someid",
+      method: "POST",
+      payload: {
+        item: require("../resources/fixtures/data/results-error-margin-partly-images-colors.json"),
+        toolRuntimeConfig: {
+          displayOptions: {}
+        }
+      }
     });
-  })
-})
+    return elementCount(
+      response.result.markup,
+      "div.q-election-executive-item-error-margin-bar"
+    ).then(value => {
+      expect(value).to.be.equal(4);
+    });
+  });
+});
