@@ -32,6 +32,37 @@
       "title": "Verfügbare Sitze",
       "type": "number"
     },
+    "withErrorMargin": {
+      "title": "Daten mit Fehlerbereich",
+      "type": "boolean"
+    },
+    "errorMarginLabels": {
+      "title": "Beschriftung der Legende",
+      "type": "object",
+      "properties": {
+        "bestGuessLabel": {
+          "title": "Beschriftung des besten Werts in der Legende",
+          "type": "string",
+          "default": "Hochrechnung"
+        },
+        "errorMarginLabel": {
+          "title": "Beschriftung des Fehlerbereichs",
+          "type": "string",
+          "default": "Fehlermarge"
+        }
+      },
+      "Q:options": {
+        "availabilityChecks": [
+          {
+            "type": "ToolEndpoint",
+            "config": {
+              "endpoint": "availability/errorMargin",
+              "fields": ["withErrorMargin"]
+            }
+          }
+        ]
+      }
+    },
     "candidates": {
       "title": "KandidatInnen",
       "type": "array",
@@ -60,7 +91,54 @@
             "title": "Anzahl Stimmen",
             "type": "number",
             "Q:options": {
-              "step": "0.01"
+              "step": "0.01",
+              "availabilityChecks": [
+                {
+                  "type": "ToolEndpoint",
+                  "config": {
+                    "endpoint": "availability/votes",
+                    "fields": ["withErrorMargin"]
+                  }
+                }
+              ]
+            }
+          },
+          "errorMargin": {
+            "title": "Daten mit Fehlermarge",
+            "type": "object",
+            "Q:options": {
+              "availabilityChecks": [
+                {
+                  "type": "ToolEndpoint",
+                  "config": {
+                    "endpoint": "availability/errorMargin",
+                    "fields": ["withErrorMargin"]
+                  }
+                }
+              ]
+            },
+            "properties": {
+              "lower": {
+                "title": "min. Stimmen",
+                "type": "number",
+                "Q:options": {
+                  "step": "0.01"
+                }
+              },
+              "bestGuess": {
+                "title": "Anzahl Stimmen",
+                "type": "number",
+                "Q:options": {
+                  "step": "0.01"
+                }
+              },
+              "upper": {
+                "title": "max. Stimmen",
+                "type": "number",
+                "Q:options": {
+                  "step": "0.01"
+                }
+              }
             }
           },
           "status": {
