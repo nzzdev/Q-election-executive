@@ -157,6 +157,7 @@ $party-margin: 2px;
   border-radius: 50%;
   position: absolute;
   background-color: currentColor;
+  transform: translateX(-50%);
 }
 
 .q-election-executive-item-error-margin-bar {

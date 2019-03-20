@@ -12,10 +12,12 @@
         <CandidateNameBar candidate='{candidate}' isOthers='{isOthers}' majority='{majority}'></CandidateNameBar>
         {#if withErrorMargin}
           <div class="s-font-note q-election-executive-item-text-votes">
-            {#if hasErrorMargin}
+            {#if hasErrorMargin && candidate.errorMargin}
               {formatNumber(candidate.errorMargin.lower)}–{formatNumber(candidate.errorMargin.upper)}{#if isPercentage}%{/if}
             {:else}
-              {formatNumber(candidate.errorMargin.bestGuess)}{#if isPercentage}%{/if}
+              {#if candidate.errorMargin}
+                {formatNumber(candidate.errorMargin.bestGuess)}{#if isPercentage}%{/if}
+              {/if}
             {/if}
           </div>
         {:else}
@@ -41,11 +43,11 @@
         </div>
       {/if}
       {#if !isLastCandidate && majority && !isOthers}
-      <div class="q-election-executive-majority s-color-gray-5" style="left: calc({(majority * 100 / base).toFixed(2)}% - 1px);">
+      <div class="q-election-executive-majority s-color-gray-5" style="left: calc({(majority * 100 / maxNumber).toFixed(2)}% - 1px);">
       </div>
       {/if}
       {#if isLastCandidate && majority}
-        <MajorityArrow base='{base}' majority='{majority}'></MajorityArrow>
+        <MajorityArrow maxNumber='{maxNumber}' majority='{majority}'></MajorityArrow>
       {/if}
     </div>
   </div>
@@ -66,36 +68,36 @@
       hasErrorMargin: ({ candidate }) => {
         return candidate.errorMargin && candidate.errorMargin.lower !== undefined && candidate.errorMargin.upper !== undefined
       },
-      coloredSlimBarWidthPercentage: ({ candidate, maxErrorMarginValue, hasErrorMargin}) => {
+      coloredSlimBarWidthPercentage: ({ candidate, maxNumber, hasErrorMargin}) => {
         if (hasErrorMargin) {
-          if (maxErrorMarginValue === undefined || !candidate.errorMargin || candidate.errorMargin.lower === undefined) {
+          if (maxNumber === undefined || !candidate.errorMargin || candidate.errorMargin.lower === undefined) {
             return 0;
           }
-          return (candidate.errorMargin.lower / maxErrorMarginValue * 100).toFixed(2);
+          return (candidate.errorMargin.lower / maxNumber * 100).toFixed(2);
         } else {
-          if (maxErrorMarginValue === undefined || !candidate.errorMargin || candidate.errorMargin.bestGuess === undefined) {
+          if (maxNumber === undefined || !candidate.errorMargin || candidate.errorMargin.bestGuess === undefined) {
             return 0;
           }
-          return (candidate.errorMargin.bestGuess / maxErrorMarginValue * 100).toFixed(2);
+          return (candidate.errorMargin.bestGuess / maxNumber * 100).toFixed(2);
         }
       },
-      errorMarginLeftPercentage: ({ candidate, maxErrorMarginValue }) => {
-        if (maxErrorMarginValue === undefined || !candidate.errorMargin || candidate.errorMargin.lower === undefined) {
+      errorMarginLeftPercentage: ({ candidate, maxNumber }) => {
+        if (maxNumber === undefined || !candidate.errorMargin || candidate.errorMargin.lower === undefined) {
           return 0;
         }
-        return (candidate.errorMargin.lower / maxErrorMarginValue * 100).toFixed(2);
+        return (candidate.errorMargin.lower / maxNumber * 100).toFixed(2);
       },
-      dotPositionLeftPercentage: ({ candidate, maxErrorMarginValue }) => {
-        if (maxErrorMarginValue === undefined || !candidate.errorMargin || candidate.errorMargin.bestGuess === undefined) {
+      dotPositionLeftPercentage: ({ candidate, maxNumber }) => {
+        if (maxNumber === undefined || !candidate.errorMargin || candidate.errorMargin.bestGuess === undefined) {
           return 0;
         }
-        return (candidate.errorMargin.bestGuess / maxErrorMarginValue * 100).toFixed(2);
+        return (candidate.errorMargin.bestGuess / maxNumber * 100).toFixed(2);
       },
-      errorMarginBarWidthPercentage: ({ candidate, maxErrorMarginValue }) => {
-        if (maxErrorMarginValue === undefined || !candidate.errorMargin || candidate.errorMargin.lower === undefined || !candidate.errorMargin.upper === undefined) {
+      errorMarginBarWidthPercentage: ({ candidate, maxNumber }) => {
+        if (maxNumber === undefined || !candidate.errorMargin || candidate.errorMargin.lower === undefined || !candidate.errorMargin.upper === undefined) {
           return 0;
         }
-        return ((candidate.errorMargin.upper / maxErrorMarginValue * 100) - (candidate.errorMargin.lower / maxErrorMarginValue * 100)).toFixed(2);
+        return ((candidate.errorMargin.upper / maxNumber * 100) - (candidate.errorMargin.lower / maxNumber * 100)).toFixed(2);
       }
     },
     components: {

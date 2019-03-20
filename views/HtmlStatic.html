@@ -5,7 +5,7 @@
     <div class="q-election-executive-candidates">
       {#each candidatesInfo.sortedCandidates as candidate, index}
       <Candidate candidate='{candidate}' isPercentage='{item.isPercentage}' isImagePresent='{candidatesInfo.isImagePresent}'
-        isLastCandidate='{index === candidatesInfo.sortedCandidates.length - 1}' majority='{majority}' base='{majorityBase}' withErrorMargin='{withErrorMargin}' maxErrorMarginValue='{maxErrorMarginValue}'/> 
+        isLastCandidate='{index === candidatesInfo.sortedCandidates.length - 1}' majority='{majority}' maxNumber='{maxNumber}' withErrorMargin='{withErrorMargin}' maxErrorMarginValue='{maxErrorMarginValue}'/> 
         {#if item.availableSeats === index+1}
           <div class="q-election-executive-available-seats s-color-gray-5">
             <div class="s-font-note-s q-election-executive-available-seats-text">Verfügbare Sitze: {item.availableSeats}</div>
@@ -16,7 +16,7 @@
     {#if candidatesInfo.others}
     <div class="q-election-executive-others">
       <Candidate candidate='{candidatesInfo.others}' isPercentage='{item.isPercentage}' isImagePresent='{candidatesInfo.isImagePresent}'
-        isOthers='true' majority='{majority}' maxErrorMarginValue='{maxErrorMarginValue}'/>
+        isOthers='true' majority='{majority}' maxErrorMarginValue='{maxErrorMarginValue}' maxNumber='{maxNumber}'/>
     </div>
     {/if}
   </div>
@@ -86,7 +86,7 @@
         }
         return [];
       },
-      candidatesInfo: ({ sortedCandidates, majority, maxVotes, withErrorMargin, maxErrorMarginValue }) => {
+      candidatesInfo: ({ sortedCandidates, majority, maxVotes, withErrorMargin, maxErrorMarginValue, maxNumber }) => {
         // enhance candidates object with additional information
         let isPrevious = false;
         let isElected = false;
@@ -94,10 +94,6 @@
         let isImagePresent = false;
 
         let hasVotes = maxVotes > 0;
-        let maxNumber = maxVotes;
-        if (majority !== undefined && majority > maxVotes) {
-          maxNumber = majority;
-        }
 
         sortedCandidates.forEach(candidate => {
           if (candidate.picture !== undefined && candidate.picture.url !== undefined) {
@@ -109,6 +105,7 @@
           let colorClass = '';
           const defaultColor = 's-viz-color-one-5';
 
+          // the width is only used later if we do not have withErrorMargin
           if (hasVotes && candidate.votes && candidate.votes > 0) {
             const widthPercentage = (candidate.votes * 100 / maxNumber).toFixed(2);
             width = widthPercentage + '%';
@@ -172,12 +169,18 @@
 
         return candidatesInfo;
       },
-      majorityBase: ({ candidatesInfo, majority }) => {
-        let majorityBase = candidatesInfo.maxNumber;
-        if (!candidatesInfo.hasVotes) {
-          majorityBase = majority;
+      maxNumber: ({ withErrorMargin, maxVotes, maxErrorMarginValue, majority }) => {
+        let maxNumber;
+        if (withErrorMargin) {
+          maxNumber = maxErrorMarginValue;
+        } else {
+          maxNumber = maxVotes;
         }
-        return majorityBase;
+        // if the majority is higher than maxErrorMarginValue or maxVotes, it is the highest number
+        if (majority !== undefined && (majority > maxNumber || Number.isNaN(maxNumber))) {
+          maxNumber = majority;
+        }
+        return maxNumber;
       },
       hideUpdatedDate: ({ item }) => {
         return item.options && item.options.hideUpdatedDate;
