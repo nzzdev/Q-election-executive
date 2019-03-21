@@ -49,6 +49,10 @@ $party-margin: 2px;
       flex-direction: column;
       justify-content: center;
       width: calc(100% - (#{$image-size} + #{$image-margin}));
+
+      &--no-images {
+        width: 100%;
+      }
     }
 
     /* result bar */
@@ -60,6 +64,7 @@ $party-margin: 2px;
       &-color {
         background-color: currentColor;
         height: 100%;
+        position: relative;
       }
     }
 
@@ -124,7 +129,7 @@ $party-margin: 2px;
   &-available-seats {
     display: flex;
     margin: 15px 0;
-   
+
     &-text {
       text-align: right;
       white-space: nowrap;
@@ -137,11 +142,70 @@ $party-margin: 2px;
     height: 1px;
     background-color: currentColor;
     align-self: center;
-    width: 100%; 
+    width: 100%;
   }
 
   &-elected,
   &-dropped {
     height: 1em;
   }
+}
+
+.q-election-executive-item-dot-color {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  position: absolute;
+  top: ($bar-height - 7px) / 2;
+  background-color: currentColor;
+  transform: translateX(-50%);
+}
+
+.q-election-executive-item-error-margin-bar {
+  height: $bar-height;
+  margin-bottom: 10px;
+  position: relative;
+}
+
+.q-election-executive-item-bar-color--slim {
+  position: absolute;
+  height: 3px;
+  top: ($bar-height - 3px) / 2;
+}
+
+.q-election-executive-item-bar-color--fullwidth {
+  width: 100%;
+}
+
+.q-election-executive-item-bar-color--error-margin {
+  position: absolute;
+}
+
+.q-election-executive-item-bar-color--error-margin::after {
+  content: "";
+  display: block;
+  width: calc(100% - 4px);
+  height: 100%;
+  position: absolute;
+  left: 2px;
+  background: white;
+  opacity: 0.7;
+}
+
+.q-election-executive-error-margin-legend-symbol-margin {
+  background-color: currentColor;
+  height: 8px;
+  width: 24px;
+  position: relative;
+}
+
+.q-election-executive-error-margin-legend-symbol-margin::after {
+  content: "";
+  display: block;
+  width: calc(100% - 4px);
+  height: 100%;
+  position: absolute;
+  left: 2px;
+  background: white;
+  opacity: 0.7;
 }
