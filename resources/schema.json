@@ -33,7 +33,7 @@
       "type": "number"
     },
     "withErrorMargin": {
-      "title": "Daten mit Fehlermarge",
+      "title": "mit Fehlermarge",
       "type": "boolean"
     },
     "errorMarginLabels": {
