@@ -1,26 +1,26 @@
 dist: trusty
 sudo: true
 services:
-- docker
+  - docker
 language: node_js
 node_js:
-- '10'
+  - "10"
 cache:
   directories:
-  - node_modules
+    - node_modules
 install:
-- npm install
+  - npm install
 before_script:
-- DOCKER_IMAGE_NAME="q-election-executive"
-- DOCKER_TAG=${TRAVIS_BRANCH/\//_}
+  - DOCKER_IMAGE_NAME="q-election-executive"
+  - DOCKER_TAG=${TRAVIS_BRANCH/\//_}
 script:
-- npm run build
-- npm run test
-- docker build -t $DOCKER_IMAGE_NAME:$DOCKER_TAG .
+  - npm run build
+  - npm run test
+  - 'if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then docker build -t $DOCKER_IMAGE_NAME:$DOCKER_TAG .; fi'
 after_success:
-- echo $DOCKER_PASSWORD | docker login -u="$DOCKER_USERNAME" --password-stdin; docker
-  tag $DOCKER_IMAGE_NAME:$DOCKER_TAG nzzonline/$DOCKER_IMAGE_NAME:$DOCKER_TAG; docker
-  push nzzonline/$DOCKER_IMAGE_NAME:$DOCKER_TAG;
+  - 'if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then echo $DOCKER_PASSWORD | docker login -u="$DOCKER_USERNAME" --password-stdin; docker
+    tag $DOCKER_IMAGE_NAME:$DOCKER_TAG nzzonline/$DOCKER_IMAGE_NAME:$DOCKER_TAG; docker
+    push nzzonline/$DOCKER_IMAGE_NAME:$DOCKER_TAG; fi'
 notifications:
   slack:
     secure: Jr3p3SundW3N/65jbZQUKHKQF7cDVUcTehe0Oktf03naFcIzPeHbtBABdbJDHOAyjSGXIb7cMNpAJXUWmhf/jljFNyz+DG3I2gr+dsPEVmcUR+LF2qXIyvfTZIweAbsYVo1VMr7eocR6ez/qLyf2IO7oxnm4J0uZHpu78bii9qzR7uKe9dqYBpvZqVH2CxxTMrJIKg1vjzRaTXVhNM0+tAYSDD6Jstc68L8u0vF84ANHpBAX1Z/ba26VjINA7J8KqNFf+f2U4hcK2lLfD/Uey6DkjNTYBVoCQpCQsj6EzSolccqlFJBX5nSoWuipl2b/uyEkf7MWcfSMhOByObNiGm5M/nFSTPk7TzoZlsPgpTkap85Hi1KgbPNmqZaSJJ9zAjG/ctZBJTH+1G4QaNd54RFVkVtp9wuW6uf8W/IESp07Zc39xal793zweLcCvybYwgzxmgNa9DWqwTVUO0jSbqV4sgRgPGysXo9fh7ZiSkl6V4ykgFgaiDw2S4qWXHOCY5b2BjoXa07tiPj9xoG0eqDpnLOePzmTD/RVqvsHQZ+lsFeGRaiagHoKtRSMl8pcWj4mpVq6VZlwwHP07dDTosLYBefHjJQdXM8rRoaUeR2kvKY7VtqoCGvQXIMKGbQuz0FFBUNbd7FfrodOk0yvFx7emuwmybc5m+URI2y8x9U=
