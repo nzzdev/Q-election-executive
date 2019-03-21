@@ -4,5 +4,6 @@ module.exports = [
   require("./locales.js"),
   require("./migration.js"),
   require("./health.js"),
-  require("./fixtures/data.js")
+  require("./fixtures/data.js"),
+  require("./availability.js")
 ].concat(require("./schema.js"));

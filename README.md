@@ -119,6 +119,13 @@ Here is a completely fictional example to show you the different states (current
 
 ![Fictional election results showing all features](./doc/exec_features.png)
 
+### data with error margin
+
+In case `withErrorMargin` is true, the rendering looks different to show the error margin.
+![Election error margin data](https://github.com/nzzdev/Q-election-votes/blob/master/readme-images/error_margin.png)
+
+If `withErrorMargin` is set to true, the candidates `votes` input is hidden, instead the inputs `errorMargin.lower`, `errorMargin.bestGuess` and `errorMargin.upper` are shown. These should be used to enter the errorMargin best guess as long as the lower and upper bound of the error margin.
+
 [to the top](#table-of-contents)
 
 ### Options
