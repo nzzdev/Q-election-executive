@@ -1,42 +1,52 @@
 <div class="q-election-executive-majority-group">
-  <!-- majority arrow -->
-  <svg class="q-election-executive-majority-arrow s-color-gray-5" style="left: calc({(majority * 100 / maxNumber).toFixed(2)}% - {arrowOffset}px);"
-    viewBox="0 0 7 35" xmlns="http://www.w3.org/2000/svg" width="7" height="35">
-    <path d="M4 5v30H3V5H0l3.5-5L7 5H4z" fill="currentColor" fill-rule="evenodd" />
-  </svg>
-  <div class="q-election-executive-majority-text q-election-executive-majority-text--{majorityTextAlignClass} s-font-note-s"
-    style="{textPadding}">
-    <div>Absolutes Mehr</div>
-    <!-- insert a space after each three digits -->
-    <div>{majority.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")} Stimmen</div>
-  </div>
+	<!-- majority arrow -->
+	<svg class="q-election-executive-majority-arrow s-color-gray-5" style="left: calc({(majority * 100 / maxNumber).toFixed(2)}% - {arrowOffset}px);"
+	 viewBox="0 0 7 35" xmlns="http://www.w3.org/2000/svg" width="7" height="35">
+		<path d="M4 5v30H3V5H0l3.5-5L7 5H4z" fill="currentColor" fill-rule="evenodd" />
+	</svg>
+	<div class="q-election-executive-majority-text q-election-executive-majority-text--{majorityTextAlignClass} s-font-note-s"
+	 style="{textPadding}">
+		<div>Absolutes Mehr</div>
+		<!-- insert a space after each three digits -->
+		<div>{majority.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")} Stimmen</div>
+	</div>
 </div>
 
 
 <script>
-  import CandidateNameBar from './CandidateNameBar.html';
-  import MajorityArrow from './MajorityArrow.html';
+  import CandidateNameBar from "./CandidateNameBar.html";
+  import MajorityArrow from "./MajorityArrow.html";
   export default {
     computed: {
       majorityTextAlignClass: ({ maxNumber, majority }) => {
-        if (maxNumber === 0 || ((majority * 100 / maxNumber) > 50)) {
+        if (maxNumber === 0 || (majority * 100) / maxNumber > 50) {
           return "right";
         } else {
           return "left";
         }
       },
       arrowOffset: ({ maxNumber, majority }) => {
-        if ((majority * 100 / maxNumber) === 100) {
-          return '7';
+        if ((majority * 100) / maxNumber === 100) {
+          return "7";
         } else {
-          return '4';
+          return "4";
         }
       },
-      textPadding: ({ majorityTextAlignClass, majority, maxNumber, arrowOffset }) => {
-        if (majorityTextAlignClass === 'left') {
-          return `padding-left: calc(${(majority * 100 / maxNumber).toFixed(2)}% + ${arrowOffset}px + 10px)`;
+      textPadding: ({
+        majorityTextAlignClass,
+        majority,
+        maxNumber,
+        arrowOffset
+      }) => {
+        if (majorityTextAlignClass === "left") {
+          return `padding-left: calc(${((majority * 100) / maxNumber).toFixed(
+            2
+          )}% + ${arrowOffset}px + 10px)`;
         } else {
-          return `padding-right: calc(${(100 % - (majority * 100 / maxNumber).toFixed(2))}% + ${arrowOffset}px + 10px)`;
+          return `padding-right: calc(${100 %
+            -((majority * 100) / maxNumber).toFixed(
+              2
+            )}% + ${arrowOffset}px + 10px)`;
         }
       }
     }
