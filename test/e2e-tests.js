@@ -1,6 +1,6 @@
 const Lab = require("lab");
 const Code = require("code");
-const Hapi = require("hapi");
+const Hapi = require("@hapi/hapi");
 const glob = require("glob");
 const lab = (exports.lab = Lab.script());
 process.env.IMAGE_SERVICE_URL =
