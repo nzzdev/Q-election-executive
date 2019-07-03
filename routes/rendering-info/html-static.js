@@ -21,8 +21,9 @@ const displayOptionsSchema = Enjoi.schema(
   )
 );
 
-require("svelte/ssr/register");
-const staticTemplate = require(viewsDir + "HtmlStatic.html");
+// setup svelte
+require("svelte/register");
+const staticTemplate = require(viewsDir + "HtmlStatic.svelte").default;
 
 module.exports = {
   method: "POST",
@@ -47,6 +48,7 @@ module.exports = {
     // it contains the item itself and additional options impacting the markup
     let renderingData = {
       item: request.payload.item,
+      displayOptions: request.payload.toolRuntimeConfig.displayOptions || {},
       imageServiceUrl: process.env.IMAGE_SERVICE_URL
     };
 
