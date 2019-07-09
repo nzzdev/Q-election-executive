@@ -52,12 +52,8 @@
                 To avoid unwanted whitespaces around commas separating each source, we keep render infos for sources at one line here.
                 See also: https://github.com/sveltejs/svelte/issues/189  -->
         {#if source.link && source.link.url && source.link.isValid}
-          <a href={source.link.url} target="blank" rel="noopener noreferrer">
-             {source.text}
-          </a>
-        {:else}{source.text}{/if}
-        {#if index !== sources.length - 1 && sources[index + 1] !== ''},{/if}
-      {/if}
+          <a href={source.link.url} target="blank" rel="noopener noreferrer">{source.text}</a>{:else}{source.text}{/if}{#if index !== sources.length - 1 && sources[index + 1] !== ''},{/if}
+        {/if}
     {/each}
     {#if shouldHaveUpdateInfo}–{/if}
   {/if}
