@@ -100,7 +100,7 @@ If a tool then it can use this reference to the Q-server documentation about Q-t
 
 The tool structure follows the general structure of each Q tool. Further information can be found in [Q server documentation - Developing tools](https://nzzdev.github.io/Q-server/developing-tools.html).
 
-Q Election Executive uses the [svelte framework](https://svelte.technology/guide) to render the markup on server-side.
+Q Election Executive uses [svelte3](https://svelte.dev) to render the markup on server-side.
 
 ### Features
 
