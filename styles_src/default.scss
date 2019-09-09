@@ -124,6 +124,12 @@ $party-margin: 2px;
         justify-content: flex-end;
       }
     }
+
+    &::after {
+      content: "";
+      display: table;
+      clear: left;
+    }
   }
 
   &-available-seats {
