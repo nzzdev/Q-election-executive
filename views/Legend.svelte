@@ -8,7 +8,7 @@
 <div class="s-legend-icon-label">
   {#if candidatesInfo.isPrevious}
     <div class="s-legend-item-label__item">
-      <div class="s-legend-item-label__item__icon s-legend-item-label__item__icon--text">*</div><div class="s-legend-item-label__item__label">bisher im Amt</div>
+      <div class="s-legend-item-label__item__icon s-legend-item-label__item__icon--text">*</div><div class="s-legend-item-label__item__label">bisher im Amt.</div>
     </div>
   {/if}
   {#if candidatesInfo.isElected}
