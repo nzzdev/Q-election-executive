@@ -80,7 +80,7 @@
             "type": "string"
           },
           "party": {
-            "title": "Parteiname oder Kürzel",
+            "title": "Beschreibung oder Parteiname",
             "type": "string"
           },
           "isPrevious": {
