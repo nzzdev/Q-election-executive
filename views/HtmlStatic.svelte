@@ -188,7 +188,7 @@
 
     // process the group of other candidates differently - not part of the majority
     let othersIndex = sortedCandidates.findIndex(candidate => {
-      let othersPattern = /((.*(A|a)ndere.*)|(.*(S|s)onstig.*))/;
+      let othersPattern = /((.*(A|a)ndere$)|(.*Andere(r)?\s.*)|(.*(S|s)onstig.*))/;
       return othersPattern.test(candidate.name);
     });
     if (othersIndex >= 0) {
