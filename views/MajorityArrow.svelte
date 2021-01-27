@@ -68,8 +68,7 @@
     <div>Absolutes Mehr</div>
     <!-- insert a space after each three digits -->
     <div>
-       {majority.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ')} {majorityTextType}
-
+       <span class="s-font-note--tabularnums">{majority.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ')}</span> {majorityTextType}
     </div>
   </div>
 </div>
