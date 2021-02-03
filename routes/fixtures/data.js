@@ -16,7 +16,7 @@ const fixtureData = [
   require(`${fixtureDataDirectory}/hide-updated-date.json`),
   require(`${fixtureDataDirectory}/results-error-margin-partly-images-colors.json`),
   require(`${fixtureDataDirectory}/results-float-numbers-no-images-status.json`),
-  require(`${fixtureDataDirectory}/results-float-percentage-partly-images-colors.json`)
+  require(`${fixtureDataDirectory}/results-float-percentage-partly-images-colors.json`),
 ];
 
 module.exports = {
@@ -24,9 +24,9 @@ module.exports = {
   method: "GET",
   options: {
     tags: ["api"],
-    cors: true
+    cors: true,
   },
   handler: (request, h) => {
     return fixtureData;
-  }
+  },
 };
