@@ -1,0 +1,72 @@
+{
+  "title": "FIXTURE: results - float percentage - colors - partly images",
+  "sources": [
+    {
+      "text": "NZZ",
+      "link": {
+        "url": "https://nzz.ch",
+        "isValid": true
+      }
+    }
+  ],
+  "subtitle": "Möglichkeit zusätzliche Informationen als Untertitel zu erfassen",
+  "notes": "Jemand musste Josef K. verleumdet haben, denn ohne dass er etwas Böses getan hätte, wurde er eines 'Morgens verhaftet.",
+  "isPercentage": true,
+  "candidates": [
+    {
+      "name": "Hans Wurst",
+      "party": "Class code light (gray instead of green)",
+      "color": {
+        "colorCode": "#00ff00"
+      },
+      "isPrevious": true,
+      "status": "not elected",
+      "votes": 20.95
+    },
+    {
+      "name": "Maria Müller",
+      "party": "class attribute viz color party sp",
+      "color": {
+        "classAttribute": "s-viz-color-party-sp-5"
+      },
+      "isPrevious": false,
+      "status": "not elected",
+      "votes": 20.32
+    },
+    {
+      "name": "Abdalá Bucaram",
+      "party": "Class Attribute overwrites color code (green instead of blue)",
+      "color": {
+        "classAttribute": "s-viz-color-party-glp-5",
+        "colorCode": "#0000ff"
+      },
+      "picture": {
+        "key": "2018/02/09/17ce3c89-06c9-4694-8cf3-d25cd6090762.png",
+        "url": "https://nzz-q-assets-stage.s3.eu-west-1.amazonaws.com/2018/02/09/17ce3c89-06c9-4694-8cf3-d25cd6090762.png",
+        "length": 4615,
+        "width": 88,
+        "height": 88
+      },
+      "isPrevious": false,
+      "status": "not elected",
+      "votes": 59.67
+    },
+    {
+      "name": "Susann Salami",
+      "party": "Color Code Full (darker violet)",
+      "color": {
+        "colorCode": "#512d84"
+      },
+      "picture": {
+        "key": "2018/02/09/19574d23-e534-452e-a24b-ae12e2570001.png",
+        "url": "https://nzz-q-assets-stage.s3.eu-west-1.amazonaws.com/2018/02/09/19574d23-e534-452e-a24b-ae12e2570001.png",
+        "length": 5239,
+        "width": 88,
+        "height": 88
+      },
+      "isPrevious": true,
+      "status": "elected",
+      "votes": 65.34
+    }
+  ]
+}

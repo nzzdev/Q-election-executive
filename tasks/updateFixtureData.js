@@ -50,6 +50,14 @@ const fixtureData = [
   [
     `${fixtureDataDirectory}/hide-updated-date.json`,
     require(`${fixtureDataDirectory}/hide-updated-date.json`)
+  ],
+  [
+    `${fixtureDataDirectory}/results-float-numbers-no-images-status.json`,
+    require(`${fixtureDataDirectory}/results-float-numbers-no-images-status.json`)
+  ],
+  [
+    `${fixtureDataDirectory}/results-float-percentage-partly-images-colors.json`,
+    require(`${fixtureDataDirectory}/results-float-percentage-partly-images-colors.json`)
   ]
 ];
 
