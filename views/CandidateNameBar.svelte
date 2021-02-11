@@ -9,7 +9,7 @@
   {#if isOthers && majority === undefined}
     <div class="s-font-note q-election-executive-item-others-spacer" />
   {/if}
-  <div class="q-election-executive-item-text-name s-font-text-s">
+  <div class="q-election-executive-item-text-name s-font-note s-font-note--strong">
     {#if candidate.status === 'elected'}
       <!-- checkmark -->
       <svg
