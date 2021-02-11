@@ -1,0 +1,32 @@
+{
+  "title": "FIXTURE: results - float numbers - statuses - no images",
+  "sources": [
+    {
+      "text": "NZZ",
+      "link": {
+        "url": "https://nzz.ch",
+        "isValid": true
+      }
+    }
+  ],
+  "subtitle": "Möglichkeit zusätzliche Informationen als Untertitel zu erfassen",
+  "notes": "Jemand musste Josef K. verleumdet haben, denn ohne dass er etwas Böses getan hätte, wurde er eines 'Morgens verhaftet.",
+  "majority": 5000,
+  "candidates": [
+    {
+      "name": "Number one",
+      "color": {},
+      "isPrevious": true,
+      "status": "not elected",
+      "votes": 5135.34
+    },
+    {
+      "name": "Number two",
+      "party": "its a number too",
+      "color": {},
+      "isPrevious": false,
+      "status": "elected",
+      "votes": 123456.789
+    }
+  ]
+}
