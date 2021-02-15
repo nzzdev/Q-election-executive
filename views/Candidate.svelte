@@ -33,10 +33,10 @@
     maxNumber,
     candidate
   );
-
+  
   function formatNumber(number) {
-    // insert a viertelgeviert after 3 digits
-    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " "); // what looks like a space is a viertelgeviert character, take care of this
+    // insert a viertelgeviert after 3 digits and also replace floating point with comma
+    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ").replace(/\./g, ","); // what looks like a space is a viertelgeviert character, take care of this
   }
 
   function getColoredSlimBarWidthPercentage(
@@ -121,7 +121,9 @@
         style="opacity: {candidate.opacity}">
         <CandidateNameBar {candidate} {isOthers} {majority} />
         {#if withErrorMargin}
-          <div class="s-font-note q-election-executive-item-text-votes">
+          <div
+            class="s-font-note q-election-executive-item-text-votes
+            s-font-note--tabularnums">
             {#if hasErrorMargin && candidate.errorMargin}
               {formatNumber(candidate.errorMargin.lower)}–{formatNumber(candidate.errorMargin.upper)}{#if isPercentage}%{/if}
             {:else if candidate.errorMargin}
@@ -129,8 +131,10 @@
             {/if}
           </div>
         {:else if candidate.votes !== undefined}
-          <div class="s-font-note q-election-executive-item-text-votes">
-             {formatNumber(candidate.votes)}{#if isPercentage}%{/if}
+          <div
+            class="s-font-note q-election-executive-item-text-votes
+            s-font-note--tabularnums">
+            {formatNumber(candidate.votes)}{#if isPercentage}%{/if}
           </div>
         {/if}
       </div>
