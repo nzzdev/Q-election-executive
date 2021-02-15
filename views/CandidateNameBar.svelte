@@ -17,7 +17,7 @@
     {#if candidate.status === 'elected'}
       <!-- checkmark -->
       <svg width="11" height="11" viewBox="0 0 18 18">
-        <g fill="none" fill-rule="evenodd" transform="translate(0,4)">
+        <g fill="none" fill-rule="evenodd" transform="translate(0,2)">
           <path fill="currentColor" d="M0 9l5 5L16 3l-2-2-9 9-3-3z" />
         </g>
       </svg>
@@ -25,7 +25,7 @@
     {#if candidate.status === 'not elected' && candidate.isPrevious}
       <!-- crossmark -->
       <svg width="11" height="11" viewBox="0 0 18 18">
-        <g fill="none" fill-rule="evenodd" transform="translate(0,4)">
+        <g fill="none" fill-rule="evenodd" transform="translate(0,2)">
           <path fill="currentColor" d="M6 8l-5 5 2 2 5-5 5 5 2-2-5-5 5-5-2-2-5 5-5-5-2 2 5 5z" />
         </g>
       </svg>
