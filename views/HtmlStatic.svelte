@@ -235,7 +235,7 @@
           <div class="q-election-executive-available-seats s-color-gray-5">
             <div
               class="s-font-note-s q-election-executive-available-seats-text">
-              Verfügbare Sitze: {item.availableSeats}
+              Verfügbare Sitze: <span class="s-font-note--tabularnums">{item.availableSeats}</span>
             </div>
           </div>
         {/if}
