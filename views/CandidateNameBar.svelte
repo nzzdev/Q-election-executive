@@ -10,35 +10,25 @@
     <div class="s-font-note q-election-executive-item-others-spacer" />
   {/if}
   <div class="q-election-executive-item-text-name s-font-note s-font-note--strong">
+    <span>{candidate.name || ''}</span>
+    {#if candidate.isPrevious}
+      <span>*</span>
+    {/if}
     {#if candidate.status === 'elected'}
       <!-- checkmark -->
-      <svg
-        viewBox="0 0 16 16"
-        width="14"
-        height="14"
-        xmlns="http://www.w3.org/2000/svg">
-        <g fill="none" fill-rule="evenodd">
+      <svg width="11" height="11" viewBox="0 0 18 18">
+        <g fill="none" fill-rule="evenodd" transform="translate(0,4)">
           <path fill="currentColor" d="M0 9l5 5L16 3l-2-2-9 9-3-3z" />
         </g>
       </svg>
     {/if}
     {#if candidate.status === 'not elected' && candidate.isPrevious}
       <!-- crossmark -->
-      <svg
-        viewBox="0 0 16 16"
-        width="14"
-        height="14"
-        xmlns="http://www.w3.org/2000/svg">
-        <g fill="none" fill-rule="evenodd">
-          <path
-            fill="currentColor"
-            d="M6 8l-5 5 2 2 5-5 5 5 2-2-5-5 5-5-2-2-5 5-5-5-2 2 5 5z" />
+      <svg width="11" height="11" viewBox="0 0 18 18">
+        <g fill="none" fill-rule="evenodd" transform="translate(0,4)">
+          <path fill="currentColor" d="M6 8l-5 5 2 2 5-5 5 5 2-2-5-5 5-5-2-2-5 5-5-5-2 2 5 5z" />
         </g>
       </svg>
-    {/if}
-     {candidate.name || ''}
-    {#if candidate.isPrevious}
-      <span>*</span>
     {/if}
   </div>
   <!-- no party name if it's others group -->

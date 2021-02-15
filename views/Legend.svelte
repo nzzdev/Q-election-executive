@@ -17,12 +17,8 @@
         class="s-legend-item-label__item__icon
         s-legend-item-label__item__icon--text">
         <!-- checkmark -->
-        <svg
-          viewBox="0 0 16 16"
-          width="10"
-          height="10"
-          xmlns="http://www.w3.org/2000/svg">
-          <g fill="none" fill-rule="evenodd">
+        <svg width="11" height="11" viewBox="0 0 18 18">
+          <g fill="none" fill-rule="evenodd" transform="translate(0,4)">
             <path fill="currentColor" d="M0 9l5 5L16 3l-2-2-9 9-3-3z" />
           </g>
         </svg>
@@ -36,15 +32,9 @@
         class="s-legend-item-label__item__icon
         s-legend-item-label__item__icon--text">
         <!-- crossmark -->
-        <svg
-          viewBox="0 0 16 16"
-          width="10"
-          height="10"
-          xmlns="http://www.w3.org/2000/svg">
-          <g fill="none" fill-rule="evenodd">
-            <path
-              fill="currentColor"
-              d="M6 8l-5 5 2 2 5-5 5 5 2-2-5-5 5-5-2-2-5 5-5-5-2 2 5 5z" />
+        <svg width="11" height="11" viewBox="0 0 18 18">
+          <g fill="none" fill-rule="evenodd" transform="translate(0,4)">
+            <path fill="currentColor" d="M6 8l-5 5 2 2 5-5 5 5 2-2-5-5 5-5-2-2-5 5-5-5-2 2 5 5z" />
           </g>
         </svg>
       </div>

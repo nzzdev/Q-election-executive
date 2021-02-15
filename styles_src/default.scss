@@ -40,7 +40,7 @@ $party-margin: 2px;
 
   /* each candidate with image, text and bar */
   &-item {
-    margin: 0 0 7px 0;
+    margin-bottom: 16px;
 
     /* candidate, votes, bar and majority line */
     &-group {
@@ -60,6 +60,7 @@ $party-margin: 2px;
       width: 100%;
       height: $bar-height;
       background-color: currentColor;
+      margin-top: 4px;
 
       &-color {
         background-color: currentColor;
@@ -92,7 +93,6 @@ $party-margin: 2px;
     &-text {
       display: flex;
       justify-content: space-between;
-      margin-bottom: 3px;
 
       &-candidate {
         flex-grow: 1;
@@ -111,7 +111,6 @@ $party-margin: 2px;
         overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis;
-        margin-top: $party-margin;
         min-height: 17px;
       }
 
