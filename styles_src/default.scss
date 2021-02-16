@@ -101,10 +101,15 @@ $party-margin: 2px;
         text-overflow: ellipsis;
       }
 
-      &-name {
+      &-name-container {
+        display: flex;
         overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis;
+      }
+
+      &-name {
+        margin-right: 4px;
       }
 
       &-party {
@@ -121,6 +126,20 @@ $party-margin: 2px;
         display: flex;
         flex-direction: column;
         justify-content: flex-end;
+      }
+
+      &-asterisk {
+        margin-right: 4px;
+      }
+
+      &-icon-container {
+        display: inline;
+      }
+
+      &-icon {
+        height: 0.625em;
+        width: 0.625em;
+        vertical-align: baseline;
       }
     }
 

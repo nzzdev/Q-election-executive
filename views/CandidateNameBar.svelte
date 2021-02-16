@@ -9,26 +9,30 @@
   {#if isOthers && majority === undefined}
     <div class="s-font-note q-election-executive-item-others-spacer" />
   {/if}
-  <div class="q-election-executive-item-text-name s-font-note s-font-note--strong">
-    <span>{candidate.name || ''}</span>
+  <div class="q-election-executive-item-text-name-container s-font-note s-font-note--strong">
+    <span class="q-election-executive-item-text-name">{candidate.name || ''}</span>
     {#if candidate.isPrevious}
-      <span>*</span>
+      <span class="q-election-executive-item-text-asterisk">*</span>
     {/if}
     {#if candidate.status === 'elected'}
       <!-- checkmark -->
-      <svg width="11" height="11" viewBox="0 0 18 18">
-        <g fill="none" fill-rule="evenodd" transform="translate(0,2)">
-          <path fill="currentColor" d="M0 9l5 5L16 3l-2-2-9 9-3-3z" />
-        </g>
-      </svg>
+      <div class="q-election-executive-item-text-icon-container">
+        <svg class="q-election-executive-item-text-icon" viewBox="0 1 16 13">
+          <g fill="none" fill-rule="evenodd">
+            <path fill="currentColor" d="M0 9l5 5L16 3l-2-2-9 9-3-3z" />
+          </g>
+        </svg>
+      </div>
     {/if}
     {#if candidate.status === 'not elected' && candidate.isPrevious}
       <!-- crossmark -->
-      <svg width="11" height="11" viewBox="0 0 18 18">
-        <g fill="none" fill-rule="evenodd" transform="translate(0,2)">
-          <path fill="currentColor" d="M6 8l-5 5 2 2 5-5 5 5 2-2-5-5 5-5-2-2-5 5-5-5-2 2 5 5z" />
-        </g>
-      </svg>
+      <div class="q-election-executive-item-text-icon-container">
+        <svg class="q-election-executive-item-text-icon" viewBox="1 1 14 14">
+          <g fill="none" fill-rule="evenodd">
+            <path fill="currentColor" d="M6 8l-5 5 2 2 5-5 5 5 2-2-5-5 5-5-2-2-5 5-5-5-2 2 5 5z" />
+          </g>
+        </svg>
+      </div>
     {/if}
   </div>
   <!-- no party name if it's others group -->
