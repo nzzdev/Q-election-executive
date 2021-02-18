@@ -60,7 +60,7 @@ $party-margin: 2px;
       width: 100%;
       height: $bar-height;
       background-color: currentColor;
-      margin-top: 4px;
+      margin-top: 2px;
 
       &-color {
         background-color: currentColor;
@@ -95,7 +95,6 @@ $party-margin: 2px;
       justify-content: space-between;
 
       &-candidate {
-        flex-grow: 1;
         overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis;
@@ -116,7 +115,7 @@ $party-margin: 2px;
         overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis;
-        min-height: 17px;
+        margin-top: 2px;
       }
 
       &-votes {
