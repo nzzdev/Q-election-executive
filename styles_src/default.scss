@@ -40,6 +40,7 @@ $party-margin: 2px;
 
   /* each candidate with image, text and bar */
   &-item {
+    display: flex;
     margin-bottom: 16px;
 
     /* candidate, votes, bar and majority line */
