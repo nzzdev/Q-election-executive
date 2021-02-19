@@ -15,13 +15,10 @@
     <div class="s-legend-item-label__item">
       <div
         class="s-legend-item-label__item__icon
-        s-legend-item-label__item__icon--text">
+        s-legend-item-label__item__icon--text
+        q-election-executive-item-text-icon-container">
         <!-- checkmark -->
-        <svg
-          viewBox="0 0 16 16"
-          width="10"
-          height="10"
-          xmlns="http://www.w3.org/2000/svg">
+        <svg class="q-election-executive-item-text-icon" viewBox="0 1 16 13">
           <g fill="none" fill-rule="evenodd">
             <path fill="currentColor" d="M0 9l5 5L16 3l-2-2-9 9-3-3z" />
           </g>
@@ -34,17 +31,12 @@
     <div class="s-legend-item-label__item">
       <div
         class="s-legend-item-label__item__icon
-        s-legend-item-label__item__icon--text">
+        s-legend-item-label__item__icon--text
+        q-election-executive-item-text-icon-container">
         <!-- crossmark -->
-        <svg
-          viewBox="0 0 16 16"
-          width="10"
-          height="10"
-          xmlns="http://www.w3.org/2000/svg">
+        <svg class="q-election-executive-item-text-icon" viewBox="1 1 14 14">
           <g fill="none" fill-rule="evenodd">
-            <path
-              fill="currentColor"
-              d="M6 8l-5 5 2 2 5-5 5 5 2-2-5-5 5-5-2-2-5 5-5-5-2 2 5 5z" />
+            <path fill="currentColor" d="M6 8l-5 5 2 2 5-5 5 5 2-2-5-5 5-5-2-2-5 5-5-5-2 2 5 5z" />
           </g>
         </svg>
       </div>
