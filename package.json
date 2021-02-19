@@ -1,6 +1,6 @@
 {
   "name": "@nzz/q-elections-executive",
-  "version": "3.3.5",
+  "version": "3.3.6",
   "description": "Q executive election tool",
   "keywords": [
     "storytelling",
@@ -50,6 +50,6 @@
     "jsdom": "^14.1.0",
     "postcss": "^7.0.17",
     "postcss-import": "^12.0.1",
-    "sass": "^1.22.4"
+    "sass": "^1.32.8"
   }
 }
