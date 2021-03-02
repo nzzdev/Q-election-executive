@@ -1,16 +1,22 @@
 <script>
+  import VoteResult from "./VoteResult.svelte";
+
   export let isOthers;
   export let majority;
+  export let withErrorMargin;
+  export let hasErrorMargin;
   export let candidate;
+  export let isPercentage;
 </script>
 
-<div class="q-election-executive-item-text-candidate">
+<div class="q-election-executive-item-text-candidate" style="{!isOthers && candidate.party ? 'flex-direction: column;' : 'flex-direction: row;'}">
   <!-- if no majority, add space on top of others group which is as high as party name -->
   {#if isOthers && majority === undefined}
     <div class="s-font-note q-election-executive-item-others-spacer" />
   {/if}
   <div class="q-election-executive-item-text-name-container s-font-note s-font-note--strong">
-    <span class="q-election-executive-item-text-name">{candidate.name || ''}</span>
+    <div class="q-election-executive-item-text-name">{candidate.name || ''}
+    </div>
     {#if candidate.isPrevious}
       <span class="q-election-executive-item-text-asterisk">*</span>
     {/if}
@@ -35,10 +41,13 @@
       </div>
     {/if}
   </div>
+  <div class="q-election-executive-item-text-information">
   <!-- no party name if it's others group -->
-  {#if !isOthers}
+  {#if !isOthers && candidate.party}
     <div class="s-font-note q-election-executive-item-text-party">
-      {#if candidate.party !== undefined}{candidate.party || ''}{/if}
+      {candidate.party}
     </div>
   {/if}
+  <VoteResult {withErrorMargin} {hasErrorMargin} {candidate} {isPercentage} />
+  </div>
 </div>

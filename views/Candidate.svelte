@@ -1,4 +1,5 @@
 <script>
+  import {formatNumber } from "../helpers/formatNumber";
   import CandidateNameBar from "./CandidateNameBar.svelte";
   import MajorityArrow from "./MajorityArrow.svelte";
 
@@ -33,11 +34,6 @@
     maxNumber,
     candidate
   );
-  
-  function formatNumber(number) {
-    // insert a viertelgeviert after 3 digits and also replace floating point with comma
-    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ").replace(/\./g, ","); // what looks like a space is a viertelgeviert character, take care of this
-  }
 
   function getColoredSlimBarWidthPercentage(
     hasErrorMargin,
@@ -119,24 +115,7 @@
       <div
         class="q-election-executive-item-text"
         style="opacity: {candidate.opacity}">
-        <CandidateNameBar {candidate} {isOthers} {majority} />
-        {#if withErrorMargin}
-          <div
-            class="s-font-note q-election-executive-item-text-votes
-            s-font-note--tabularnums">
-            {#if hasErrorMargin && candidate.errorMargin}
-              {formatNumber(candidate.errorMargin.lower)}–{formatNumber(candidate.errorMargin.upper)}{#if isPercentage}%{/if}
-            {:else if candidate.errorMargin}
-              {formatNumber(candidate.errorMargin.bestGuess)}{#if isPercentage}%{/if}
-            {/if}
-          </div>
-        {:else if candidate.votes !== undefined}
-          <div
-            class="s-font-note q-election-executive-item-text-votes
-            s-font-note--tabularnums">
-            {formatNumber(candidate.votes)}{#if isPercentage}%{/if}
-          </div>
-        {/if}
+        <CandidateNameBar {candidate} {isOthers} {majority} {withErrorMargin} {hasErrorMargin} {isPercentage} />
       </div>
       {#if withErrorMargin}
         <div class="q-election-executive-item-error-margin-bar">
