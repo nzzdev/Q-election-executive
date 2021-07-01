@@ -102,8 +102,8 @@
 <div class="q-election-executive-item">
   {#if isImagePresent}
     <div
-      class="q-election-executive-item-image"
-      style="opacity: {candidate.opacity}">
+      class:q-election-executive-item-disabled={!candidate.isEnable}
+      class="q-election-executive-item-image">
       {#if candidate.picture && candidate.picture.url}
         <img src={candidate.picture.url} alt={candidate.name} />
       {/if}
@@ -113,8 +113,8 @@
     class="q-election-executive-item-group {isImagePresent === false ? 'q-election-executive-item-group--no-images' : ''}">
     <div class="q-election-executive-item-group-content">
       <div
-        class="q-election-executive-item-text"
-        style="opacity: {candidate.opacity}">
+        class:q-election-executive-item-disabled={!candidate.isEnable}
+        class="q-election-executive-item-text">
         <CandidateNameBar {candidate} {isOthers} {majority} {withErrorMargin} {hasErrorMargin} {isPercentage} />
       </div>
       {#if withErrorMargin}
@@ -140,8 +140,8 @@
         </div>
       {:else}
         <div
-          class="q-election-executive-item-bar s-color-gray-3"
-          style="opacity: {candidate.opacity}">
+          class:q-election-executive-item-disabled={!candidate.isEnable}
+          class="q-election-executive-item-bar s-color-gray-3">
           <div
             class="q-election-executive-item-bar-color {candidate.colorClass}"
             style="{candidate.colorStyle} width: {candidate.width};" />
