@@ -142,12 +142,7 @@
         width = widthPercentage + "%";
       }
       candidate.width = width;
-
-      if (candidate.status === "elected" || candidate.status === "undefined") {
-        candidate.opacity = 1;
-      } else {
-        candidate.opacity = 0.5;
-      }
+      candidate.isEnable = candidate.status === "elected" || candidate.status === "undefined";
 
       if (candidate.color) {
         if (candidate.color.classAttribute) {
