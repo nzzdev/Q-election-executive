@@ -1,6 +1,6 @@
 {
   "name": "@nzz/q-elections-executive",
-  "version": "3.3.9",
+  "version": "3.3.10",
   "description": "Q executive election tool",
   "keywords": [
     "storytelling",
@@ -32,24 +32,24 @@
     "url": "git+https://github.com/nzzdev/Q-election-excecutive.git"
   },
   "dependencies": {
-    "@hapi/boom": "^7.4.2",
+    "@hapi/boom": "^7.4.11",
     "@hapi/hapi": "^18.3.1",
-    "@hapi/inert": "^5.2.1",
-    "@hapi/joi": "^15.1.0",
+    "@hapi/inert": "^5.2.2",
+    "@hapi/joi": "^15.1.1",
     "enjoi": "^5.0.2",
     "joi": "^14.3.1",
     "lodash": "^4.17.14",
-    "svelte": "^3.6.7"
+    "svelte": "^3.46.4"
   },
   "devDependencies": {
     "@hapi/code": "^5.3.1",
     "@hapi/lab": "^18.1.2",
-    "autoprefixer": "^9.6.1",
-    "cssnano": "^4.1.10",
-    "glob": "^7.1.4",
+    "autoprefixer": "^9.8.8",
+    "cssnano": "^4.1.11",
+    "glob": "^7.2.0",
     "jsdom": "^14.1.0",
     "postcss": "^7.0.17",
     "postcss-import": "^12.0.1",
-    "sass": "^1.32.8"
+    "sass": "^1.49.9"
   }
 }

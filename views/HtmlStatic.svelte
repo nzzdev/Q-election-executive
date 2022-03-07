@@ -6,6 +6,7 @@
 
   export let item;
   export let displayOptions;
+  export let toolRuntimeConfig;
 
   let hideTitle = displayOptions.hideTitle;
   let hideUpdatedDate = item.options && item.options.hideUpdatedDate;
@@ -118,8 +119,14 @@
     let isElected = false;
     let isDropped = false;
     let isImagePresent = false;
-
     let hasVotes = maxVotes > 0;
+    let forceEnableCandidate = false;
+
+    if (toolRuntimeConfig) {
+        if (typeof toolRuntimeConfig.forceEnableCandidate === 'boolean') {
+          forceEnableCandidate = toolRuntimeConfig.forceEnableCandidate
+        }
+    }
 
     sortedCandidates.forEach(candidate => {
       if (
@@ -142,7 +149,8 @@
         width = widthPercentage + "%";
       }
       candidate.width = width;
-      candidate.isEnable = candidate.status === "elected" || candidate.status === "undefined";
+
+      candidate.isEnable = forceEnableCandidate === true || candidate.status === "elected" || candidate.status === "undefined";
 
       if (candidate.color) {
         if (candidate.color.classAttribute) {
