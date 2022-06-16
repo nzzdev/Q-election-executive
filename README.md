@@ -1,6 +1,6 @@
 # Q Election Executive [![Build Status](https://travis-ci.com/nzzdev/Q-election-executive.svg?branch=dev)](https://travis-ci.com/nzzdev/Q-election-executive) [![Greenkeeper badge](https://badges.greenkeeper.io/nzzdev/Q-election-executive.svg)](https://greenkeeper.io/)
 
-**Maintainer**: [philipkueng](https://github.com/philipkueng)
+**Maintainer**: [Danijel Beljan](https://github.com/dnlbln)
 
 Q election executive is one tool of the Q toolbox to display results of executive elections. Test it in the [demo](https://editor.q.tools/).
 
