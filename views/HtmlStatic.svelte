@@ -22,7 +22,7 @@
 
   function getMaxVotes(item) {
     const maxResult = Math.max(
-      ...item.candidates.map(candidate =>
+      ...item.candidates.map((candidate) =>
         candidate.votes !== undefined ? candidate.votes : 0
       )
     );
@@ -34,7 +34,7 @@
 
   function getMaxErrorMarginValue(item) {
     const maxErrorMarginValue = Math.max(
-      ...item.candidates.map(candidate =>
+      ...item.candidates.map((candidate) =>
         candidate.errorMargin && candidate.errorMargin.upper !== undefined
           ? candidate.errorMargin.upper
           : 0
@@ -48,7 +48,7 @@
   function getSortedCandidates(item) {
     if (item.candidates) {
       if (item.withErrorMargin) {
-        return item.candidates.sort(function(candidateA, candidateB) {
+        return item.candidates.sort(function (candidateA, candidateB) {
           // if both have no errorMargin set, keep the order
           if (
             candidateA.errorMargin === undefined &&
@@ -74,7 +74,20 @@
           return -1;
         });
       } else {
-        return item.candidates.sort(function(candidateA, candidateB) {
+        return item.candidates.sort(function (candidateA, candidateB) {
+          // Sort elected candidates before sorting by vote count
+          if (
+            candidateA.status !== "elected" &&
+            candidateB.status === "elected"
+          ) {
+            return 1;
+          }
+          if (
+            candidateA.status === "elected" &&
+            candidateB.status !== "elected"
+          ) {
+            return -1;
+          }
           if (
             (candidateA.votes === undefined &&
               candidateB.votes === undefined) ||
@@ -123,12 +136,12 @@
     let forceEnableCandidate = false;
 
     if (toolRuntimeConfig) {
-        if (typeof toolRuntimeConfig.forceEnableCandidate === 'boolean') {
-          forceEnableCandidate = toolRuntimeConfig.forceEnableCandidate
-        }
+      if (typeof toolRuntimeConfig.forceEnableCandidate === "boolean") {
+        forceEnableCandidate = toolRuntimeConfig.forceEnableCandidate;
+      }
     }
 
-    sortedCandidates.forEach(candidate => {
+    sortedCandidates.forEach((candidate) => {
       if (
         candidate.picture !== undefined &&
         candidate.picture.url !== undefined
@@ -150,7 +163,10 @@
       }
       candidate.width = width;
 
-      candidate.isEnable = forceEnableCandidate === true || candidate.status === "elected" || candidate.status === "undefined";
+      candidate.isEnable =
+        forceEnableCandidate === true ||
+        candidate.status === "elected" ||
+        candidate.status === "undefined";
 
       if (candidate.color) {
         if (candidate.color.classAttribute) {
@@ -186,12 +202,13 @@
       isElected: isElected,
       isDropped: isDropped,
       isImagePresent: isImagePresent,
-      sortedCandidates: sortedCandidates
+      sortedCandidates: sortedCandidates,
     };
 
     // process the group of other candidates differently - not part of the majority
-    let othersIndex = sortedCandidates.findIndex(candidate => {
-      let othersPattern = /((.*(A|a)ndere$)|(.*Andere(r)?\s.*)|(.*(S|s)onstig.*))/;
+    let othersIndex = sortedCandidates.findIndex((candidate) => {
+      let othersPattern =
+        /((.*(A|a)ndere$)|(.*Andere(r)?\s.*)|(.*(S|s)onstig.*))/;
       return othersPattern.test(candidate.name);
     });
     if (othersIndex >= 0) {
@@ -204,7 +221,7 @@
   }
 
   function getHasErrorMargin(item) {
-    return item.candidates.some(candidate => {
+    return item.candidates.some((candidate) => {
       return (
         candidate.errorMargin &&
         candidate.errorMargin.lower !== undefined &&
@@ -220,7 +237,8 @@
     {candidatesInfo}
     withErrorMargin={item.withErrorMargin}
     {hasErrorMargin}
-    errorMarginLabels={item.errorMarginLabels} />
+    errorMarginLabels={item.errorMarginLabels}
+  />
 
   <div class="q-election-executive-container">
     <div class="q-election-executive-candidates">
@@ -233,12 +251,16 @@
           majority={item.majority}
           {maxNumber}
           withErrorMargin={item.withErrorMargin}
-          {maxErrorMarginValue} />
+          {maxErrorMarginValue}
+        />
         {#if item.availableSeats === index + 1}
           <div class="q-election-executive-available-seats s-color-gray-5">
             <div
-              class="s-font-note-s q-election-executive-available-seats-text">
-              Verfügbare Sitze: <span class="s-font-note--tabularnums">{item.availableSeats}</span>
+              class="s-font-note-s q-election-executive-available-seats-text"
+            >
+              Verfügbare Sitze: <span class="s-font-note--tabularnums"
+                >{item.availableSeats}</span
+              >
             </div>
           </div>
         {/if}
@@ -253,7 +275,8 @@
           isOthers="true"
           majority={item.majority}
           {maxErrorMarginValue}
-          {maxNumber} />
+          {maxNumber}
+        />
       </div>
     {/if}
   </div>
@@ -263,5 +286,6 @@
     sources={item.sources}
     notes={item.notes}
     updatedDate={item.updatedDate}
-    {hideUpdatedDate} />
+    {hideUpdatedDate}
+  />
 </div>
